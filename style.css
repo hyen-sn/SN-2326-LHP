@@ -455,3 +455,177 @@ section {
     min-height: 250px;
   }
 }
+
+/* =========================
+   TRANG CHỌN NĂM KỶ NIỆM
+========================= */
+.year-select {
+  padding-top: 30px;
+}
+
+.year-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.year-card {
+  text-decoration: none;
+  color: white;
+  padding: 38px 24px;
+  border-radius: 24px;
+  transition: 0.3s ease;
+  box-shadow: var(--shadow);
+}
+
+.year-card:hover {
+  transform: translateY(-6px);
+}
+
+.year-card h2 {
+  font-size: 1.8rem;
+  margin-bottom: 12px;
+}
+
+.year-card p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.year-10 {
+  background: linear-gradient(135deg, #4a90ff, #6dc7ff);
+}
+
+.year-11 {
+  background: linear-gradient(135deg, #ffd54f, #ffb300);
+}
+
+.year-12 {
+  background: linear-gradient(135deg, #ff6b6b, #e53935);
+}
+
+/* =========================
+   THEME MÀU THEO TỪNG NĂM
+========================= */
+.theme-blue {
+  --year-main: #4a90ff;
+  --year-soft: #eef6ff;
+  --year-tag: #dbeaff;
+  --year-text: #1f57a5;
+}
+
+.theme-yellow {
+  --year-main: #f4b400;
+  --year-soft: #fff8df;
+  --year-tag: #ffefb3;
+  --year-text: #8a6200;
+}
+
+.theme-red {
+  --year-main: #e53935;
+  --year-soft: #fff0f0;
+  --year-tag: #ffd8d8;
+  --year-text: #a02020;
+}
+
+/* =========================
+   TRANG SỰ KIỆN TỪNG NĂM
+========================= */
+.year-banner {
+  border-top: 6px solid var(--year-main);
+}
+
+.event-section {
+  padding-top: 20px;
+}
+
+.event-block {
+  padding: 26px;
+  margin-bottom: 28px;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.event-header {
+  margin-bottom: 20px;
+}
+
+.event-tag {
+  display: inline-block;
+  background: var(--year-tag);
+  color: var(--year-text);
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  font-size: 0.95rem;
+}
+
+.event-header h2 {
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+  color: var(--text);
+}
+
+.event-header p {
+  color: var(--muted);
+}
+
+.event-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.photo-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.event-photo {
+  min-height: 220px;
+  background:
+    radial-gradient(circle at top left, rgba(255,255,255,0.8), transparent 30%),
+    linear-gradient(135deg, var(--year-soft), #ffffff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-weight: 700;
+  text-align: center;
+  padding: 20px;
+}
+
+.photo-card figcaption {
+  padding: 14px 16px;
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* =========================
+   RESPONSIVE CHO PHẦN SỰ KIỆN
+========================= */
+@media (max-width: 1024px) {
+  .year-grid,
+  .event-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .year-grid,
+  .event-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .year-card,
+  .event-block {
+    padding: 22px 18px;
+  }
+
+  .event-photo {
+    min-height: 200px;
+  }
+}
