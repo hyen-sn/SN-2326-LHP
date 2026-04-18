@@ -241,3 +241,111 @@ function initMusicPlayer() {
   restoreMusicState();
   updatePlayButton();
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  const musicPlayer = document.getElementById("musicPlayer");
+  const musicToggle = document.getElementById("musicToggle");
+  const musicPanel = document.getElementById("musicPanel");
+  const bgMusic = document.getElementById("bgMusic");
+  const playPauseBtn = document.getElementById("playPauseBtn");
+  const musicSeek = document.getElementById("musicSeek");
+  const closePanelBtn = document.getElementById("closePanelBtn");
+
+  if (!musicPlayer || !musicToggle || !musicPanel || !bgMusic || !playPauseBtn || !musicSeek || !closePanelBtn) {
+    return;
+  }
+
+  // Khôi phục thời gian nhạc
+  const savedTime = localStorage.getItem("musicTime");
+  if (savedTime) {
+    bgMusic.currentTime = parseFloat(savedTime);
+  }
+
+  // Khôi phục trạng thái phát
+  const wasPlaying = localStorage.getItem("musicPlaying") === "true";
+
+  function updatePlayButton() {
+    playPauseBtn.textContent = bgMusic.paused ? "▶" : "⏸";
+  }
+
+  // Tự phát nếu trước đó đang phát
+  if (wasPlaying) {
+    bgMusic.play().then(() => {
+      updatePlayButton();
+    }).catch(() => {
+      updatePlayButton();
+    });
+  } else {
+    updatePlayButton();
+  }
+
+  // Bấm icon: chỉ mở / đóng panel
+  musicToggle.addEventListener("click", function (e) {
+    e.stopPropagation();
+    musicPlayer.classList.toggle("open");
+  });
+
+  // Nút đóng panel
+  closePanelBtn.addEventListener("click", function (e) {
+    e.stopPropagation();
+    musicPlayer.classList.remove("open");
+  });
+
+  // Play / pause
+  playPauseBtn.addEventListener("click", function (e) {
+    e.stopPropagation();
+
+    if (bgMusic.paused) {
+      bgMusic.play().then(() => {
+        localStorage.setItem("musicPlaying", "true");
+        updatePlayButton();
+      }).catch((error) => {
+        console.log("Không thể tự phát nhạc:", error);
+      });
+    } else {
+      bgMusic.pause();
+      localStorage.setItem("musicPlaying", "false");
+      updatePlayButton();
+    }
+  });
+
+  // Cập nhật thanh thời gian
+  bgMusic.addEventListener("timeupdate", function () {
+    if (!isNaN(bgMusic.duration) && bgMusic.duration > 0) {
+      const progress = (bgMusic.currentTime / bgMusic.duration) * 100;
+      musicSeek.value = progress;
+    }
+    localStorage.setItem("musicTime", bgMusic.currentTime);
+  });
+
+  // Kéo tua nhạc
+  musicSeek.addEventListener("input", function (e) {
+    e.stopPropagation();
+    if (!isNaN(bgMusic.duration) && bgMusic.duration > 0) {
+      bgMusic.currentTime = (musicSeek.value / 100) * bgMusic.duration;
+    }
+  });
+
+  // Lưu khi pause/play
+  bgMusic.addEventListener("play", function () {
+    localStorage.setItem("musicPlaying", "true");
+    updatePlayButton();
+  });
+
+  bgMusic.addEventListener("pause", function () {
+    localStorage.setItem("musicPlaying", "false");
+    updatePlayButton();
+  });
+
+  // Click ra ngoài thì tự ẩn panel
+  document.addEventListener("click", function (e) {
+    if (!musicPlayer.contains(e.target)) {
+      musicPlayer.classList.remove("open");
+    }
+  });
+
+  // Tránh click vào panel bị đóng
+  musicPanel.addEventListener("click", function (e) {
+    e.stopPropagation();
+  });
+});
