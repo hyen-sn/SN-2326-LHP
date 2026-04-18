@@ -1073,11 +1073,12 @@ section {
 /* =========================
    JAVA
 ========================= */
-.photo-track.dragging {
-  cursor: grabbing;
-}
-
 .photo-track {
   cursor: grab;
+  user-select: none;
+}
+
+.photo-track.dragging {
+  cursor: grabbing;
 }
    
