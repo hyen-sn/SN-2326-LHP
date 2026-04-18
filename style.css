@@ -842,6 +842,18 @@ section {
   --year-text: #a02020;
 }
 
+.theme-yellow {
+  --main-color: #f4c542;
+  --soft-bg: #fff8db;
+  --text-color: #5c4400;
+}
+
+.theme-red {
+  --main-color: #e85d75;
+  --soft-bg: #fff1f3;
+  --text-color: #7a1f2b;
+}
+
 /* =========================
    TRANG SỰ KIỆN TỪNG NĂM
 ========================= */
