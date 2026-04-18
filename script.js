@@ -1,602 +1,277 @@
-document.addEventListener("DOMContentLoaded", () => {
-  initSliders();
-  initMusicPlayer();
-});
+const sliders = document.querySelectorAll('.slider-wrapper');
 
-/* =========================
-   SLIDER ẢNH NGANG
-========================= */
-function initSliders() {
-  const sliders = document.querySelectorAll(".slider-wrapper");
+sliders.forEach((slider) => {
+  const track = slider.querySelector('.photo-track');
+  const prevBtn = slider.querySelector('.prev');
+  const nextBtn = slider.querySelector('.next');
 
-  sliders.forEach((slider) => {
-    const track = slider.querySelector(".photo-track");
-    const prevBtn = slider.querySelector(".prev");
-    const nextBtn = slider.querySelector(".next");
+  if (!track || !prevBtn || !nextBtn) return;
 
-    if (!track || !prevBtn || !nextBtn) return;
+  let autoRun;
+  let isDragging = false;
+  let startX = 0;
+  let scrollLeft = 0;
 
-    // Chống nhân đôi nhiều lần nếu script bị gọi lại
-    if (!track.dataset.cloned) {
-      track.innerHTML += track.innerHTML;
-      track.dataset.cloned = "true";
-    }
+  let touchStartX = 0;
+  let touchScrollLeft = 0;
 
-    let autoRun = null;
-    let isDragging = false;
-    let startX = 0;
-    let scrollLeftStart = 0;
+  // Nhân đôi toàn bộ ảnh để tạo vòng lặp liên tục
+  track.innerHTML += track.innerHTML;
 
-    let touchStartX = 0;
-    let touchScrollLeftStart = 0;
+  // Nút bấm trái
+  prevBtn.addEventListener('click', () => {
+    track.scrollBy({
+      left: -300,
+      behavior: 'smooth'
+    });
+  });
 
-    const STEP = 300;
-    const AUTO_SPEED = 0.5;
-    const AUTO_INTERVAL = 20;
+  // Nút bấm phải
+  nextBtn.addEventListener('click', () => {
+    track.scrollBy({
+      left: 300,
+      behavior: 'smooth'
+    });
+  });
 
-    function resetLoopIfNeeded() {
-      const halfWidth = track.scrollWidth / 2;
-      if (track.scrollLeft >= halfWidth) {
-        track.scrollLeft = 0;
-      } else if (track.scrollLeft < 0) {
-        track.scrollLeft = halfWidth;
-      }
-    }
+  // Tự chạy liên tục
+  function startAutoRun() {
+    stopAutoRun();
 
-    function startAutoRun() {
-      stopAutoRun();
+    autoRun = setInterval(() => {
+      if (!isDragging) {
+        track.scrollLeft += 0.5;
 
-      autoRun = setInterval(() => {
-        if (!isDragging) {
-          track.scrollLeft += AUTO_SPEED;
-          resetLoopIfNeeded();
+        // Khi chạy hết nửa đầu (bộ ảnh gốc), quay lại đầu
+        // Vì đã nhân đôi nên mắt thường sẽ thấy chạy liên tục, không bị đứt
+        if (track.scrollLeft >= track.scrollWidth / 2) {
+          track.scrollLeft = 0;
         }
-      }, AUTO_INTERVAL);
-    }
-
-    function stopAutoRun() {
-      if (autoRun) {
-        clearInterval(autoRun);
-        autoRun = null;
       }
-    }
+    }, 20);
+  }
 
-    prevBtn.addEventListener("click", () => {
-      stopAutoRun();
-      track.scrollBy({
-        left: -STEP,
-        behavior: "smooth"
-      });
-      setTimeout(startAutoRun, 500);
-    });
+  function stopAutoRun() {
+    clearInterval(autoRun);
+  }
 
-    nextBtn.addEventListener("click", () => {
-      stopAutoRun();
-      track.scrollBy({
-        left: STEP,
-        behavior: "smooth"
-      });
-      setTimeout(startAutoRun, 500);
-    });
+  // Hover vào thì dừng
+  slider.addEventListener('mouseenter', stopAutoRun);
 
-    slider.addEventListener("mouseenter", stopAutoRun);
-    slider.addEventListener("mouseleave", () => {
-      if (!isDragging) startAutoRun();
-    });
-
-    track.addEventListener("mousedown", (e) => {
-      isDragging = true;
-      startX = e.pageX;
-      scrollLeftStart = track.scrollLeft;
-      stopAutoRun();
-      track.classList.add("dragging");
-    });
-
-    window.addEventListener("mousemove", (e) => {
-      if (!isDragging) return;
-      e.preventDefault();
-
-      const walk = (e.pageX - startX) * 1.5;
-      track.scrollLeft = scrollLeftStart - walk;
-      resetLoopIfNeeded();
-    });
-
-    function stopDragging() {
-      if (!isDragging) return;
-      isDragging = false;
-      track.classList.remove("dragging");
+  // Rời chuột ra thì chạy tiếp
+  slider.addEventListener('mouseleave', () => {
+    if (!isDragging) {
       startAutoRun();
     }
+  });
 
-    window.addEventListener("mouseup", stopDragging);
+  // Kéo bằng chuột
+  track.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    startX = e.pageX - track.offsetLeft;
+    scrollLeft = track.scrollLeft;
+    stopAutoRun();
+    track.classList.add('dragging');
+  });
 
-    track.addEventListener("touchstart", (e) => {
-      touchStartX = e.touches[0].pageX;
-      touchScrollLeftStart = track.scrollLeft;
-      stopAutoRun();
-    }, { passive: true });
+  track.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
 
-    track.addEventListener("touchmove", (e) => {
-      const touchX = e.touches[0].pageX;
-      const walk = (touchX - touchStartX) * 1.2;
-      track.scrollLeft = touchScrollLeftStart - walk;
-      resetLoopIfNeeded();
-    }, { passive: true });
+    e.preventDefault();
+    const x = e.pageX - track.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    track.scrollLeft = scrollLeft - walk;
+  });
 
-    track.addEventListener("touchend", () => {
-      startAutoRun();
-    });
-
+  track.addEventListener('mouseup', () => {
+    isDragging = false;
+    track.classList.remove('dragging');
     startAutoRun();
   });
-}
 
-/* =========================
-   MUSIC PLAYER
-========================= */
-function initMusicPlayer() {
-  const musicToggle = document.getElementById("musicToggle");
-  const musicPanel = document.getElementById("musicPanel");
-  const bgMusic = document.getElementById("bgMusic");
-  const playPauseBtn = document.getElementById("playPauseBtn");
-  const musicSeek = document.getElementById("musicSeek");
-  const closeMusicPanel = document.getElementById("closeMusicPanel");
+  track.addEventListener('mouseleave', () => {
+    isDragging = false;
+    track.classList.remove('dragging');
+  });
 
-  if (
-    !musicToggle ||
-    !musicPanel ||
-    !bgMusic ||
-    !playPauseBtn ||
-    !musicSeek ||
-    !closeMusicPanel
-  ) {
-    return;
-  }
+  // Vuốt trên điện thoại
+  track.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].pageX;
+    touchScrollLeft = track.scrollLeft;
+    stopAutoRun();
+  });
 
-  const STORAGE_TIME = "musicTime";
-  const STORAGE_PLAYING = "musicPlaying";
+  track.addEventListener('touchmove', (e) => {
+    const touchX = e.touches[0].pageX;
+    const walk = (touchX - touchStartX) * 1.2;
+    track.scrollLeft = touchScrollLeft - walk;
+  });
 
-  function updatePlayButton() {
-    playPauseBtn.textContent = bgMusic.paused ? "▶" : "⏸";
-  }
+  track.addEventListener('touchend', () => {
+    startAutoRun();
+  });
 
-  function saveMusicState() {
-    localStorage.setItem(STORAGE_TIME, String(bgMusic.currentTime || 0));
-    localStorage.setItem(STORAGE_PLAYING, bgMusic.paused ? "false" : "true");
-  }
+  // Chạy ngay khi mở trang
+  startAutoRun();
+});
 
-  function restoreMusicState() {
-    const savedTime = localStorage.getItem(STORAGE_TIME);
-    const savedPlaying = localStorage.getItem(STORAGE_PLAYING);
 
-    if (savedTime !== null && !Number.isNaN(parseFloat(savedTime))) {
-      bgMusic.currentTime = parseFloat(savedTime);
-    }
 
-    updatePlayButton();
 
-    // Không tự ép phát vì nhiều trình duyệt chặn autoplay.
-    // Chỉ khôi phục icon và vị trí nhạc.
-    if (savedPlaying === "true") {
-      playPauseBtn.textContent = "▶";
-    }
-  }
+/*   phát nhạc    */
+const musicToggle = document.getElementById("musicToggle");
+const musicPanel = document.getElementById("musicPanel");
+const bgMusic = document.getElementById("bgMusic");
+const playPauseBtn = document.getElementById("playPauseBtn");
+const musicSeek = document.getElementById("musicSeek");
+const closeMusicPanel = document.getElementById("closeMusicPanel");
 
+if (musicToggle && musicPanel && bgMusic && playPauseBtn && musicSeek && closeMusicPanel) {
+  let isPlaying = false;
+
+  // Mở / đóng khung nhạc
   musicToggle.addEventListener("click", () => {
     musicPanel.classList.toggle("show");
   });
 
+  // Nút đóng khung nhạc
   closeMusicPanel.addEventListener("click", () => {
     musicPanel.classList.remove("show");
   });
 
-  playPauseBtn.addEventListener("click", async () => {
-    try {
-      if (bgMusic.paused) {
-        await bgMusic.play();
-      } else {
-        bgMusic.pause();
-      }
-      updatePlayButton();
-      saveMusicState();
-    } catch (error) {
-      console.error("Không thể phát nhạc:", error);
-    }
-  });
-
-  bgMusic.addEventListener("timeupdate", () => {
-    if (bgMusic.duration && Number.isFinite(bgMusic.duration)) {
-      const progress = (bgMusic.currentTime / bgMusic.duration) * 100;
-      musicSeek.value = progress;
-    } else {
-      musicSeek.value = 0;
-    }
-    saveMusicState();
-  });
-
-  musicSeek.addEventListener("input", () => {
-    if (bgMusic.duration && Number.isFinite(bgMusic.duration)) {
-      bgMusic.currentTime = (parseFloat(musicSeek.value) / 100) * bgMusic.duration;
-      saveMusicState();
-    }
-  });
-
-  bgMusic.addEventListener("play", () => {
-    updatePlayButton();
-    saveMusicState();
-  });
-
-  bgMusic.addEventListener("pause", () => {
-    updatePlayButton();
-    saveMusicState();
-  });
-
-  bgMusic.addEventListener("loadedmetadata", () => {
-    const savedTime = localStorage.getItem(STORAGE_TIME);
-    if (savedTime !== null && !Number.isNaN(parseFloat(savedTime))) {
-      bgMusic.currentTime = parseFloat(savedTime);
-    }
-  });
-
-  restoreMusicState();
-  updatePlayButton();
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-  const musicPlayer = document.getElementById("musicPlayer");
-  const musicToggle = document.getElementById("musicToggle");
-  const musicPanel = document.getElementById("musicPanel");
-  const bgMusic = document.getElementById("bgMusic");
-  const playPauseBtn = document.getElementById("playPauseBtn");
-  const musicSeek = document.getElementById("musicSeek");
-  const closePanelBtn = document.getElementById("closePanelBtn");
-
-  if (!musicPlayer || !musicToggle || !musicPanel || !bgMusic || !playPauseBtn || !musicSeek || !closePanelBtn) {
-    return;
-  }
-
-  // Khôi phục thời gian nhạc
-  const savedTime = localStorage.getItem("musicTime");
-  if (savedTime) {
-    bgMusic.currentTime = parseFloat(savedTime);
-  }
-
-  // Khôi phục trạng thái phát
-  const wasPlaying = localStorage.getItem("musicPlaying") === "true";
-
-  function updatePlayButton() {
-    playPauseBtn.textContent = bgMusic.paused ? "▶" : "⏸";
-  }
-
-  // Tự phát nếu trước đó đang phát
-  if (wasPlaying) {
-    bgMusic.play().then(() => {
-      updatePlayButton();
-    }).catch(() => {
-      updatePlayButton();
-    });
-  } else {
-    updatePlayButton();
-  }
-
-  // Bấm icon: chỉ mở / đóng panel
-  musicToggle.addEventListener("click", function (e) {
-    e.stopPropagation();
-    musicPlayer.classList.toggle("open");
-  });
-
-  // Nút đóng panel
-  closePanelBtn.addEventListener("click", function (e) {
-    e.stopPropagation();
-    musicPlayer.classList.remove("open");
-  });
-
-  // Play / pause
-  playPauseBtn.addEventListener("click", function (e) {
-    e.stopPropagation();
-
+  // Phát / tạm dừng nhạc
+  playPauseBtn.addEventListener("click", () => {
     if (bgMusic.paused) {
-      bgMusic.play().then(() => {
-        localStorage.setItem("musicPlaying", "true");
-        updatePlayButton();
-      }).catch((error) => {
-        console.log("Không thể tự phát nhạc:", error);
-      });
+      bgMusic.play();
+      playPauseBtn.textContent = "⏸";
+      isPlaying = true;
+      localStorage.setItem("musicPlaying", "true");
     } else {
       bgMusic.pause();
+      playPauseBtn.textContent = "▶";
+      isPlaying = false;
       localStorage.setItem("musicPlaying", "false");
-      updatePlayButton();
     }
   });
 
-  // Cập nhật thanh thời gian
-  bgMusic.addEventListener("timeupdate", function () {
-    if (!isNaN(bgMusic.duration) && bgMusic.duration > 0) {
+  // Cập nhật thanh tua theo thời gian phát
+  bgMusic.addEventListener("timeupdate", () => {
+    if (bgMusic.duration) {
       const progress = (bgMusic.currentTime / bgMusic.duration) * 100;
       musicSeek.value = progress;
     }
-    localStorage.setItem("musicTime", bgMusic.currentTime);
   });
 
-  // Kéo tua nhạc
-  musicSeek.addEventListener("input", function (e) {
-    e.stopPropagation();
-    if (!isNaN(bgMusic.duration) && bgMusic.duration > 0) {
+  // Kéo thanh tua để tua nhạc
+  musicSeek.addEventListener("input", () => {
+    if (bgMusic.duration) {
       bgMusic.currentTime = (musicSeek.value / 100) * bgMusic.duration;
     }
   });
 
-  // Lưu khi pause/play
-  bgMusic.addEventListener("play", function () {
-    localStorage.setItem("musicPlaying", "true");
-    updatePlayButton();
+  // Ghi nhớ vị trí nhạc
+  bgMusic.addEventListener("timeupdate", () => {
+    localStorage.setItem("musicTime", bgMusic.currentTime);
   });
 
-  bgMusic.addEventListener("pause", function () {
-    localStorage.setItem("musicPlaying", "false");
-    updatePlayButton();
-  });
+  // Khôi phục trạng thái khi tải lại trang
+  window.addEventListener("load", () => {
+    const savedTime = localStorage.getItem("musicTime");
+    const savedPlaying = localStorage.getItem("musicPlaying");
 
-  // Click ra ngoài thì tự ẩn panel
-  document.addEventListener("click", function (e) {
-    if (!musicPlayer.contains(e.target)) {
-      musicPlayer.classList.remove("open");
-    }
-  });
-
-  // Tránh click vào panel bị đóng
-  musicPanel.addEventListener("click", function (e) {
-    e.stopPropagation();
-  });
-});
-
-
-
-
-
-
-document.addEventListener("DOMContentLoaded", () => {
-  initSliders();
-  initMusicPlayer();
-});
-
-/* =========================
-   SLIDER ẢNH NGANG
-========================= */
-function initSliders() {
-  const sliders = document.querySelectorAll(".slider-wrapper");
-
-  sliders.forEach((slider) => {
-    const track = slider.querySelector(".photo-track");
-    const prevBtn = slider.querySelector(".prev");
-    const nextBtn = slider.querySelector(".next");
-
-    if (!track || !prevBtn || !nextBtn) return;
-
-    if (!track.dataset.cloned) {
-      track.innerHTML += track.innerHTML;
-      track.dataset.cloned = "true";
-    }
-
-    let autoRun = null;
-    let isDragging = false;
-    let startX = 0;
-    let scrollLeftStart = 0;
-    let touchStartX = 0;
-    let touchScrollLeftStart = 0;
-
-    const STEP = 300;
-    const AUTO_SPEED = 0.5;
-    const AUTO_INTERVAL = 20;
-
-    function resetLoopIfNeeded() {
-      const halfWidth = track.scrollWidth / 2;
-      if (track.scrollLeft >= halfWidth) {
-        track.scrollLeft = 0;
-      } else if (track.scrollLeft < 0) {
-        track.scrollLeft = halfWidth;
-      }
-    }
-
-    function startAutoRun() {
-      stopAutoRun();
-      autoRun = setInterval(() => {
-        if (!isDragging) {
-          track.scrollLeft += AUTO_SPEED;
-          resetLoopIfNeeded();
-        }
-      }, AUTO_INTERVAL);
-    }
-
-    function stopAutoRun() {
-      if (autoRun) {
-        clearInterval(autoRun);
-        autoRun = null;
-      }
-    }
-
-    prevBtn.addEventListener("click", () => {
-      stopAutoRun();
-      track.scrollBy({ left: -STEP, behavior: "smooth" });
-      setTimeout(startAutoRun, 500);
-    });
-
-    nextBtn.addEventListener("click", () => {
-      stopAutoRun();
-      track.scrollBy({ left: STEP, behavior: "smooth" });
-      setTimeout(startAutoRun, 500);
-    });
-
-    slider.addEventListener("mouseenter", stopAutoRun);
-    slider.addEventListener("mouseleave", () => {
-      if (!isDragging) startAutoRun();
-    });
-
-    track.addEventListener("mousedown", (e) => {
-      isDragging = true;
-      startX = e.pageX;
-      scrollLeftStart = track.scrollLeft;
-      stopAutoRun();
-      track.classList.add("dragging");
-    });
-
-    window.addEventListener("mousemove", (e) => {
-      if (!isDragging) return;
-      e.preventDefault();
-      const walk = (e.pageX - startX) * 1.5;
-      track.scrollLeft = scrollLeftStart - walk;
-      resetLoopIfNeeded();
-    });
-
-    function stopDragging() {
-      if (!isDragging) return;
-      isDragging = false;
-      track.classList.remove("dragging");
-      startAutoRun();
-    }
-
-    window.addEventListener("mouseup", stopDragging);
-
-    track.addEventListener("touchstart", (e) => {
-      touchStartX = e.touches[0].pageX;
-      touchScrollLeftStart = track.scrollLeft;
-      stopAutoRun();
-    }, { passive: true });
-
-    track.addEventListener("touchmove", (e) => {
-      const touchX = e.touches[0].pageX;
-      const walk = (touchX - touchStartX) * 1.2;
-      track.scrollLeft = touchScrollLeftStart - walk;
-      resetLoopIfNeeded();
-    }, { passive: true });
-
-    track.addEventListener("touchend", () => {
-      startAutoRun();
-    });
-
-    startAutoRun();
-  });
-}
-
-/* =========================
-   MUSIC PLAYER
-========================= */
-function initMusicPlayer() {
-  const musicToggle = document.getElementById("musicToggle");
-  const musicPanel = document.getElementById("musicPanel");
-  const bgMusic = document.getElementById("bgMusic");
-  const playPauseBtn = document.getElementById("playPauseBtn");
-  const musicSeek = document.getElementById("musicSeek");
-  const closeMusicPanel = document.getElementById("closeMusicPanel");
-
-  if (
-    !musicToggle ||
-    !musicPanel ||
-    !bgMusic ||
-    !playPauseBtn ||
-    !musicSeek ||
-    !closeMusicPanel
-  ) {
-    return;
-  }
-
-  const STORAGE_TIME = "musicTime";
-  const STORAGE_PLAYING = "musicPlaying";
-
-  function updatePlayButton() {
-    playPauseBtn.textContent = bgMusic.paused ? "▶" : "⏸";
-  }
-
-  function saveMusicState() {
-    localStorage.setItem(STORAGE_TIME, String(bgMusic.currentTime || 0));
-    localStorage.setItem(STORAGE_PLAYING, bgMusic.paused ? "false" : "true");
-  }
-
-  function restoreMusicState() {
-    const savedTime = localStorage.getItem(STORAGE_TIME);
-    const savedPlaying = localStorage.getItem(STORAGE_PLAYING);
-
-    if (savedTime !== null && !Number.isNaN(parseFloat(savedTime))) {
+    if (savedTime) {
       bgMusic.currentTime = parseFloat(savedTime);
     }
 
-    updatePlayButton();
-
     if (savedPlaying === "true") {
+      playPauseBtn.textContent = "⏸";
+    } else {
       playPauseBtn.textContent = "▶";
     }
-  }
+  });
 
-  musicToggle.addEventListener("click", (e) => {
-    e.stopPropagation();
+  // Khi người dùng bấm nút phát thì mới được phát nhạc
+  bgMusic.addEventListener("play", () => {
+    playPauseBtn.textContent = "⏸";
+    localStorage.setItem("musicPlaying", "true");
+  });
+
+  bgMusic.addEventListener("pause", () => {
+    playPauseBtn.textContent = "▶";
+    localStorage.setItem("musicPlaying", "false");
+  });
+}
+
+const musicToggle = document.getElementById("musicToggle");
+const musicPanel = document.getElementById("musicPanel");
+const bgMusic = document.getElementById("bgMusic");
+const playPauseBtn = document.getElementById("playPauseBtn");
+const musicSeek = document.getElementById("musicSeek");
+const closeMusicPanel = document.getElementById("closeMusicPanel");
+
+if (musicToggle && musicPanel && bgMusic && playPauseBtn && musicSeek && closeMusicPanel) {
+  // Mở / đóng khung nhạc
+  musicToggle.addEventListener("click", () => {
     musicPanel.classList.toggle("show");
   });
 
-  closeMusicPanel.addEventListener("click", (e) => {
-    e.stopPropagation();
+  // Nút đóng khung nhạc
+  closeMusicPanel.addEventListener("click", () => {
     musicPanel.classList.remove("show");
   });
 
-  musicPanel.addEventListener("click", (e) => {
-    e.stopPropagation();
-  });
-
-  document.addEventListener("click", () => {
-    musicPanel.classList.remove("show");
-  });
-
-  playPauseBtn.addEventListener("click", async (e) => {
-    e.stopPropagation();
-
-    try {
-      if (bgMusic.paused) {
-        await bgMusic.play();
-      } else {
-        bgMusic.pause();
-      }
-      updatePlayButton();
-      saveMusicState();
-    } catch (error) {
-      console.error("Không thể phát nhạc:", error);
+  // Phát / tạm dừng
+  playPauseBtn.addEventListener("click", () => {
+    if (bgMusic.paused) {
+      bgMusic.play();
+      playPauseBtn.textContent = "⏸";
+      localStorage.setItem("musicPlaying", "true");
+    } else {
+      bgMusic.pause();
+      playPauseBtn.textContent = "▶";
+      localStorage.setItem("musicPlaying", "false");
     }
   });
 
+  // Cập nhật thanh tua
   bgMusic.addEventListener("timeupdate", () => {
-    if (bgMusic.duration && Number.isFinite(bgMusic.duration)) {
+    if (bgMusic.duration) {
       const progress = (bgMusic.currentTime / bgMusic.duration) * 100;
       musicSeek.value = progress;
-    } else {
-      musicSeek.value = 0;
+      localStorage.setItem("musicTime", bgMusic.currentTime);
     }
-    saveMusicState();
   });
 
-  musicSeek.addEventListener("input", (e) => {
-    e.stopPropagation();
+  // Tua nhạc
+  musicSeek.addEventListener("input", () => {
+    if (bgMusic.duration) {
+      bgMusic.currentTime = (musicSeek.value / 100) * bgMusic.duration;
+    }
+  });
 
-    if (bgMusic.duration && Number.isFinite(bgMusic.duration)) {
-      bgMusic.currentTime = (parseFloat(musicSeek.value) / 100) * bgMusic.duration;
-      saveMusicState();
+  // Khôi phục thời gian
+  window.addEventListener("load", () => {
+    const savedTime = localStorage.getItem("musicTime");
+    const savedPlaying = localStorage.getItem("musicPlaying");
+
+    if (savedTime) {
+      bgMusic.currentTime = parseFloat(savedTime);
+    }
+
+    if (savedPlaying === "true") {
+      playPauseBtn.textContent = "⏸";
+    } else {
+      playPauseBtn.textContent = "▶";
     }
   });
 
   bgMusic.addEventListener("play", () => {
-    updatePlayButton();
-    saveMusicState();
+    playPauseBtn.textContent = "⏸";
+    localStorage.setItem("musicPlaying", "true");
   });
 
   bgMusic.addEventListener("pause", () => {
-    updatePlayButton();
-    saveMusicState();
+    playPauseBtn.textContent = "▶";
+    localStorage.setItem("musicPlaying", "false");
   });
-
-  bgMusic.addEventListener("loadedmetadata", () => {
-    const savedTime = localStorage.getItem(STORAGE_TIME);
-    if (savedTime !== null && !Number.isNaN(parseFloat(savedTime))) {
-      bgMusic.currentTime = parseFloat(savedTime);
-    }
-  });
-
-  restoreMusicState();
-  updatePlayButton();
 }
