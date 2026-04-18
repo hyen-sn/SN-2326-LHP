@@ -1,6 +1,3 @@
-/* =========================
-   NÚT KÉO TRÁI PHẢI
-========================= */
 const sliders = document.querySelectorAll('.slider-wrapper');
 
 sliders.forEach((slider) => {
@@ -8,93 +5,83 @@ sliders.forEach((slider) => {
   const prevBtn = slider.querySelector('.prev');
   const nextBtn = slider.querySelector('.next');
 
+  let autoRun;
+  let isDragging = false;
+  let startX = 0;
+  let scrollLeft = 0;
+
   prevBtn.addEventListener('click', () => {
-    track.scrollBy({
-      left: -300,
-      behavior: 'smooth'
-    });
+    track.scrollBy({ left: -300, behavior: 'smooth' });
   });
 
   nextBtn.addEventListener('click', () => {
-    track.scrollBy({
-      left: 300,
-      behavior: 'smooth'
-    });
+    track.scrollBy({ left: 300, behavior: 'smooth' });
   });
-});
 
-/* =========================
-  ẢNH TỰ TRÔI
-========================= */
-const autoTracks = document.querySelectorAll('.photo-track');
-
-autoTracks.forEach((track) => {
-  let autoScroll = setInterval(() => {
-    if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 5) {
-      track.scrollTo({
-        left: 0,
-        behavior: 'smooth'
-      });
-    } else {
-      track.scrollBy({
-        left: 1,
-        behavior: 'smooth'
-      });
-    }
-  }, 20);
-
-  track.addEventListener('mouseenter', () => clearInterval(autoScroll));
-
-  track.addEventListener('mouseleave', () => {
-    autoScroll = setInterval(() => {
-      if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 5) {
-        track.scrollTo({
-          left: 0,
-          behavior: 'smooth'
-        });
-      } else {
-        track.scrollBy({
-          left: 1,
-          behavior: 'smooth'
-        });
+  function startAutoRun() {
+    stopAutoRun();
+    autoRun = setInterval(() => {
+      if (!isDragging) {
+        track.scrollLeft += 1;
+        if (track.scrollLeft >= track.scrollWidth - track.clientWidth - 1) {
+          track.scrollLeft = 0;
+        }
       }
     }, 20);
-  });
-});
+  }
 
-/* =========================
-   KÉO MƯỢT 
-========================= */
-document.querySelectorAll('.photo-track').forEach((track) => {
-  let isDown = false;
-  let startX;
-  let scrollLeft;
+  function stopAutoRun() {
+    clearInterval(autoRun);
+  }
+
+  slider.addEventListener('mouseenter', stopAutoRun);
+  slider.addEventListener('mouseleave', startAutoRun);
 
   track.addEventListener('mousedown', (e) => {
-    isDown = true;
-    track.classList.add('dragging');
+    isDragging = true;
     startX = e.pageX - track.offsetLeft;
     scrollLeft = track.scrollLeft;
-  });
-
-  track.addEventListener('mouseleave', () => {
-    isDown = false;
-    track.classList.remove('dragging');
+    stopAutoRun();
+    track.classList.add('dragging');
   });
 
   track.addEventListener('mouseup', () => {
-    isDown = false;
+    isDragging = false;
+    track.classList.remove('dragging');
+    startAutoRun();
+  });
+
+  track.addEventListener('mouseleave', () => {
+    isDragging = false;
     track.classList.remove('dragging');
   });
 
   track.addEventListener('mousemove', (e) => {
-    if (!isDown) return;
+    if (!isDragging) return;
     e.preventDefault();
     const x = e.pageX - track.offsetLeft;
     const walk = (x - startX) * 1.5;
     track.scrollLeft = scrollLeft - walk;
   });
+
+  let touchStartX = 0;
+  let touchScrollLeft = 0;
+
+  track.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].pageX;
+    touchScrollLeft = track.scrollLeft;
+    stopAutoRun();
+  });
+
+  track.addEventListener('touchmove', (e) => {
+    const touchX = e.touches[0].pageX;
+    const walk = (touchX - touchStartX) * 1.2;
+    track.scrollLeft = touchScrollLeft - walk;
+  });
+
+  track.addEventListener('touchend', () => {
+    startAutoRun();
+  });
+
+  startAutoRun();
 });
-
-
-
