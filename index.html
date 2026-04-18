@@ -10,10 +10,9 @@
   <header class="site-header">
     <div class="container">
       <div class="logo">
-        <img src="images/logo-face.jpg" alt="Logo lớp" class="logo-img">
-        <span>Salle de nostalgie</span>
-      </div>
-
+      <img src="images/logo-face.jpg" alt="Logo lớp" class="logo-img">
+      <span>Salle de nostalgie</span>
+    </div>
       <nav class="main-nav">
         <a href="index.html" class="active">Trang chủ</a>
         <a href="thanh-vien.html">Thành viên</a>
@@ -34,7 +33,6 @@
             Đây là nơi lưu giữ những kỷ niệm đẹp, những lời nhắn chân thành
             và những khoảnh khắc đáng nhớ của tập thể lớp qua suốt 3 năm học.
           </p>
-
           <div class="hero-buttons">
             <a href="ky-niem.html" class="btn btn-primary">Xem kỷ niệm</a>
             <a href="thanh-vien.html" class="btn btn-secondary">Gặp các thành viên</a>
@@ -133,6 +131,28 @@
         </div>
       </div>
     </section>
+
+
+<div class="music-player" id="musicPlayer">
+<div class="music-player">
+  <button class="music-toggle" id="musicToggle" title="Mở nhạc">🎵</button>
+
+  <div class="music-panel" id="musicPanel">
+    <audio id="bgMusic" loop>
+      <source src="music/nhacnen.mp3" type="audio/mpeg">
+      <source src="music/mot_ngay_nao_do.mp3" type="audio/mpeg">
+      Trình duyệt của bạn không hỗ trợ phát nhạc.
+    </audio>
+
+    <div class="music-controls">
+      <button id="playPauseBtn">▶</button>
+      <input type="range" id="musicSeek" value="0" min="0" max="100">
+      <button id="closeMusicPanel">✕</button>
+    </div>
+  </div>
+</div>
+<script src="script.js"></script>
+
   </main>
 
   <footer class="site-footer">
@@ -140,33 +160,5 @@
       <p>2326 - Web SN cuối cùng</p>
     </div>
   </footer>
-
- 
-<!-- Nút nhạc nổi -->
-<div class="music-player" id="musicPlayer">
-  <button class="music-toggle" id="musicToggle" aria-label="Mở trình phát nhạc">
-    🎵
-  </button>
-
-  <div class="music-panel" id="musicPanel">
-    <audio id="bgMusic" loop>
-      <source src="music/nhacnen.mp3" type="audio/mpeg" />
-      Trình duyệt của bạn không hỗ trợ phát nhạc.
-    </audio>
-
-    <div class="music-controls">
-      <button id="playPauseBtn" class="mini-btn" aria-label="Phát hoặc dừng nhạc">▶</button>
-      <input type="range" id="musicSeek" value="0" min="0" max="100" />
-      <button id="closePanelBtn" class="mini-btn" aria-label="Đóng trình phát">✕</button>
-    </div>
-  </div>
-</div>
-
-
-
-  
-  </div>
-
-  <script src="script.js"></script>
 </body>
 </html>
