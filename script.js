@@ -15,7 +15,7 @@ sliders.forEach((slider) => {
   let touchStartX = 0;
   let touchScrollLeft = 0;
 
-  // Nhân đôi toàn bộ ảnh để tạo hiệu ứng chạy vòng lặp
+  // Nhân đôi toàn bộ ảnh để tạo vòng lặp liên tục
   track.innerHTML += track.innerHTML;
 
   // Nút bấm trái
@@ -34,15 +34,16 @@ sliders.forEach((slider) => {
     });
   });
 
-  // Hàm chạy tự động
+  // Tự chạy liên tục
   function startAutoRun() {
     stopAutoRun();
 
     autoRun = setInterval(() => {
       if (!isDragging) {
-        track.scrollLeft += 1;
+        track.scrollLeft += 0.5;
 
-        // Khi chạy hết bộ ảnh gốc thì quay lại đầu
+        // Khi chạy hết nửa đầu (bộ ảnh gốc), quay lại đầu
+        // Vì đã nhân đôi nên mắt thường sẽ thấy chạy liên tục, không bị đứt
         if (track.scrollLeft >= track.scrollWidth / 2) {
           track.scrollLeft = 0;
         }
@@ -50,15 +51,14 @@ sliders.forEach((slider) => {
     }, 20);
   }
 
-  // Hàm dừng tự động
   function stopAutoRun() {
     clearInterval(autoRun);
   }
 
-  // Rê chuột vào vùng slider thì dừng
+  // Hover vào thì dừng
   slider.addEventListener('mouseenter', stopAutoRun);
 
-  // Rê chuột ra thì chạy tiếp
+  // Rời chuột ra thì chạy tiếp
   slider.addEventListener('mouseleave', () => {
     if (!isDragging) {
       startAutoRun();
@@ -111,6 +111,6 @@ sliders.forEach((slider) => {
     startAutoRun();
   });
 
-  // Chạy ngay khi tải trang
+  // Chạy ngay khi mở trang
   startAutoRun();
 });
