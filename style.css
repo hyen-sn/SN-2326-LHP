@@ -1257,6 +1257,7 @@ body {
   cursor: pointer;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
   transition: transform 0.25s ease, opacity 0.25s ease;
+  overflow: hidden;
 }
 
 .music-toggle:hover {
@@ -1272,11 +1273,17 @@ body {
   border-radius: 16px;
   padding: 12px;
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
-  display: none;
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.25s ease;
 }
 
 .music-panel.show {
-  display: block;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
 .music-controls {
@@ -1299,11 +1306,18 @@ body {
 
 #musicSeek {
   flex: 1;
+  min-width: 0;
   cursor: pointer;
 }
 
 #closeMusicPanel {
   background: #e85d75;
+}
+
+body.theme-blue .music-toggle,
+body.theme-blue .music-controls button:not(#closeMusicPanel) {
+  background: #4a90e2;
+  color: white;
 }
 
 body.theme-yellow .music-toggle,
