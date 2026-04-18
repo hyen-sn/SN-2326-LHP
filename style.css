@@ -1057,3 +1057,15 @@ section {
 .slider-btn:hover {
   background: rgba(0,0,0,0.8);
 }
+
+/* =========================
+   JAVA
+========================= */
+.photo-track.dragging {
+  cursor: grabbing;
+}
+
+.photo-track {
+  cursor: grab;
+}
+   
