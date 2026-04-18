@@ -241,55 +241,107 @@ section {
 /* =========================
    MUSIC PLAYER
 ========================= */
+/* =========================
+   MUSIC PLAYER
+========================= */
 .music-player {
   position: fixed;
   right: 20px;
   bottom: 20px;
-  z-index: 9999;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
+/* Nút icon nhạc */
 .music-toggle {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background: #4a90e2;
-  color: white;
+  width: 56px;
+  height: 56px;
   border: none;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6a8dff, #8ec5ff);
+  color: #fff;
+  font-size: 24px;
   cursor: pointer;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
+.music-toggle:hover {
+  transform: scale(1.08);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.22);
+}
+
+/* Panel nhạc mặc định ẩn */
 .music-panel {
-  position: absolute;
-  bottom: 60px;
-  right: 0;
-  width: 240px;
-  background: white;
-  padding: 10px;
-  border-radius: 10px;
+  margin-bottom: 10px;
+  width: 280px;
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 18px;
+  padding: 12px 14px;
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(8px);
 
   opacity: 0;
   visibility: hidden;
-  transition: 0.3s;
+  transform: translateY(10px) scale(0.98);
+  pointer-events: none;
+  transition: all 0.25s ease;
 }
 
-.music-panel.show {
+/* Khi mở panel */
+.music-player.open .music-panel {
   opacity: 1;
   visibility: visible;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
 }
 
 .music-controls {
   display: flex;
-  gap: 10px;
   align-items: center;
+  gap: 10px;
 }
 
-.music-controls button {
+.mini-btn {
+  width: 34px;
+  height: 34px;
   border: none;
-  background: #4a90e2;
-  color: white;
-  border-radius: 50%;
-  width: 35px;
-  height: 35px;
+  border-radius: 10px;
+  background: #eef2ff;
+  color: #2d3a4b;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.mini-btn:hover {
+  background: #dfe8ff;
+  transform: scale(1.05);
+}
+
+#musicSeek {
+  flex: 1;
+  cursor: pointer;
+}
+
+/* Chống lỗi responsive bị trôi vị trí */
+@media (max-width: 768px) {
+  .music-player {
+    right: 14px;
+    bottom: 14px;
+  }
+
+  .music-panel {
+    width: 240px;
+  }
+
+  .music-toggle {
+    width: 52px;
+    height: 52px;
+    font-size: 22px;
+  }
 }
 
 /* =========================
