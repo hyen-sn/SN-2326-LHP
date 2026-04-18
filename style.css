@@ -1,5 +1,5 @@
 /* =========================
-   RESET CƠ BẢN
+   RESET
 ========================= */
 * {
   margin: 0;
@@ -11,61 +11,39 @@ html {
   scroll-behavior: smooth;
 }
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  line-height: 1.6;
-  color: #2f3a4a;
-  background: linear-gradient(180deg, #fffdf8 0%, #fef6ff 45%, #f2fbff 100%);
-}
-
 /* =========================
    BIẾN MÀU
 ========================= */
 :root {
   --primary: #ff9f9f;
-  --primary-dark: #ff7f7f;
   --secondary: #7ed6df;
-  --secondary-dark: #58c5cf;
-  --yellow: #ffe08a;
-  --mint: #b8f2d6;
-  --lavender: #d8c4ff;
-  --white: #ffffff;
   --text: #2f3a4a;
   --muted: #6f7b8a;
   --border: #e8e8f0;
   --shadow: 0 10px 30px rgba(110, 120, 150, 0.12);
-  --radius-lg: 24px;
-  --radius-md: 16px;
-  --radius-sm: 10px;
+  --radius: 16px;
   --max-width: 1150px;
 }
 
 /* =========================
-   KHUNG CHUNG
+   BODY
+========================= */
+body {
+  font-family: Arial, sans-serif;
+  color: var(--text);
+  background: linear-gradient(180deg, #fffdf8, #fef6ff, #f2fbff);
+}
+
+/* =========================
+   LAYOUT
 ========================= */
 .container {
   width: min(92%, var(--max-width));
-  margin: 0 auto;
+  margin: auto;
 }
 
 section {
   padding: 70px 0;
-}
-
-.section-title {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.section-title h2 {
-  font-size: 2rem;
-  margin-bottom: 10px;
-  color: var(--text);
-}
-
-.section-title p {
-  color: var(--muted);
-  font-size: 1rem;
 }
 
 /* =========================
@@ -74,1009 +52,131 @@ section {
 .site-header {
   position: sticky;
   top: 0;
+  background: white;
   z-index: 100;
-  backdrop-filter: blur(10px);
-  background: rgba(255, 255, 255, 0.75);
-  border-bottom: 1px solid rgba(232, 232, 240, 0.8);
+  border-bottom: 1px solid var(--border);
 }
 
 .site-header .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 20px;
-  padding: 16px 0;
+  padding: 15px 0;
 }
 
-.logo {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--text);
-  white-space: nowrap;
-}
-
-.main-nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: flex-end;
-}
-
-.main-nav a {
-  text-decoration: none;
-  color: var(--text);
-  padding: 10px 14px;
-  border-radius: 999px;
-  font-weight: 600;
-  transition: 0.25s ease;
-}
-
-.main-nav a:hover,
-.main-nav a.active {
-  background: var(--secondary);
-  color: #fff;
-}
-
-/* =========================
-   HERO
-========================= */
-.hero {
-  padding-top: 85px;
-}
-
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 32px;
-  align-items: center;
-}
-
-.tag {
-  display: inline-block;
-  background: var(--yellow);
-  color: #7a5a00;
-  padding: 8px 14px;
-  border-radius: 999px;
-  font-weight: 700;
-  margin-bottom: 18px;
-  font-size: 0.95rem;
-}
-
-.hero h1 {
-  font-size: clamp(2rem, 4vw, 3.3rem);
-  line-height: 1.2;
-  margin-bottom: 18px;
-  color: var(--text);
-}
-
-.hero-desc {
-  color: var(--muted);
-  font-size: 1.05rem;
-  max-width: 650px;
-  margin-bottom: 24px;
-}
-
-.hero-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-}
-
-
-/* =========================
-   THÊM LOGO
-========================= */
 .logo {
   display: flex;
   align-items: center;
   gap: 10px;
+  font-weight: bold;
 }
 
 .logo-img {
   width: 40px;
   height: 40px;
-  object-fit: cover;
   border-radius: 50%;
 }
 
-
-
-
-/* =========================
-   TRANG THÀNH VIÊN
-========================= */
-.member-section {
-  padding-top: 30px;
-}
-
-.member-grid {
-  display: grid;
-  gap: 22px;
-}
-
-.teacher-grid {
-  grid-template-columns: repeat(3, 1fr);
-  margin-bottom: 20px;
-}
-
-.student-grid {
-  grid-template-columns: repeat(3, 1fr);
-}
-
-.member-card {
-  overflow: hidden;
-}
-
-.member-photo {
-  min-height: 220px;
-  background:
-    radial-gradient(circle at top left, #ffe6f2, transparent 30%),
-    radial-gradient(circle at bottom right, #dff7ff, transparent 30%),
-    linear-gradient(135deg, #fff9dc, #fef3ff, #eefcff);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--muted);
-  font-weight: 700;
-  text-align: center;
-  padding: 20px;
-}
-
-.member-content {
-  padding: 22px;
-}
-
-.member-content h3 {
-  margin-bottom: 12px;
-  font-size: 1.15rem;
-}
-
-.member-content p {
-  margin-bottom: 8px;
-  color: var(--text);
-}
-
-.member-note {
-  margin-top: 24px;
-}
-
-/* =========================
-   TRANG KỶ NIỆM
-========================= */
-.timeline {
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-}
-
-.timeline-item {
-  padding: 26px;
-}
-
-.timeline-year {
-  display: inline-block;
-  background: var(--lavender);
-  color: #50308f;
-  padding: 8px 16px;
-  border-radius: 999px;
-  font-weight: 700;
-  margin-bottom: 18px;
-}
-
-.timeline-content h2 {
-  margin-bottom: 10px;
-}
-
-.timeline-desc {
-  color: var(--muted);
-  margin-bottom: 20px;
-}
-
-.memory-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-}
-
-.memory-card {
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: 16px;
-}
-
-.memory-photo {
-  min-height: 170px;
-  border-radius: 16px;
-  background:
-    linear-gradient(135deg, #fff0f5, #f7fbff, #f2fff4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--muted);
-  font-weight: 700;
-  margin-bottom: 14px;
-  text-align: center;
-  padding: 16px;
-}
-
-.memory-card h3 {
-  margin-bottom: 8px;
-  font-size: 1rem;
-}
-
-.memory-card p {
-  color: var(--muted);
-  font-size: 0.96rem;
-}
-
-/* =========================
-   TRANG LỜI NHẮN
-========================= */
-.message-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
-}
-
-.message-card {
-  padding: 24px;
-  background: linear-gradient(180deg, #fffefb, #fff8ff);
-}
-
-.message-card h3 {
-  margin-bottom: 12px;
-}
-
-.message-card p {
-  color: var(--text);
-}
-
-.postcard-section,
-.yearbook-section,
-.map-section {
-  padding-top: 20px;
-}
-
-.postcard-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
-}
-
-.postcard-card {
-  padding: 18px;
-}
-
-.postcard-photo {
-  min-height: 220px;
-  border-radius: 18px;
-  background:
-    linear-gradient(135deg, #fff4dd, #ffeef6, #eefbff);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--muted);
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 12px;
-  padding: 20px;
-}
-
-.postcard-card p {
-  color: var(--muted);
-}
-
-.yearbook-box {
-  padding: 24px;
-}
-
-.yearbook-placeholder {
-  min-height: 320px;
-  border: 2px dashed #d7dfea;
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: var(--muted);
-  text-align: center;
-  padding: 24px;
-}
-
-.yearbook-placeholder h3 {
-  margin-bottom: 10px;
-  color: var(--text);
-}
-
-/* =========================
-   TRANG LIÊN HỆ
-========================= */
-.contact-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
-}
-
-.contact-card {
-  padding: 24px;
-}
-
-.contact-card h2 {
-  margin-bottom: 14px;
-  font-size: 1.2rem;
-}
-
-.contact-list {
-  list-style: none;
-}
-
-.contact-list li {
-  margin-bottom: 10px;
-  color: var(--text);
-}
-
-.map-box {
-  overflow: hidden;
-}
-
-.map-placeholder {
-  min-height: 320px;
-  background:
-    radial-gradient(circle at top left, #e4fff2, transparent 28%),
-    radial-gradient(circle at bottom right, #ffe8ef, transparent 28%),
-    linear-gradient(135deg, #f5fff8, #fffaf2, #eefbff);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: var(--muted);
-  text-align: center;
-  padding: 30px;
-}
-
-.map-placeholder span {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 8px;
-}
-
-/* =========================
-   RESPONSIVE BỔ SUNG
-========================= */
-@media (max-width: 1024px) {
-  .teacher-grid,
-  .student-grid,
-  .memory-grid,
-  .message-grid,
-  .postcard-grid,
-  .contact-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .teacher-grid,
-  .student-grid,
-  .memory-grid,
-  .message-grid,
-  .postcard-grid,
-  .contact-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .member-photo,
-  .postcard-photo,
-  .map-placeholder,
-  .yearbook-placeholder {
-    min-height: 220px;
-  }
-}
-
-
-
-/* =========================
-   BUTTON
-========================= */
-.btn {
-  display: inline-block;
+.main-nav a {
   text-decoration: none;
-  padding: 13px 22px;
-  border-radius: 999px;
-  font-weight: 700;
-  transition: 0.25s ease;
-  box-shadow: var(--shadow);
+  padding: 10px 14px;
+  border-radius: 20px;
+  color: var(--text);
+  font-weight: 600;
 }
 
-.btn-primary {
-  background: var(--primary);
-  color: white;
-}
-
-.btn-primary:hover {
-  background: var(--primary-dark);
-  transform: translateY(-2px);
-}
-
-.btn-secondary {
+.main-nav a.active,
+.main-nav a:hover {
   background: var(--secondary);
   color: white;
 }
 
-.btn-secondary:hover {
-  background: var(--secondary-dark);
-  transform: translateY(-2px);
+/* =========================
+   HERO
+========================= */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 30px;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.hero-desc {
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  padding: 12px 20px;
+  border-radius: 20px;
+  text-decoration: none;
+  color: white;
+}
+
+.btn-primary {
+  background: var(--primary);
+}
+
+.btn-secondary {
+  background: var(--secondary);
 }
 
 /* =========================
-   CARD CHUNG
+   CARD
 ========================= */
 .card {
-  background: rgba(255, 255, 255, 0.88);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
+  background: white;
+  border-radius: var(--radius);
   box-shadow: var(--shadow);
 }
 
 .image-placeholder {
-  min-height: 340px;
-  border-radius: var(--radius-lg);
-  background:
-    radial-gradient(circle at top left, #ffe3e3, transparent 35%),
-    radial-gradient(circle at bottom right, #dff8ff, transparent 35%),
-    linear-gradient(135deg, #fff9dc, #fceeff, #eefbff);
+  height: 300px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  color: var(--muted);
-  text-align: center;
-  padding: 30px;
-}
-
-.image-placeholder span {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 8px;
-}
-
-.image-placeholder small {
-  font-size: 0.95rem;
+  justify-content: center;
 }
 
 /* =========================
-   INTRO
+   GRID
 ========================= */
-.intro-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
-}
-
-.info-card {
-  padding: 24px;
-}
-
-.info-card h3 {
-  margin-bottom: 14px;
-  font-size: 1.2rem;
-}
-
-.info-card ul {
-  list-style: none;
-}
-
-.info-card li {
-  margin-bottom: 10px;
-  color: var(--text);
-}
-
-.info-card p {
-  color: var(--text);
-}
-
-/* =========================
-   QUICK LINKS
-========================= */
+.intro-grid,
 .link-grid {
   display: grid;
+  gap: 20px;
+}
+
+.intro-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.link-grid {
   grid-template-columns: repeat(4, 1fr);
-  gap: 22px;
 }
 
 .link-card {
+  padding: 20px;
   text-decoration: none;
-  color: inherit;
-  padding: 28px 22px;
-  transition: 0.3s ease;
+  color: var(--text);
 }
 
 .link-card:hover {
-  transform: translateY(-6px);
-  border-color: #d9eef2;
-}
-
-.link-icon {
-  width: 62px;
-  height: 62px;
-  border-radius: 18px;
-  background: linear-gradient(135deg, var(--mint), #e7fff4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.7rem;
-  margin-bottom: 18px;
-}
-
-.link-card h3 {
-  margin-bottom: 10px;
-  font-size: 1.15rem;
-}
-
-.link-card p {
-  color: var(--muted);
-  font-size: 0.97rem;
+  transform: translateY(-5px);
 }
 
 /* =========================
-   HIGHLIGHT QUOTE
+   SLIDER
 ========================= */
-.highlight-box {
-  background: linear-gradient(135deg, #fff0f0, #fff8d9, #eefcff);
-  border: 1px solid #f0e6d8;
-  border-radius: 30px;
-  padding: 40px 30px;
-  text-align: center;
-  box-shadow: var(--shadow);
-}
-
-.highlight-box h2 {
-  font-size: clamp(1.35rem, 2.2vw, 2rem);
-  line-height: 1.5;
-  margin-bottom: 12px;
-  color: var(--text);
-}
-
-.highlight-box p {
-  color: var(--muted);
-}
-
-/* =========================
-   FOOTER
-========================= */
-.site-footer {
-  padding: 24px 0 40px;
-}
-
-.footer-content {
-  text-align: center;
-  color: var(--muted);
-  font-size: 0.95rem;
-}
-
-.footer-content p + p {
-  margin-top: 6px;
-}
-
-/* =========================
-   TRANG CON DÙNG CHUNG
-========================= */
-.page-banner {
-  padding: 70px 0 30px;
-}
-
-.page-banner-box {
-  background: linear-gradient(135deg, #fff2f2, #f5fbff, #f7fff3);
-  border: 1px solid var(--border);
-  border-radius: 28px;
-  box-shadow: var(--shadow);
-  padding: 40px 28px;
-  text-align: center;
-}
-
-.page-banner-box h1 {
-  font-size: clamp(2rem, 4vw, 2.8rem);
-  margin-bottom: 12px;
-}
-
-.page-banner-box p {
-  color: var(--muted);
-  max-width: 780px;
-  margin: 0 auto;
-}
-
-/* =========================
-   KHUNG GỢI Ý ẢNH / NỘI DUNG
-========================= */
-.placeholder-box {
-  background: rgba(255, 255, 255, 0.92);
-  border: 2px dashed #d7dfea;
-  border-radius: var(--radius-md);
-  padding: 28px;
-  text-align: center;
-  color: var(--muted);
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-@media (max-width: 1024px) {
-  .hero-grid,
-  .intro-grid,
-  .link-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .hero-image {
-    grid-column: span 2;
-  }
-}
-
-@media (max-width: 768px) {
-  section {
-    padding: 55px 0;
-  }
-
-  .site-header .container {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .main-nav {
-    justify-content: flex-start;
-  }
-
-  .hero-grid,
-  .intro-grid,
-  .link-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .hero-image {
-    grid-column: auto;
-  }
-
-  .hero-buttons {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .btn {
-    width: fit-content;
-  }
-
-  .section-title h2 {
-    font-size: 1.7rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .main-nav a {
-    padding: 8px 12px;
-    font-size: 0.95rem;
-  }
-
-  .info-card,
-  .link-card,
-  .highlight-box,
-  .page-banner-box {
-    padding: 22px 18px;
-  }
-
-  .image-placeholder {
-    min-height: 250px;
-  }
-}
-
-/* =========================
-   TRANG CHỌN NĂM KỶ NIỆM
-========================= */
-.year-select {
-  padding-top: 30px;
-}
-
-.year-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-}
-
-.year-card {
-  text-decoration: none;
-  color: white;
-  padding: 38px 24px;
-  border-radius: 24px;
-  transition: 0.3s ease;
-  box-shadow: var(--shadow);
-}
-
-.year-card:hover {
-  transform: translateY(-6px);
-}
-
-.year-card h2 {
-  font-size: 1.8rem;
-  margin-bottom: 12px;
-}
-
-.year-card p {
-  font-size: 1rem;
-  line-height: 1.6;
-}
-
-.year-10 {
-  background: linear-gradient(135deg, #4a90ff, #6dc7ff);
-}
-
-.year-11 {
-  background: linear-gradient(135deg, #ffd54f, #ffb300);
-}
-
-.year-12 {
-  background: linear-gradient(135deg, #ff6b6b, #e53935);
-}
-
-/* =========================
-   THEME MÀU THEO TỪNG NĂM
-========================= */
-.theme-blue {
-  --year-main: #4a90ff;
-  --year-soft: #eef6ff;
-  --year-tag: #dbeaff;
-  --year-text: #1f57a5;
-}
-
-.theme-yellow {
-  --year-main: #f4b400;
-  --year-soft: #fff8df;
-  --year-tag: #ffefb3;
-  --year-text: #8a6200;
-}
-
-.theme-red {
-  --year-main: #e53935;
-  --year-soft: #fff0f0;
-  --year-tag: #ffd8d8;
-  --year-text: #a02020;
-}
-
-.theme-yellow {
-  --main-color: #f4c542;
-  --soft-bg: #fff8db;
-  --text-color: #5c4400;
-}
-
-.theme-red {
-  --main-color: #e85d75;
-  --soft-bg: #fff1f3;
-  --text-color: #7a1f2b;
-}
-
-/* =========================
-   TRANG SỰ KIỆN TỪNG NĂM
-========================= */
-.year-banner {
-  border-top: 6px solid var(--year-main);
-}
-
-.event-section {
-  padding-top: 20px;
-}
-
-.event-block {
-  padding: 26px;
-  margin-bottom: 28px;
-  background: rgba(255, 255, 255, 0.92);
-}
-
-.event-header {
-  margin-bottom: 20px;
-}
-
-.event-tag {
-  display: inline-block;
-  background: var(--year-tag);
-  color: var(--year-text);
-  padding: 8px 14px;
-  border-radius: 999px;
-  font-weight: 700;
-  margin-bottom: 14px;
-  font-size: 0.95rem;
-}
-
-.event-header h2 {
-  font-size: 1.6rem;
-  margin-bottom: 10px;
-  color: var(--text);
-}
-
-.event-header p {
-  color: var(--muted);
-}
-
-.event-gallery {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-}
-
-.photo-card {
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-}
-
-.event-photo {
-  min-height: 220px;
-  background:
-    radial-gradient(circle at top left, rgba(255,255,255,0.😎, transparent 30%),
-    linear-gradient(135deg, var(--year-soft), #ffffff);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--muted);
-  font-weight: 700;
-  text-align: center;
-  padding: 20px;
-}
-
-.photo-card figcaption {
-  padding: 14px 16px;
-  font-size: 0.95rem;
-  color: var(--muted);
-  line-height: 1.5;
-}
-
-/* =========================
-   RESPONSIVE CHO PHẦN SỰ KIỆN
-========================= */
-@media (max-width: 1024px) {
-  .year-grid,
-  .event-gallery {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .year-grid,
-  .event-gallery {
-    grid-template-columns: 1fr;
-  }
-
-  .year-card,
-  .event-block {
-    padding: 22px 18px;
-  }
-
-  .event-photo {
-    min-height: 200px;
-  }
-}
-
-
-
-
-
-/* =========================
-   THANH ĐIỀU HƯỚNG TỪNG NĂM
-========================= */
-.year-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-
-  width: 100%;
-  max-width: 1100px;
-  margin: 50px auto 20px;
-  padding: 0 30px;
-  box-sizing: border-box;
-}
-
-.year-btn {
-  text-decoration: none;
-  padding: 14px 24px;
-  border-radius: 30px;
-  font-weight: bold;
-  color: white;
-  transition: 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-
-.left-btn {
-  background: #6c63ff;
-}
-
-.right-btn {
-  background: #ff8a65;
-}
-
-.year-btn:hover {
-  transform: translateY(-3px) scale(1.03);
-  opacity: 0.92;
-}
-
-.year-btn {
-  text-decoration: none;
-  padding: 14px 24px;
-  border-radius: 30px;
-  font-weight: bold;
-  color: white;
-  transition: 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-
-.year-btn {
-  position: relative;
-  overflow: hidden;
-}
-
-.year-btn::after {
-  content: "→";
-  position: absolute;
-  right: 10px;
-  opacity: 0;
-  transition: 0.3s;
-}
-
-.year-btn:hover::after {
-  right: 5px;
-  opacity: 1;
-}
-
-/* Màu theo từng lớp */
-.btn-blue {
-  background: #4a90e2;
-}
-
-.btn-yellow {
-  background: #f4c542;
-  color: #333;
-}
-
-.btn-red {
-  background: #e85d75;
-}
-
-/* Hover */
-.year-btn:hover {
-  transform: translateY(-3px) scale(1.03);
-  opacity: 0.9;
-}
-
-.btn-blue:hover {
-  box-shadow: 0 0 12px rgba(74,144,226,0.6);
-}
-
-.btn-yellow:hover {
-  box-shadow: 0 0 12px rgba(244,197,66,0.6);
-}
-
-.btn-red:hover {
-  box-shadow: 0 0 12px rgba(232,93,117,0.6);
-}
-
- /* =========================
-   kHUNG ẢNH KÉO NGANG
-========================= */
-.memory-section {
-  margin: 50px 0;
-}
-
-.event-block {
-  margin-bottom: 40px;
-}
-
-.event-block h3 {
-  margin-bottom: 15px;
-  color: #333;
-}
-
 .slider-wrapper {
-  position: relative;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -1084,161 +184,63 @@ section {
 
 .photo-track {
   display: flex;
-  gap: 16px;
+  gap: 15px;
   overflow-x: auto;
-  padding: 10px;
   scrollbar-width: none;
-  cursor: grab;
-  user-select: none;
-  -webkit-user-select: none;
-  scroll-behavior: auto;
 }
 
 .photo-track::-webkit-scrollbar {
   display: none;
 }
 
-.photo-track.dragging {
-  cursor: grabbing;
-}
-
 .photo-card {
   min-width: 250px;
-  max-width: 250px;
-  background: #fff;
-  border-radius: 16px;
+  background: white;
+  border-radius: 10px;
   overflow: hidden;
-  flex-shrink: 0;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
 }
 
 .photo-card img {
   width: 100%;
   height: 180px;
   object-fit: cover;
-  display: block;
-}
-
-.photo-card p {
-  padding: 10px 12px;
-  font-size: 14px;
-  color: #444;
-  line-height: 1.5;
-}
-
-.slider-btn {
-  border: none;
-  background: rgba(0,0,0,0.6);
-  color: white;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 20px;
-  transition: 0.3s ease;
-}
-
-.slider-btn:hover {
-  background: rgba(0,0,0,0.8);
 }
 
 /* =========================
-   JAVA
+   BUTTON SLIDER
 ========================= */
-.photo-track {
-  cursor: grab;
-  user-select: none;
-}
-
-.photo-track.dragging {
-  cursor: grabbing;
-}
-   
-/*TÙM LUM*/
-/* Mặc định */
-:root {
-  --main-color: #4a90e2;
-  --soft-bg: #f5f9ff;
-  --text-color: #222;
-}
-
-/* Lớp 10 */
-.theme-blue {
-  --main-color: #4a90e2;
-  --soft-bg: #eef5ff;
-}
-
-/* Lớp 11 */
-.theme-yellow {
-  --main-color: #f4c542;
-  --soft-bg: #fff8db;
-}
-
-/* Lớp 12 */
-.theme-red {
-  --main-color: #e85d75;
-  --soft-bg: #fff1f3;
-}
-
-body {
-  background: var(--soft-bg);
-  color: var(--text-color);
-}
-
-.site-header {
-  background: var(--main-color);
+.slider-btn {
+  background: rgba(0,0,0,0.6);
   color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
 }
 
-.page-banner-box {
-  background: var(--main-color);
+/* =========================
+   YEAR NAV
+========================= */
+.year-nav {
+  display: flex;
+  justify-content: space-between;
+  margin: 40px;
+}
+
+.year-btn {
+  padding: 12px 20px;
+  border-radius: 20px;
   color: white;
+  text-decoration: none;
 }
 
-body {
-  animation: fadeIn 0.8s ease;
-}
+.btn-blue { background: #4a90e2; }
+.btn-yellow { background: #f4c542; color: #333; }
+.btn-red { background: #e85d75; }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.card {
-  transition: 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-}
-
-.slider-wrapper {
-  position: relative;
-}
-
-.slider-wrapper::before,
-.slider-wrapper::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  width: 60px;
-  height: 100%;
-  z-index: 2;
-}
-
-.slider-wrapper::before {
-  left: 0;
-  background: linear-gradient(to right, white, transparent);
-}
-
-.slider-wrapper::after {
-  right: 0;
-  background: linear-gradient(to left, white, transparent);
-}
-
-
-
-/* chèn nhạc */
+/* =========================
+   MUSIC PLAYER
+========================= */
 .music-player {
   position: fixed;
   right: 20px;
@@ -1247,104 +249,65 @@ body {
 }
 
 .music-toggle {
-  width: 52px;
-  height: 52px;
-  border: none;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   background: #4a90e2;
   color: white;
-  font-size: 22px;
+  border: none;
   cursor: pointer;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
-  transition: transform 0.25s ease, opacity 0.25s ease;
-  overflow: hidden;
-}
-
-.music-toggle:hover {
-  transform: scale(1.08);
 }
 
 .music-panel {
   position: absolute;
+  bottom: 60px;
   right: 0;
-  bottom: 64px;
-  width: 260px;
+  width: 240px;
   background: white;
-  border-radius: 16px;
-  padding: 12px;
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+  padding: 10px;
+  border-radius: 10px;
 
   opacity: 0;
   visibility: hidden;
-  transform: translateY(10px);
-  transition: all 0.25s ease;
+  transition: 0.3s;
 }
 
 .music-panel.show {
   opacity: 1;
   visibility: visible;
-  transform: translateY(0);
 }
 
 .music-controls {
   display: flex;
-  align-items: center;
   gap: 10px;
+  align-items: center;
 }
 
 .music-controls button {
   border: none;
   background: #4a90e2;
   color: white;
-  width: 38px;
-  height: 38px;
   border-radius: 50%;
-  cursor: pointer;
-  font-size: 16px;
-  flex-shrink: 0;
+  width: 35px;
+  height: 35px;
 }
 
-#musicSeek {
-  flex: 1;
-  min-width: 0;
-  cursor: pointer;
+/* =========================
+   FOOTER
+========================= */
+.site-footer {
+  text-align: center;
+  padding: 20px;
+  color: var(--muted);
 }
 
-#closeMusicPanel {
-  background: #e85d75;
-}
-
-body.theme-blue .music-toggle,
-body.theme-blue .music-controls button:not(#closeMusicPanel) {
-  background: #4a90e2;
-  color: white;
-}
-
-body.theme-yellow .music-toggle,
-body.theme-yellow .music-controls button:not(#closeMusicPanel) {
-  background: #f4c542;
-  color: #333;
-}
-
-body.theme-red .music-toggle,
-body.theme-red .music-controls button:not(#closeMusicPanel) {
-  background: #e85d75;
-  color: white;
-}
-
+/* =========================
+   RESPONSIVE
+========================= */
 @media (max-width: 768px) {
-  .music-player {
-    right: 14px;
-    bottom: 14px;
-  }
-
-  .music-panel {
-    width: 220px;
-  }
-
-  .music-toggle {
-    width: 48px;
-    height: 48px;
-    font-size: 20px;
+  .hero-grid,
+  .intro-grid,
+  .link-grid {
+    grid-template-columns: 1fr;
   }
 }
