@@ -1009,6 +1009,24 @@ section {
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
+.year-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.year-btn::after {
+  content: "→";
+  position: absolute;
+  right: 10px;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.year-btn:hover::after {
+  right: 5px;
+  opacity: 1;
+}
+
 /* Màu theo từng lớp */
 .btn-blue {
   background: #4a90e2;
@@ -1136,3 +1154,84 @@ section {
   cursor: grabbing;
 }
    
+/*TÙM LUM*/
+/* Mặc định */
+:root {
+  --main-color: #4a90e2;
+  --soft-bg: #f5f9ff;
+  --text-color: #222;
+}
+
+/* Lớp 10 */
+.theme-blue {
+  --main-color: #4a90e2;
+  --soft-bg: #eef5ff;
+}
+
+/* Lớp 11 */
+.theme-yellow {
+  --main-color: #f4c542;
+  --soft-bg: #fff8db;
+}
+
+/* Lớp 12 */
+.theme-red {
+  --main-color: #e85d75;
+  --soft-bg: #fff1f3;
+}
+
+body {
+  background: var(--soft-bg);
+  color: var(--text-color);
+}
+
+.site-header {
+  background: var(--main-color);
+  color: white;
+}
+
+.page-banner-box {
+  background: var(--main-color);
+  color: white;
+}
+
+body {
+  animation: fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.card {
+  transition: 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.slider-wrapper {
+  position: relative;
+}
+
+.slider-wrapper::before,
+.slider-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 60px;
+  height: 100%;
+  z-index: 2;
+}
+
+.slider-wrapper::before {
+  left: 0;
+  background: linear-gradient(to right, white, transparent);
+}
+
+.slider-wrapper::after {
+  right: 0;
+  background: linear-gradient(to left, white, transparent);
+}
