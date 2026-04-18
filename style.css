@@ -999,6 +999,48 @@ section {
   opacity: 0.92;
 }
 
+.year-btn {
+  text-decoration: none;
+  padding: 14px 24px;
+  border-radius: 30px;
+  font-weight: bold;
+  color: white;
+  transition: 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Màu theo từng lớp */
+.btn-blue {
+  background: #4a90e2;
+}
+
+.btn-yellow {
+  background: #f4c542;
+  color: #333;
+}
+
+.btn-red {
+  background: #e85d75;
+}
+
+/* Hover */
+.year-btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  opacity: 0.9;
+}
+
+.btn-blue:hover {
+  box-shadow: 0 0 12px rgba(74,144,226,0.6);
+}
+
+.btn-yellow:hover {
+  box-shadow: 0 0 12px rgba(244,197,66,0.6);
+}
+
+.btn-red:hover {
+  box-shadow: 0 0 12px rgba(232,93,117,0.6);
+}
+
  /* =========================
    kHUNG ẢNH KÉO NGANG
 ========================= */
