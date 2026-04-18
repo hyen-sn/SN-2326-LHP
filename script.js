@@ -5,44 +5,82 @@ sliders.forEach((slider) => {
   const prevBtn = slider.querySelector('.prev');
   const nextBtn = slider.querySelector('.next');
 
+  if (!track || !prevBtn || !nextBtn) return;
+
   let autoRun;
   let isDragging = false;
   let startX = 0;
   let scrollLeft = 0;
 
+  let touchStartX = 0;
+  let touchScrollLeft = 0;
+
+  // Nhân đôi toàn bộ ảnh để tạo hiệu ứng chạy vòng lặp
+  track.innerHTML += track.innerHTML;
+
+  // Nút bấm trái
   prevBtn.addEventListener('click', () => {
-    track.scrollBy({ left: -300, behavior: 'smooth' });
+    track.scrollBy({
+      left: -300,
+      behavior: 'smooth'
+    });
   });
 
+  // Nút bấm phải
   nextBtn.addEventListener('click', () => {
-    track.scrollBy({ left: 300, behavior: 'smooth' });
+    track.scrollBy({
+      left: 300,
+      behavior: 'smooth'
+    });
   });
 
+  // Hàm chạy tự động
   function startAutoRun() {
     stopAutoRun();
+
     autoRun = setInterval(() => {
       if (!isDragging) {
         track.scrollLeft += 1;
-        if (track.scrollLeft >= track.scrollWidth - track.clientWidth - 1) {
+
+        // Khi chạy hết bộ ảnh gốc thì quay lại đầu
+        if (track.scrollLeft >= track.scrollWidth / 2) {
           track.scrollLeft = 0;
         }
       }
     }, 20);
   }
 
+  // Hàm dừng tự động
   function stopAutoRun() {
     clearInterval(autoRun);
   }
 
+  // Rê chuột vào vùng slider thì dừng
   slider.addEventListener('mouseenter', stopAutoRun);
-  slider.addEventListener('mouseleave', startAutoRun);
 
+  // Rê chuột ra thì chạy tiếp
+  slider.addEventListener('mouseleave', () => {
+    if (!isDragging) {
+      startAutoRun();
+    }
+  });
+
+  // Kéo bằng chuột
   track.addEventListener('mousedown', (e) => {
     isDragging = true;
     startX = e.pageX - track.offsetLeft;
     scrollLeft = track.scrollLeft;
     stopAutoRun();
     track.classList.add('dragging');
+  });
+
+  track.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+
+    e.preventDefault();
+    const x = e.pageX - track.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    track.scrollLeft = scrollLeft - walk;
   });
 
   track.addEventListener('mouseup', () => {
@@ -56,17 +94,7 @@ sliders.forEach((slider) => {
     track.classList.remove('dragging');
   });
 
-  track.addEventListener('mousemove', (e) => {
-    if (!isDragging) return;
-    e.preventDefault();
-    const x = e.pageX - track.offsetLeft;
-    const walk = (x - startX) * 1.5;
-    track.scrollLeft = scrollLeft - walk;
-  });
-
-  let touchStartX = 0;
-  let touchScrollLeft = 0;
-
+  // Vuốt trên điện thoại
   track.addEventListener('touchstart', (e) => {
     touchStartX = e.touches[0].pageX;
     touchScrollLeft = track.scrollLeft;
@@ -83,5 +111,6 @@ sliders.forEach((slider) => {
     startAutoRun();
   });
 
+  // Chạy ngay khi tải trang
   startAutoRun();
 });
