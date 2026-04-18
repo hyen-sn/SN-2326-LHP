@@ -201,3 +201,77 @@ if (musicToggle && musicPanel && bgMusic && playPauseBtn && musicSeek && closeMu
     localStorage.setItem("musicPlaying", "false");
   });
 }
+
+const musicToggle = document.getElementById("musicToggle");
+const musicPanel = document.getElementById("musicPanel");
+const bgMusic = document.getElementById("bgMusic");
+const playPauseBtn = document.getElementById("playPauseBtn");
+const musicSeek = document.getElementById("musicSeek");
+const closeMusicPanel = document.getElementById("closeMusicPanel");
+
+if (musicToggle && musicPanel && bgMusic && playPauseBtn && musicSeek && closeMusicPanel) {
+  // Mở / đóng khung nhạc
+  musicToggle.addEventListener("click", () => {
+    musicPanel.classList.toggle("show");
+  });
+
+  // Nút đóng khung nhạc
+  closeMusicPanel.addEventListener("click", () => {
+    musicPanel.classList.remove("show");
+  });
+
+  // Phát / tạm dừng
+  playPauseBtn.addEventListener("click", () => {
+    if (bgMusic.paused) {
+      bgMusic.play();
+      playPauseBtn.textContent = "⏸";
+      localStorage.setItem("musicPlaying", "true");
+    } else {
+      bgMusic.pause();
+      playPauseBtn.textContent = "▶";
+      localStorage.setItem("musicPlaying", "false");
+    }
+  });
+
+  // Cập nhật thanh tua
+  bgMusic.addEventListener("timeupdate", () => {
+    if (bgMusic.duration) {
+      const progress = (bgMusic.currentTime / bgMusic.duration) * 100;
+      musicSeek.value = progress;
+      localStorage.setItem("musicTime", bgMusic.currentTime);
+    }
+  });
+
+  // Tua nhạc
+  musicSeek.addEventListener("input", () => {
+    if (bgMusic.duration) {
+      bgMusic.currentTime = (musicSeek.value / 100) * bgMusic.duration;
+    }
+  });
+
+  // Khôi phục thời gian
+  window.addEventListener("load", () => {
+    const savedTime = localStorage.getItem("musicTime");
+    const savedPlaying = localStorage.getItem("musicPlaying");
+
+    if (savedTime) {
+      bgMusic.currentTime = parseFloat(savedTime);
+    }
+
+    if (savedPlaying === "true") {
+      playPauseBtn.textContent = "⏸";
+    } else {
+      playPauseBtn.textContent = "▶";
+    }
+  });
+
+  bgMusic.addEventListener("play", () => {
+    playPauseBtn.textContent = "⏸";
+    localStorage.setItem("musicPlaying", "true");
+  });
+
+  bgMusic.addEventListener("pause", () => {
+    playPauseBtn.textContent = "▶";
+    localStorage.setItem("musicPlaying", "false");
+  });
+}
