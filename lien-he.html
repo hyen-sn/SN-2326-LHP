@@ -89,22 +89,22 @@
       </div>
     </section>
 
-<div class="music-player">
-  <button class="music-toggle" id="musicToggle" title="Mở nhạc">🎵</button>
+<div class="music-player" id="musicPlayer">
+  <button class="music-toggle" id="musicToggle">🎵</button>
 
   <div class="music-panel" id="musicPanel">
     <audio id="bgMusic" loop>
       <source src="music/mot_ngay_nao_do.mp3" type="audio/mpeg">
-      Trình duyệt của bạn không hỗ trợ phát nhạc.
     </audio>
 
     <div class="music-controls">
       <button id="playPauseBtn">▶</button>
-      <input type="range" id="musicSeek" value="0" min="0" max="100">
+      <input type="range" id="musicSeek" min="0" max="100" value="0">
       <button id="closeMusicPanel">✕</button>
     </div>
   </div>
 </div>
+    
 <script src="script.js"></script>
     
   </main>
