@@ -1239,53 +1239,63 @@ body {
 
 
 /* chèn nhạc */
+/* =========================
+   MUSIC PLAYER - NEW CLEAN VERSION
+========================= */
 .music-player {
   position: fixed;
   right: 20px;
   bottom: 20px;
-  z-index: 9999;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
+/* Nút icon nhạc */
 .music-toggle {
-  width: 52px;
-  height: 52px;
+  width: 56px;
+  height: 56px;
   border: none;
   border-radius: 50%;
   background: #4a90e2;
-  color: white;
-  font-size: 22px;
+  color: #fff;
+  font-size: 24px;
   cursor: pointer;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
-  transition: transform 0.25s ease, opacity 0.25s ease;
-  overflow: hidden;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease;
 }
 
 .music-toggle:hover {
   transform: scale(1.08);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
 }
 
+/* Khung điều khiển nhạc */
 .music-panel {
   position: absolute;
   right: 0;
-  bottom: 64px;
-  width: 260px;
-  background: white;
-  border-radius: 16px;
-  padding: 12px;
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
-  display: none;
+  bottom: 68px;
+  width: 280px;
+  background: rgba(255, 255, 255, 0.98);
+  border-radius: 18px;
+  padding: 12px 14px;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(8px);
 
   opacity: 0;
   visibility: hidden;
-  transform: translateY(10px);
-  transition: all 0.25s ease;
+  pointer-events: none;
+  transform: translateY(10px) scale(0.98);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
 }
 
+/* Khi mở panel */
 .music-panel.show {
-  display: block;
   opacity: 1;
   visibility: visible;
-  transform: translateY(0);
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
 }
 
 .music-controls {
@@ -1295,15 +1305,25 @@ body {
 }
 
 .music-controls button {
-  border: none;
-  background: #4a90e2;
-  color: white;
   width: 38px;
   height: 38px;
+  border: none;
   border-radius: 50%;
-  cursor: pointer;
+  background: #4a90e2;
+  color: #fff;
   font-size: 16px;
+  cursor: pointer;
   flex-shrink: 0;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.music-controls button:hover {
+  transform: scale(1.06);
+  opacity: 0.95;
+}
+
+#closeMusicPanel {
+  background: #e85d75;
 }
 
 #musicSeek {
@@ -1312,14 +1332,11 @@ body {
   cursor: pointer;
 }
 
-#closeMusicPanel {
-  background: #e85d75;
-}
-
+/* Theme theo từng trang */
 body.theme-blue .music-toggle,
 body.theme-blue .music-controls button:not(#closeMusicPanel) {
   background: #4a90e2;
-  color: white;
+  color: #fff;
 }
 
 body.theme-yellow .music-toggle,
@@ -1331,22 +1348,30 @@ body.theme-yellow .music-controls button:not(#closeMusicPanel) {
 body.theme-red .music-toggle,
 body.theme-red .music-controls button:not(#closeMusicPanel) {
   background: #e85d75;
-  color: white;
+  color: #fff;
 }
 
+/* Mobile */
 @media (max-width: 768px) {
   .music-player {
     right: 14px;
     bottom: 14px;
   }
 
-  .music-panel {
-    width: 220px;
+  .music-toggle {
+    width: 50px;
+    height: 50px;
+    font-size: 21px;
   }
 
-  .music-toggle {
-    width: 48px;
-    height: 48px;
-    font-size: 20px;
+  .music-panel {
+    width: 240px;
+    bottom: 60px;
+    padding: 10px 12px;
+  }
+
+  .music-controls button {
+    width: 36px;
+    height: 36px;
   }
 }
