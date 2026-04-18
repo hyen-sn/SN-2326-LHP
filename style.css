@@ -1022,12 +1022,12 @@ section {
   scroll-behavior: auto;
 }
 
-.photo-track.dragging {
-  cursor: grabbing;
-}
-
 .photo-track::-webkit-scrollbar {
   display: none;
+}
+
+.photo-track.dragging {
+  cursor: grabbing;
 }
 
 .photo-card {
