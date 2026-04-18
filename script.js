@@ -114,3 +114,90 @@ sliders.forEach((slider) => {
   // Chạy ngay khi mở trang
   startAutoRun();
 });
+
+
+
+
+/*   phát nhạc    */
+const musicToggle = document.getElementById("musicToggle");
+const musicPanel = document.getElementById("musicPanel");
+const bgMusic = document.getElementById("bgMusic");
+const playPauseBtn = document.getElementById("playPauseBtn");
+const musicSeek = document.getElementById("musicSeek");
+const closeMusicPanel = document.getElementById("closeMusicPanel");
+
+if (musicToggle && musicPanel && bgMusic && playPauseBtn && musicSeek && closeMusicPanel) {
+  let isPlaying = false;
+
+  // Mở / đóng khung nhạc
+  musicToggle.addEventListener("click", () => {
+    musicPanel.classList.toggle("show");
+  });
+
+  // Nút đóng khung nhạc
+  closeMusicPanel.addEventListener("click", () => {
+    musicPanel.classList.remove("show");
+  });
+
+  // Phát / tạm dừng nhạc
+  playPauseBtn.addEventListener("click", () => {
+    if (bgMusic.paused) {
+      bgMusic.play();
+      playPauseBtn.textContent = "⏸";
+      isPlaying = true;
+      localStorage.setItem("musicPlaying", "true");
+    } else {
+      bgMusic.pause();
+      playPauseBtn.textContent = "▶";
+      isPlaying = false;
+      localStorage.setItem("musicPlaying", "false");
+    }
+  });
+
+  // Cập nhật thanh tua theo thời gian phát
+  bgMusic.addEventListener("timeupdate", () => {
+    if (bgMusic.duration) {
+      const progress = (bgMusic.currentTime / bgMusic.duration) * 100;
+      musicSeek.value = progress;
+    }
+  });
+
+  // Kéo thanh tua để tua nhạc
+  musicSeek.addEventListener("input", () => {
+    if (bgMusic.duration) {
+      bgMusic.currentTime = (musicSeek.value / 100) * bgMusic.duration;
+    }
+  });
+
+  // Ghi nhớ vị trí nhạc
+  bgMusic.addEventListener("timeupdate", () => {
+    localStorage.setItem("musicTime", bgMusic.currentTime);
+  });
+
+  // Khôi phục trạng thái khi tải lại trang
+  window.addEventListener("load", () => {
+    const savedTime = localStorage.getItem("musicTime");
+    const savedPlaying = localStorage.getItem("musicPlaying");
+
+    if (savedTime) {
+      bgMusic.currentTime = parseFloat(savedTime);
+    }
+
+    if (savedPlaying === "true") {
+      playPauseBtn.textContent = "⏸";
+    } else {
+      playPauseBtn.textContent = "▶";
+    }
+  });
+
+  // Khi người dùng bấm nút phát thì mới được phát nhạc
+  bgMusic.addEventListener("play", () => {
+    playPauseBtn.textContent = "⏸";
+    localStorage.setItem("musicPlaying", "true");
+  });
+
+  bgMusic.addEventListener("pause", () => {
+    playPauseBtn.textContent = "▶";
+    localStorage.setItem("musicPlaying", "false");
+  });
+}
