@@ -1273,8 +1273,8 @@ body {
   border-radius: 16px;
   padding: 12px;
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
-
   display: none;
+
   opacity: 0;
   visibility: hidden;
   transform: translateY(10px);
