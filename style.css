@@ -1235,3 +1235,102 @@ body {
   right: 0;
   background: linear-gradient(to left, white, transparent);
 }
+
+
+
+/* chèn nhạc */
+.music-player {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 9999;
+}
+
+.music-toggle {
+  width: 52px;
+  height: 52px;
+  border: none;
+  border-radius: 50%;
+  background: #4a90e2;
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.music-toggle:hover {
+  transform: scale(1.08);
+}
+
+.music-panel {
+  position: absolute;
+  right: 0;
+  bottom: 64px;
+  width: 260px;
+  background: white;
+  border-radius: 16px;
+  padding: 12px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+  display: none;
+}
+
+.music-panel.show {
+  display: block;
+}
+
+.music-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.music-controls button {
+  border: none;
+  background: #4a90e2;
+  color: white;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+#musicSeek {
+  flex: 1;
+  cursor: pointer;
+}
+
+#closeMusicPanel {
+  background: #e85d75;
+}
+
+body.theme-yellow .music-toggle,
+body.theme-yellow .music-controls button:not(#closeMusicPanel) {
+  background: #f4c542;
+  color: #333;
+}
+
+body.theme-red .music-toggle,
+body.theme-red .music-controls button:not(#closeMusicPanel) {
+  background: #e85d75;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .music-player {
+    right: 14px;
+    bottom: 14px;
+  }
+
+  .music-panel {
+    width: 220px;
+  }
+
+  .music-toggle {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+  }
+}
