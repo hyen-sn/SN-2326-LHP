@@ -3,154 +3,52 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Trang chủ - Kỷ yếu lớp 12SN</title>
+  <title>Kỷ yếu lớp 12SN</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header class="site-header">
-    <div class="container">
+    <div class="container header-shell">
       <div class="logo">
-      <img src="images/logo-face.jpg" alt="Logo lớp" class="logo-img">
-      <span>Salle de nostalgie</span>
-    </div>
+        <img src="images/logo-face.jpg" alt="Logo lớp" class="logo-img">
+        <span>Salle de nostalgie</span>
+      </div>
+
       <nav class="main-nav">
-        <a href="index.html" class="active">Trang chủ</a>
-        <a href="thanh-vien.html">Thành viên</a>
-        <a href="ky-niem.html">Góc kỷ niệm</a>
-        <a href="loi-nhan.html">Lời nhắn</a>
-        <a href="lien-he.html">Liên hệ</a>
+        <button class="nav-btn active" data-page="pages/trangchu.html">Trang chủ</button>
+        <button class="nav-btn" data-page="pages/thanh-vien.html">Thành viên</button>
+        <button class="nav-btn" data-page="pages/ky-niem.html">Góc kỷ niệm</button>
+        <button class="nav-btn" data-page="pages/loi-nhan.html">Lời nhắn</button>
+        <button class="nav-btn" data-page="pages/lien-he.html">Liên hệ</button>
       </nav>
     </div>
   </header>
 
-  <main>
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-text">
-          <p class="tag">Niên khóa 20XX - 20XX</p>
-          <h1>Chào mừng đến với ngôi nhà nhỏ của lớp chúng mình</h1>
-          <p class="hero-desc">
-            Đây là nơi lưu giữ những kỷ niệm đẹp, những lời nhắn chân thành
-            và những khoảnh khắc đáng nhớ của tập thể lớp qua suốt 3 năm học.
-          </p>
-          <div class="hero-buttons">
-            <a href="ky-niem.html" class="btn btn-primary">Xem kỷ niệm</a>
-            <a href="thanh-vien.html" class="btn btn-secondary">Gặp các thành viên</a>
-          </div>
-        </div>
+  <main class="app-main">
+    <iframe
+      id="contentFrame"
+      class="content-frame"
+      src="pages/trangchu.html"
+      title="Nội dung website"
+      loading="eager"
+    ></iframe>
 
-        <div class="hero-image card">
-          <div class="image-placeholder">
-            <span>Ảnh tập thể lớp</span>
-            <small>Bạn sẽ chèn ảnh vào đây sau</small>
-          </div>
-        </div>
-      </div>
-    </section>
+    <div class="music-player">
+      <button class="music-toggle" id="musicToggle" title="Mở nhạc">🎵</button>
 
-    <section class="intro">
-      <div class="container">
-        <div class="section-title">
-          <h2>Giới thiệu sơ về lớp</h2>
-          <p>Một vài thông tin mở đầu để ai ghé qua cũng hiểu lớp mình là ai.</p>
-        </div>
+      <div class="music-panel" id="musicPanel">
+        <audio id="bgMusic" loop>
+          <source src="music/mot_ngay_nao_do.mp3" type="audio/mpeg">
+          Trình duyệt của bạn không hỗ trợ phát nhạc.
+        </audio>
 
-        <div class="intro-grid">
-          <article class="card info-card">
-            <h3>🏫 Thông tin trường</h3>
-            <ul>
-              <li><strong>Tên trường:</strong> [Điền tên trường]</li>
-              <li><strong>Địa chỉ:</strong> [Điền địa chỉ trường]</li>
-              <li><strong>Niên khóa:</strong> [Ví dụ: 2022 - 2025]</li>
-              <li><strong>Khối / Lớp:</strong> [Ví dụ: 12A1]</li>
-            </ul>
-          </article>
-
-          <article class="card info-card">
-            <h3>📘 Giới thiệu lớp</h3>
-            <p>
-              [Viết đoạn giới thiệu ngắn về lớp tại đây. Ví dụ: Lớp mình là một tập thể
-              vui vẻ, đoàn kết, nhiều cá tính nhưng luôn đồng hành cùng nhau trong học tập,
-              hoạt động ngoại khóa và những ngày tháng cuối cấp đáng nhớ.]
-            </p>
-          </article>
-
-          <article class="card info-card">
-            <h3>👥 Thành viên</h3>
-            <ul>
-              <li><strong>Học sinh:</strong> 33</li>
-              <li><strong>Giáo viên chủ nhiệm:</strong> 3</li>
-              <li><strong>Tổng cộng:</strong> 36 thành viên</li>
-              <li><strong>Vibe của lớp:</strong> Vui tươi - năng động - đáng nhớ</li>
-            </ul>
-          </article>
+        <div class="music-controls">
+          <button id="playPauseBtn">▶</button>
+          <input type="range" id="musicSeek" value="0" min="0" max="100">
+          <button id="closeMusicPanel">✕</button>
         </div>
       </div>
-    </section>
-
-    <section class="quick-links">
-      <div class="container">
-        <div class="section-title">
-          <h2>Khám phá từng góc nhỏ của lớp</h2>
-          <p>Mỗi trang là một mảnh ghép của thanh xuân.</p>
-        </div>
-
-        <div class="link-grid">
-          <a href="thanh-vien.html" class="card link-card">
-            <div class="link-icon">🧑‍🎓</div>
-            <h3>Thành viên</h3>
-            <p>Giới thiệu học sinh và giáo viên với ảnh, thông tin cơ bản và nét riêng.</p>
-          </a>
-
-          <a href="ky-niem.html" class="card link-card">
-            <div class="link-icon">📸</div>
-            <h3>Góc kỷ niệm</h3>
-            <p>Hành trình 3 năm học với từng cột mốc, sự kiện và khoảnh khắc đáng nhớ.</p>
-          </a>
-
-          <a href="loi-nhan.html" class="card link-card">
-            <div class="link-icon">💌</div>
-            <h3>Lời nhắn cuối cấp</h3>
-            <p>Nơi lưu những lời chúc, postcard và kỷ yếu điện tử của lớp.</p>
-          </a>
-
-          <a href="lien-he.html" class="card link-card">
-            <div class="link-icon">📱</div>
-            <h3>Liên hệ</h3>
-            <p>Thông tin liên lạc, mạng xã hội và những điểm hẹn trong tương lai.</p>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section class="highlight">
-      <div class="container">
-        <div class="highlight-box">
-          <h2>“Rồi mai này mỗi người một ngả, nhưng mong rằng chúng ta vẫn nhớ mình đã từng là một phần tuổi trẻ của nhau.”</h2>
-          <p>— Bạn có thể thay câu này bằng slogan hoặc câu quote riêng của lớp.</p>
-        </div>
-      </div>
-    </section>
-
-
-<div class="music-player">
-  <button class="music-toggle" id="musicToggle" title="Mở nhạc">🎵</button>
-
-  <div class="music-panel" id="musicPanel">
-    <audio id="bgMusic" loop>
-      <source src="music/mot_ngay_nao_do.mp3" type="audio/mpeg">
-      Trình duyệt của bạn không hỗ trợ phát nhạc.
-    </audio>
-
-    <div class="music-controls">
-      <button id="playPauseBtn">▶</button>
-      <input type="range" id="musicSeek" value="0" min="0" max="100">
-      <button id="closeMusicPanel">✕</button>
     </div>
-  </div>
-</div>
-<script src="script.js"></script>
-    
   </main>
 
   <footer class="site-footer">
@@ -158,5 +56,7 @@
       <p>2326 - Web SN cuối cùng</p>
     </div>
   </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
