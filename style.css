@@ -124,15 +124,16 @@ section {
   color: #FFE8BE;
 }
 
-.contact-card a {
-   text-decoration: none;
-   color: black;
+.contact-card .contact-list a {
+  text-decoration: none; 
+  color: black;
+  transition: 0.2s;
 }
 
-.contact-card a:hover {
-        text-decoration: none; 
-        color: #124170; 
-    }
+.contact-card .contact-list a:hover {
+  color: #124170;
+  opacity: 0.8;
+}
 
 
 
