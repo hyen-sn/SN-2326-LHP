@@ -1382,3 +1382,14 @@ body.theme-red .music-controls button:not(#closeMusicPanel) {
     height: 36px;
   }
 }
+
+
+.map-box {
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.map-box iframe {
+  display: block;
+  width: 100%;
+}
