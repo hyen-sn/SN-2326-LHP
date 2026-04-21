@@ -1034,22 +1034,46 @@ section {
   overflow: hidden;
 }
 
-.year-btn::after {
-  content: "→";
+/* ===== NÚT ĐIỀU HƯỚNG NĂM ===== */
+.year-btn {
+  position: relative;
+  overflow: hidden;
+  background: #ffffff;
+  color: #2f3a4a;
+}
+
+/* Mũi tên trái */
+.year-btn.nav-left::before {
+  content: "←";
   position: absolute;
-  right: 10px;
+  left: 14px;
   opacity: 0;
   transition: 0.3s;
 }
 
-.year-btn:hover::after {
-  right: 5px;
+.year-btn.nav-left:hover::before {
+  left: 10px;
+  opacity: 1;
+}
+
+/* Mũi tên phải */
+.year-btn.nav-right::after {
+  content: "→";
+  position: absolute;
+  right: 14px;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.year-btn.nav-right:hover::after {
+  right: 10px;
   opacity: 1;
 }
 
 /* Màu theo từng lớp */
 .btn-blue {
   background: #4a90e2;
+   color: white
 }
 
 .btn-yellow {
