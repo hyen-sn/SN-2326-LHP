@@ -980,9 +980,7 @@ section {
 
 
 
-/* =========================
-   THANH ĐIỀU HƯỚNG TỪNG NĂM
-========================= */
+
 /* =========================
    THANH ĐIỀU HƯỚNG TỪNG NĂM
 ========================= */
@@ -1005,18 +1003,18 @@ section {
   padding: 14px 24px;
   border-radius: 30px;
   font-weight: bold;
+  color: #ffffff;
   transition: 0.3s ease;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   overflow: hidden;
 }
 
-/* Hover chung */
 .year-btn:hover {
   transform: translateY(-3px) scale(1.03);
   opacity: 0.95;
 }
 
-/* Nút bên trái: chừa chỗ cho mũi tên trái */
+/* Nút trái */
 .year-btn.nav-left {
   padding-left: 48px;
 }
@@ -1029,6 +1027,7 @@ section {
   transform: translateY(-50%);
   opacity: 0;
   transition: 0.3s ease;
+  color: #ffffff;
 }
 
 .year-btn.nav-left:hover::before {
@@ -1036,7 +1035,7 @@ section {
   opacity: 1;
 }
 
-/* Nút bên phải: chừa chỗ cho mũi tên phải */
+/* Nút phải */
 .year-btn.nav-right {
   padding-right: 48px;
 }
@@ -1049,6 +1048,7 @@ section {
   transform: translateY(-50%);
   opacity: 0;
   transition: 0.3s ease;
+  color: #ffffff;
 }
 
 .year-btn.nav-right:hover::after {
@@ -1056,20 +1056,20 @@ section {
   opacity: 1;
 }
 
-/* ===== MÀU THEO TỪNG LỚP ===== */
+/* Màu theo từng lớp */
 .btn-blue {
   background: #4a90e2;
-  color: white;
+  color: #ffffff;
 }
 
 .btn-yellow {
   background: #f4c542;
-  color: #333;
+  color: #ffffff;
 }
 
 .btn-red {
   background: #e85d75;
-  color: white;
+  color: #ffffff;
 }
 
 /* Hover glow theo màu */
@@ -1083,70 +1083,6 @@ section {
 
 .btn-red:hover {
   box-shadow: 0 0 12px rgba(232,93,117,0.6);
-}
-
-.left-btn {
-  background: #6c63ff;
-}
-
-.right-btn {
-  background: #ff8a65;
-}
-
-.year-btn:hover {
-  transform: translateY(-3px) scale(1.03);
-  opacity: 0.92;
-}
-
-.year-btn {
-  text-decoration: none;
-  padding: 14px 24px;
-  border-radius: 30px;
-  font-weight: bold;
-  color: white;
-  transition: 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-
-.year-btn {
-  position: relative;
-  overflow: hidden;
-}
-
-/* ===== NÚT ĐIỀU HƯỚNG NĂM ===== */
-.year-btn {
-  position: relative;
-  overflow: hidden;
-  background: #ffffff;
-  color: #2f3a4a;
-}
-
-/* Mũi tên trái */
-.year-btn.nav-left::before {
-  content: "←";
-  position: absolute;
-  left: 14px;
-  opacity: 0;
-  transition: 0.3s;
-}
-
-.year-btn.nav-left:hover::before {
-  left: 10px;
-  opacity: 1;
-}
-
-/* Mũi tên phải */
-.year-btn.nav-right::after {
-  content: "→";
-  position: absolute;
-  right: 14px;
-  opacity: 0;
-  transition: 0.3s;
-}
-
-.year-btn.nav-right:hover::after {
-  right: 10px;
-  opacity: 1;
 }
 
 
