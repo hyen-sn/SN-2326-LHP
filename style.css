@@ -1004,9 +1004,10 @@ section {
   border-radius: 30px;
   font-weight: bold;
   color: #ffffff;
-  transition: 0.3s ease;
+  transition: all 0.3s ease;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   overflow: hidden;
+  white-space: nowrap;
 }
 
 .year-btn:hover {
@@ -1014,46 +1015,46 @@ section {
   opacity: 0.95;
 }
 
-/* Nút trái */
-.year-btn.nav-left {
-  padding-left: 48px;
-}
-
+/* Nút trái: ban đầu không chừa chỗ */
 .year-btn.nav-left::before {
   content: "←";
   position: absolute;
-  left: 22px;
+  left: 18px;
   top: 50%;
   transform: translateY(-50%);
   opacity: 0;
-  transition: 0.3s ease;
+  transition: all 0.3s ease;
   color: #ffffff;
+}
+
+.year-btn.nav-left:hover {
+  padding-left: 48px; /* hover mới nới ra */
 }
 
 .year-btn.nav-left:hover::before {
-  left: 14px;
   opacity: 1;
+  left: 18px;
 }
 
-/* Nút phải */
-.year-btn.nav-right {
-  padding-right: 48px;
-}
-
+/* Nút phải: ban đầu không chừa chỗ */
 .year-btn.nav-right::after {
   content: "→";
   position: absolute;
-  right: 22px;
+  right: 18px;
   top: 50%;
   transform: translateY(-50%);
   opacity: 0;
-  transition: 0.3s ease;
+  transition: all 0.3s ease;
   color: #ffffff;
 }
 
+.year-btn.nav-right:hover {
+  padding-right: 48px; /* hover mới nới ra */
+}
+
 .year-btn.nav-right:hover::after {
-  right: 14px;
   opacity: 1;
+  right: 18px;
 }
 
 /* Màu theo từng lớp */
