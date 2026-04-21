@@ -125,7 +125,7 @@ section {
 }
 
 .contact-card .contact-list a {
-  text-decoration: none; 
+  text-decoration: none !important; 
   color: black;
   transition: 0.2s;
 }
