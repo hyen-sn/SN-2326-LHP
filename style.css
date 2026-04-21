@@ -76,7 +76,7 @@ section {
   top: 0;
   z-index: 100;
   backdrop-filter: blur(10px);
-  background: #406AAF !important;
+  background: #406AAF;
   color: white;
   border-bottom: 1px solid rgba(232, 232, 240, 0.8);
 }
@@ -104,6 +104,7 @@ section {
 .main-nav {
   display: flex;
   flex-wrap: wrap;
+   color: white;
   gap: 10px;
   justify-content: flex-end;
 }
