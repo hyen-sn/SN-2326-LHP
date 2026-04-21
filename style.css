@@ -1073,7 +1073,7 @@ section {
 /* Màu theo từng lớp */
 .btn-blue {
   background: #4a90e2;
-   color: white
+   color: white;
 }
 
 .btn-yellow {
@@ -1083,6 +1083,7 @@ section {
 
 .btn-red {
   background: #e85d75;
+   color: white;
 }
 
 /* Hover */
