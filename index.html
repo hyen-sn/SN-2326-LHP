@@ -3,160 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Trang chủ - Kỷ yếu lớp 12SN</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="auth.js"></script>
+
+  <title>Đang chuyển hướng...</title>
+
+  <meta name="robots" content="noindex,nofollow">
+
+  <script>
+    const isLoggedIn = localStorage.getItem("loggedIn");
+
+    if (isLoggedIn === "true") {
+      window.location.href = "home.html";
+    } else {
+      window.location.href = "login.html";
+    }
+  </script>
 </head>
+
 <body>
-  <header class="site-header">
-    <div class="container">
-      <div class="logo">
-      <img src="images/logo-face.jpg" alt="Logo lớp" class="logo-img">
-      <span>Salle de Nostalgie</span>
-    </div>
-      <nav class="main-nav">
-        <a href="index.html" class="active">Trang chủ</a>
-        <a href="thanh-vien.html">Thành viên</a>
-        <a href="ky-niem.html">Góc kỷ niệm</a>
-        <a href="loi-nhan.html">Lời nhắn</a>
-        <a href="lien-he.html">Liên hệ</a>
-      </nav>
-    </div>
-  </header>
-
-  <main>
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-text">
-          <p class="tag">Niên khóa 2023 - 2026</p>
-          <h1>Góc xàm xí của 
-            Song Ngữ cuối cùng</h1>
-          <p class="hero-desc">
-            Một góc nhỏ nhoi ghi lại những kỷ niệm mà tụi mình đã trải qua
-            trong suốt 1000+ ngày đồng hành với nhau.
-          </p>
-          <div class="hero-buttons">
-            <a href="ky-niem.html" class="btn btn-primary">Xem kỷ niệm</a>
-            <a href="thanh-vien.html" class="btn btn-secondary">Cấu tạo lớp</a>
-          </div>
-        </div>
-
-        <div class="hero-image card">
-          <div class="image-placeholder">
-            <span>Tụi mình nè</span>
-            <small>Tui sẽ chèn ảnh vào đây sau</small>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="intro">
-      <div class="container">
-        <div class="section-title">
-          <h2>Những điều ai cũng biết</h2>
-          <p>(Một vài thông tin cơ bản nè)</p>
-        </div>
-
-        <div class="intro-grid">
-          <article class="card info-card">
-            <h3>Địa chỉ cư trú</h3>
-            <ul>
-              <li><strong>Tên trường:</strong> THPT chuyên Lê Hồng Phong </li>
-              <li><strong>Địa chỉ:</strong> D.208 - 235 Nguyễn Văn Cừ, P4, Q5, TP.HCM (phường Chợ Quán)</li>
-              <li><strong>Niên khóa:</strong> 2023 - 2026</li>
-              <li><strong>Lớp:</strong> 10-11-12 SN</li>
-            </ul>
-          </article>
-
-          <article class="card info-card">
-            <h3>Giới thiệu lớp</h3>
-            <p>
-              Một tập thể xàm xí gắn kết. Mỗi người một tính nhưng hợp nhau (chắc vậy) ^^
-            </p>
-          </article>
-
-          <article class="card info-card">
-            <h3>Thành viên</h3>
-            <ul>
-              <li><strong>Học sinh:</strong> 33</li>
-              <li><strong>Giáo viên chủ nhiệm:</strong> 3</li>
-              <li><strong>Vibe:</strong> Vui tươi - năng động - báo cute</li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="quick-links">
-      <div class="container">
-        <div class="section-title">
-          <h2>Khám phá thêm về lớp mình ở đây ↷</h2>
-          <p>☆*: .｡. o(≧▽≦)o .｡.:*☆</p>
-        </div>
-
-        <div class="link-grid">
-          <a href="thanh-vien.html" class="card link-card">
-            <div class="link-icon">🧑‍🎓</div>
-            <h3>Thành viên</h3>
-            <p>Thành phần cấu tạo của lớp SN</p>
-          </a>
-
-          <a href="ky-niem.html" class="card link-card">
-            <div class="link-icon">📸</div>
-            <h3>Góc kỷ niệm</h3>
-            <p>Hành trình 3 năm học và những khoảnh khắc với nhau</p>
-          </a>
-
-          <a href="loi-nhan.html" class="card link-card">
-            <div class="link-icon">✨</div>
-            <h3>Lời nhắn </h3>
-            <p>Nơi đây có lời chúc, postcard và kỷ yếu điện tử của lớp</p>
-          </a>
-
-          <a href="lien-he.html" class="card link-card">
-            <div class="link-icon">☎️</div>
-            <h3>Liên hệ</h3>
-            <p>Thông tin liên lạc, mạng xã hội của lớp nè.</p>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section class="highlight">
-      <div class="container">
-        <div class="highlight-box">
-          <h2>“Song Ngu sống dai thành huyền thoại”</h2>
-        </div>
-      </div>
-    </section>
-
-
-<div class="music-player" id="musicPlayer">
-  <button class="music-toggle" id="musicToggle" title="Mở nhạc">🎵</button>
-
-  <div class="music-panel" id="musicPanel">
-    <audio id="bgMusic" loop>
-      <source src="music/nhacnen.mp3" type="audio/mpeg">
-      <source src="music/mot_ngay_nao_do.mp3" type="audio/mpeg">
-      Đổi app đi không hỗ trợ được r
-    </audio>
-
-    <div class="music-controls">
-      <button id="playPauseBtn" type="button">▶</button>
-      <input type="range" id="musicSeek" value="0" min="0" max="100">
-      <button id="closeMusicPanel" type="button">✕</button>
-    </div>
-  </div>
-</div>
-
-<script src="script.js"></script>
-
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-content">
-      <p>Mọi thắc mắc và vấn đề vui lòng liên hệ "33"</p>
-    </div>
-  </footer>
+  <p>Đang kiểm tra đăng nhập...</p>
 </body>
 </html>
