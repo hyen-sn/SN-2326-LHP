@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Đăng nhập</title>
+  <style>
+    body{
+      margin:0;
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:#111;
+      font-family:Arial;
+    }
+
+    .box{
+      background:white;
+      padding:40px;
+      border-radius:20px;
+      text-align:center;
+      width:300px;
+    }
+
+    input{
+      width:100%;
+      padding:12px;
+      margin-top:15px;
+      border-radius:10px;
+      border:1px solid #ccc;
+    }
+
+    button{
+      margin-top:20px;
+      width:100%;
+      padding:12px;
+      border:none;
+      border-radius:10px;
+      background:#406AAF;
+      color:white;
+      font-size:16px;
+      cursor:pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="box">
+  <h2>Web lớp riêng tư</h2>
+
+  <input type="password" id="password" placeholder="Nhập mật khẩu">
+
+  <button onclick="login()">Vào web</button>
+</div>
+
+<script>
+function login(){
+
+  const pass = document.getElementById("password").value;
+
+  if(pass === "lop12a1"){
+    
+    localStorage.setItem("loggedIn","true");
+
+    window.location.href = "index.html";
+
+  }else{
+    alert("Sai mật khẩu");
+  }
+
+}
+</script>
+
+</body>
+</html>
