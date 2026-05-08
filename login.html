@@ -2,7 +2,6 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <script src="auth.js"></script>
   <title>Đăng nhập</title>
   <style>
     body{
@@ -56,21 +55,80 @@
 </div>
 
 <script>
+
 function login(){
 
-  const pass = document.getElementById("password").value;
+  // kiểm tra đang bị khóa không
+  const lockUntil = localStorage.getItem("lockUntil");
 
-  if(pass === "lop12a1"){
-    
-    localStorage.setItem("loggedIn","true");
+  if(lockUntil && Date.now() < lockUntil){
 
-    window.location.href = "index.html";
+      const seconds = Math.ceil((lockUntil - Date.now()) / 1000);
+
+      alert("Đi chỗ khác đi, bị khóa rùi. Thử lại sau " + seconds + " giây.");
+
+      return;
+  }
+
+  const pass1 = document.getElementById("pass1").value.trim();
+  const pass2 = document.getElementById("pass2").value.trim();
+
+  const accounts = [
+
+    {
+      pass1: "Nguyen van A",
+      pass2: "LT"
+    },
+
+    {
+      pass1: "Nguyen van B",
+      pass2: "LP"
+    }
+
+  ];
+
+  const isValid = accounts.some(account =>
+      account.pass1 === pass1 &&
+      account.pass2 === pass2
+  );
+
+  // đúng mật khẩu
+  if(isValid){
+
+      localStorage.setItem("loggedIn","true");
+
+      localStorage.removeItem("attempts");
+      localStorage.removeItem("lockUntil");
+
+      window.location.href="home.html";
 
   }else{
-    alert("Sai mật khẩu");
+
+      let attempts = Number(localStorage.getItem("attempts")) || 0;
+
+      attempts++;
+
+      localStorage.setItem("attempts", attempts);
+
+      // sai quá 3 lần
+      if(attempts >= 3){
+
+          // khóa 1 phút
+          const lockTime = Date.now() + 60000;
+
+          localStorage.setItem("lockUntil", lockTime);
+
+          alert("Có mật khẩu mà sai hoài v");
+
+          return;
+      }
+
+      alert("Sai thông tin");
+
   }
 
 }
+
 </script>
 
 </body>
