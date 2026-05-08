@@ -2,134 +2,185 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>Đăng nhập</title>
+  <title>Sảnh chờ Fifa</title>
+
   <style>
-    body{
-      margin:0;
-      height:100vh;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      background:#111;
-      font-family:Arial;
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #F7F6E5;
+      font-family: Arial, sans-serif;
     }
 
-    .box{
-      background:white;
-      padding:40px;
-      border-radius:20px;
-      text-align:center;
-      width:300px;
+    .login-box {
+      width: 340px;
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      text-align: center;
     }
 
-    input{
-      width:100%;
-      padding:12px;
-      margin-top:15px;
-      border-radius:10px;
-      border:1px solid #ccc;
+    h2 {
+      color: #406AAF;
+      margin-bottom: 10px;
     }
 
-    button{
-      margin-top:20px;
-      width:100%;
-      padding:12px;
-      border:none;
-      border-radius:10px;
-      background:#406AAF;
-      color:white;
-      font-size:16px;
-      cursor:pointer;
+    .note {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    label {
+      display: block;
+      text-align: left;
+      margin-top: 14px;
+      font-weight: bold;
+      color: #333;
+      font-size: 14px;
+    }
+
+    input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 12px;
+      margin-top: 6px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 22px;
+      padding: 12px;
+      border: none;
+      border-radius: 12px;
+      background: #406AAF;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #2f518c;
+    }
+
+    .error {
+      margin-top: 14px;
+      color: red;
+      font-size: 14px;
+      display: none;
+      line-height: 1.5;
     }
   </style>
 </head>
 
 <body>
 
-<div class="box">
-  <h2>Web lớp riêng tư</h2>
+  <div class="login-box">
+    <h2>Biết đây là đâu không</h2>
 
-  <input type="password" id="password" placeholder="Nhập mật khẩu">
+    <div class="note">
+      Nhớ trả lời câu hỏi để vô nhe
+    </div>
 
-  <button onclick="login()">Vào web</button>
-</div>
+    <label for="pass1">Tên bạn là gì? (Có dấu, viết hoa chữ đầu, có cách)</label>
+    <input type="password" id="pass1" placeholder="Ví dụ: Nguyễn Văn A">
 
-<script>
+    <label for="pass2">Sanh thần của bạn là... (dd/mm)</label>
+    <input type="password" id="pass2" placeholder="Ví dụ: 03/33">
 
-function login(){
+    <button onclick="login()">Đi nè</button>
 
-  // kiểm tra đang bị khóa không
-  const lockUntil = localStorage.getItem("lockUntil");
+    <div id="error" class="error">
+      Sai thông tin. Nhớ check lại xem có lộn lớp không nha
+    </div>
+  </div>
 
-  if(lockUntil && Date.now() < lockUntil){
+  <script>
+    function login() {
 
-      const seconds = Math.ceil((lockUntil - Date.now()) / 1000);
+      // 1. Kiểm tra đang bị khóa không
+      const lockUntil = localStorage.getItem("lockUntil");
 
-      alert("Đi chỗ khác đi, bị khóa rùi. Thử lại sau " + seconds + " giây.");
+      if (lockUntil && Date.now() < Number(lockUntil)) {
+        const seconds = Math.ceil((Number(lockUntil) - Date.now()) / 1000);
 
-      return;
-  }
+        document.getElementById("error").style.display = "block";
+        document.getElementById("error").innerText =
+          "Tặng bạn vé ra đảo. Quay lại sau " + seconds + " giây.";
 
-  const pass1 = document.getElementById("pass1").value.trim();
-  const pass2 = document.getElementById("pass2").value.trim();
-
-  const accounts = [
-
-    {
-      pass1: "Nguyen van A",
-      pass2: "LT"
-    },
-
-    {
-      pass1: "Nguyen van B",
-      pass2: "LP"
-    }
-
-  ];
-
-  const isValid = accounts.some(account =>
-      account.pass1 === pass1 &&
-      account.pass2 === pass2
-  );
-
-  // đúng mật khẩu
-  if(isValid){
-
-      localStorage.setItem("loggedIn","true");
-
-      localStorage.removeItem("attempts");
-      localStorage.removeItem("lockUntil");
-
-      window.location.href="home.html";
-
-  }else{
-
-      let attempts = Number(localStorage.getItem("attempts")) || 0;
-
-      attempts++;
-
-      localStorage.setItem("attempts", attempts);
-
-      // sai quá 3 lần
-      if(attempts >= 3){
-
-          // khóa 1 phút
-          const lockTime = Date.now() + 60000;
-
-          localStorage.setItem("lockUntil", lockTime);
-
-          alert("Có mật khẩu mà sai hoài v");
-
-          return;
+        return;
       }
 
-      alert("Sai thông tin");
+      // 2. Lấy dữ liệu người dùng nhập
+      const pass1 = document.getElementById("pass1").value.trim();
+      const pass2 = document.getElementById("pass2").value.trim();
 
-  }
+      // 3. Danh sách nhiều cặp mật khẩu
+      const accounts = [
+        {
+          pass1: "Nguyen van A",
+          pass2: "LT"
+        },
+        {
+          pass1: "Nguyen van B",
+          pass2: "LP"
+        },
+        {
+          pass1: "Nguyen van C",
+          pass2: "LA"
+        }
+      ];
 
-}
+      // 4. Kiểm tra đúng cặp hay không
+      const isValid = accounts.some(account =>
+        account.pass1 === pass1 &&
+        account.pass2 === pass2
+      );
 
-</script>
+      // 5. Nếu đúng
+      if (isValid) {
+        localStorage.setItem("loggedIn", "true");
+
+        localStorage.removeItem("attempts");
+        localStorage.removeItem("lockUntil");
+
+        window.location.href = "home.html";
+      }
+
+      // 6. Nếu sai
+      else {
+        let attempts = Number(localStorage.getItem("attempts")) || 0;
+        attempts++;
+
+        localStorage.setItem("attempts", attempts);
+
+        const remaining = 5 - attempts;
+
+        document.getElementById("error").style.display = "block";
+
+        if (attempts >= 5) {
+          const lockTime = Date.now() + 60000; // 1 phút
+          localStorage.setItem("lockUntil", lockTime);
+
+          document.getElementById("error").innerText =
+            "Có mật khẩu cũng sai nữa. Tự kiểm điểm 1p đi";
+
+          return;
+        }
+
+        document.getElementById("error").innerText =
+          "Sai thông tin. Bạn còn " + remaining + " lần trước khi ra đảo";
+      }
+    }
+  </script>
 
 </body>
 </html>
