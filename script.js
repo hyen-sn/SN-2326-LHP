@@ -284,4 +284,3 @@ document.onkeydown = function(e){
 
 }
 
-<meta name="robots" content="noindex,nofollow">
