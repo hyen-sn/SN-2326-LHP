@@ -1414,3 +1414,51 @@ body.theme-red .music-controls button:not(#closeMusicPanel) {
   display: block;
   width: 100%;
 }
+
+
+
+
+
+/* =========================
+   ẢNH CHÍNH TRANG HOME
+   Không cắt ảnh - giữ nguyên tỉ lệ
+========================= */
+
+.hero-photo-box {
+  width: 100%;
+  padding: 12px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.9);
+  overflow: hidden;
+}
+
+.hero-real-image {
+  width: 100%;
+  height: auto;
+  max-height: 520px;
+  object-fit: contain;
+  display: block;
+  border-radius: 22px;
+  background: #fff;
+}
+
+/* Giữ bố cục đẹp khi ảnh quá thấp hoặc quá rộng */
+.hero-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .hero-photo-box {
+    padding: 8px;
+    border-radius: 22px;
+  }
+
+  .hero-real-image {
+    max-height: 360px;
+    border-radius: 18px;
+  }
+}
+
