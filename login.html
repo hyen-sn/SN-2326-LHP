@@ -8,15 +8,19 @@
     body {
       margin: 0;
       min-height: 100vh;
+      min-height: 100dvh;
       display: flex;
       justify-content: center;
       align-items: center;
       background: #F7F6E5;
       font-family: Arial, sans-serif;
+      padding: 16px;
     }
 
     .login-box {
-      width: 340px;
+      width: min(90vw, 340px);
+      max-height: 90vh;
+      overflow-y: auto;
       background: white;
       padding: 30px;
       border-radius: 20px;
@@ -104,103 +108,80 @@
   </div>
 
   <script>
+  async function sha256(text) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(text.normalize("NFC"));
+    const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
 
-async function sha256(text) {
-  const encoder = new TextEncoder();
-  const data = encoder.encode(text.normalize("NFC"));
-  const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+    return hashArray
+      .map(byte => byte.toString(16).padStart(2, "0"))
+      .join("");
+  }
 
-  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  async function login() {
+    const lockUntil = localStorage.getItem("lockUntil");
 
-  return hashArray
-    .map(byte => byte.toString(16).padStart(2, "0"))
-    .join("");
-}
+    if (lockUntil && Date.now() < Number(lockUntil)) {
+      const seconds = Math.ceil((Number(lockUntil) - Date.now()) / 1000);
 
-    
-    async function login() {
+      document.getElementById("error").style.display = "block";
+      document.getElementById("error").innerText =
+        "Tặng bạn vé ra đảo. Quay lại sau " + seconds + " giây.";
 
-      // 1. Kiểm tra đang bị khóa không
-      const lockUntil = localStorage.getItem("lockUntil");
+      return;
+    }
 
-      if (lockUntil && Date.now() < Number(lockUntil)) {
-        const seconds = Math.ceil((Number(lockUntil) - Date.now()) / 1000);
+    const pass1 = document.getElementById("pass1").value.trim();
+    const pass2 = document.getElementById("pass2").value.trim();
 
-        document.getElementById("error").style.display = "block";
+    const pass1Hash = await sha256(pass1);
+    const pass2Hash = await sha256(pass2);
+
+    const accounts = [
+      {
+        pass1Hash: "185f8db32271fe25f561a6fc938b2e264306ec304eda518007d1764826381969",
+        pass2Hash: "fd8e2b063d87f36c1b8426501bc990507882f967e7fa80c99e3d050455fdc1d5"
+      }
+    ];
+
+    const isValid = accounts.some(account =>
+      account.pass1Hash === pass1Hash &&
+      account.pass2Hash === pass2Hash
+    );
+
+    if (isValid) {
+      sessionStorage.setItem("loggedIn", "true");
+
+      localStorage.removeItem("attempts");
+      localStorage.removeItem("lockUntil");
+
+      window.location.href = "home.html";
+    } else {
+      let attempts = Number(localStorage.getItem("attempts")) || 0;
+      attempts++;
+
+      localStorage.setItem("attempts", attempts);
+
+      const remaining = 5 - attempts;
+
+      document.getElementById("error").style.display = "block";
+
+      if (attempts >= 5) {
+        const lockTime = Date.now() + 60000;
+        localStorage.setItem("lockUntil", lockTime);
+
         document.getElementById("error").innerText =
-          "Tặng bạn vé ra đảo. Quay lại sau " + seconds + " giây.";
+          "Có mật khẩu cũng sai nữa. Tự kiểm điểm 1p đi";
 
         return;
       }
 
-      // 2. Lấy dữ liệu người dùng nhập
-      const pass1 = document.getElementById("pass1").value.trim();
-      const pass2 = document.getElementById("pass2").value.trim();
-
-      const pass1Hash = await sha256(pass1);
-      const pass2Hash = await sha256(pass2);
-
-      // 3. Danh sách nhiều cặp mật khẩu
-      const accounts = [
-        {
-          pass1: "185f8db32271fe25f561a6fc938b2e264306ec304eda518007d1764826381969" ,
-          pass2: "LT"
-        },
-        {
-          pass1: "Nguyen van B",
-          pass2: "LP"
-        },
-        {
-          pass1: "Nguyen van C",
-          pass2: "LA"
-        }
-
-
-            
-      ];
-
-      // 4. Kiểm tra đúng cặp hay không
-      const isValid = accounts.some(account =>
-          account.pass1Hash === pass1Hash &&
-          account.pass2Hash === pass2Hash
-      );
-
-      // 5. Nếu đúng
-      if (isValid) {
-        sessionStorage.setItem("loggedIn", "true");
-
-        localStorage.removeItem("attempts");
-        localStorage.removeItem("lockUntil");
-
-        window.location.href = "home.html";
-      }
-
-      // 6. Nếu sai
-      else {
-        let attempts = Number(localStorage.getItem("attempts")) || 0;
-        attempts++;
-
-        localStorage.setItem("attempts", attempts);
-
-        const remaining = 5 - attempts;
-
-        document.getElementById("error").style.display = "block";
-
-        if (attempts >= 5) {
-          const lockTime = Date.now() + 60000; // 1 phút
-          localStorage.setItem("lockUntil", lockTime);
-
-          document.getElementById("error").innerText =
-            "Có mật khẩu cũng sai nữa. Tự kiểm điểm 1p đi";
-
-          return;
-        }
-
-        document.getElementById("error").innerText =
-          "Sai thông tin. Bạn còn " + remaining + " lần trước khi ra đảo";
-      }
+      document.getElementById("error").innerText =
+        "Sai thông tin. Bạn còn " + remaining + " lần trước khi ra đảo";
     }
-  </script>
+  }
+</script>
 
 </body>
 </html>
