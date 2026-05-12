@@ -104,7 +104,21 @@
   </div>
 
   <script>
-    function login() {
+
+async function sha256(text) {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(text.normalize("NFC"));
+  const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+
+  return hashArray
+    .map(byte => byte.toString(16).padStart(2, "0"))
+    .join("");
+}
+
+    
+    async function login() {
 
       // 1. Kiểm tra đang bị khóa không
       const lockUntil = localStorage.getItem("lockUntil");
@@ -123,10 +137,13 @@
       const pass1 = document.getElementById("pass1").value.trim();
       const pass2 = document.getElementById("pass2").value.trim();
 
+      const pass1Hash = await sha256(pass1);
+      const pass2Hash = await sha256(pass2);
+
       // 3. Danh sách nhiều cặp mật khẩu
       const accounts = [
         {
-          pass1: 185f8db32271fe25f561a6fc938b2e264306ec304eda518007d1764826381969 ,
+          pass1: "185f8db32271fe25f561a6fc938b2e264306ec304eda518007d1764826381969" ,
           pass2: "LT"
         },
         {
@@ -137,12 +154,15 @@
           pass1: "Nguyen van C",
           pass2: "LA"
         }
+
+
+            
       ];
 
       // 4. Kiểm tra đúng cặp hay không
       const isValid = accounts.some(account =>
-        account.pass1 === pass1 &&
-        account.pass2 === pass2
+          account.pass1Hash === pass1Hash &&
+          account.pass2Hash === pass2Hash
       );
 
       // 5. Nếu đúng
