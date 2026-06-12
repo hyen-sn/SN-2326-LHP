@@ -603,6 +603,7 @@ section {
   box-shadow: var(--shadow-lg);
 }
 
+.link-card a{text-decoration: none;}
 /* Icon box mỗi card màu khác nhau */
 .link-icon {
   width: 60px;
