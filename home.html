@@ -6,15 +6,20 @@
   <meta name="robots" content="noindex,nofollow">
   <title>Trang chủ - Kỷ yếu lớp 12SN</title>
   <link rel="stylesheet" href="style.css" />
+  <!-- [UPGRADED] Thêm Google Fonts: Nunito cho thân thiện, Baloo 2 cho tiêu đề -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
   <script src="auth.js"></script>
 </head>
 <body>
+
+  <!-- ========== HEADER ========== -->
   <header class="site-header">
     <div class="container">
       <div class="logo">
-      <img src="images/logo-face.jpg" alt="Logo lớp" class="logo-img">
-      <span>Salle de Nostalgie</span>
-    </div>
+        <img src="images/logo-face.jpg" alt="Logo lớp" class="logo-img">
+        <span>Salle de Nostalgie</span>
+      </div>
       <nav class="main-nav">
         <a href="home.html" class="active">Trang chủ</a>
         <a href="thanh-vien.html">Thành viên</a>
@@ -22,140 +27,221 @@
         <a href="loi-nhan.html">Lời nhắn</a>
         <a href="lien-he.html">Liên hệ</a>
       </nav>
+
+      <!-- [NEW] Nút hamburger cho mobile -->
+      <button class="nav-toggle" id="navToggle" aria-label="Mở menu">☰</button>
     </div>
   </header>
 
   <main>
+
+    <!-- ========== HERO SECTION ========== -->
     <section class="hero">
+      <!-- [NEW] Các bong bóng nền trang trí -->
+      <div class="hero-blob blob-1"></div>
+      <div class="hero-blob blob-2"></div>
+      <div class="hero-blob blob-3"></div>
+
       <div class="container hero-grid">
         <div class="hero-text">
-          <p class="tag">Niên khóa 2023 - 2026</p>
-          <h1>Góc xàm xí của 
-            Song Ngữ cuối cùng</h1>
+          <!-- [UPGRADED] Tag đẹp hơn với gradient -->
+          <p class="tag">✦ Niên khóa 2023 – 2026 ✦</p>
+
+          <h1>Góc xàm xí của<br>
+            <span class="h1-highlight">Song Ngữ cuối cùng</span>
+          </h1>
+
           <p class="hero-desc">
             Một góc nhỏ nhoi ghi lại những kỷ niệm mà tụi mình đã trải qua
-            trong suốt 1000+ ngày đồng hành với nhau.
+            trong suốt 1000+ ngày đồng hành với nhau 🎒
           </p>
+
+          <!-- [UPGRADED] Nút lớn hơn, nổi bật hơn, có hiệu ứng hover -->
           <div class="hero-buttons">
-            <a href="ky-niem.html" class="btn btn-primary">Xem kỷ niệm</a>
-            <a href="thanh-vien.html" class="btn btn-secondary">Cấu tạo lớp</a>
+            <a href="ky-niem.html" class="btn btn-primary">
+              <span>📸 Xem kỷ niệm</span>
+            </a>
+            <a href="thanh-vien.html" class="btn btn-secondary">
+              <span>🧑‍🎓 Cấu tạo lớp</span>
+            </a>
           </div>
         </div>
 
+        <!-- [UPGRADED] Khung ảnh có viền màu gradient -->
         <div class="hero-image card hero-photo-box">
-            <img src="images/anh-lop.jpg" alt="Tụi mình nè" class="hero-real-image">
+          <img src="images/anh-lop.jpg" alt="Tụi mình nè" class="hero-real-image">
         </div>
-        
+      </div>
+
+      <!-- [NEW] Stats mini strip -->
+      <div class="container">
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-num">33</span>
+            <span class="stat-label">Thành viên</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-num">3</span>
+            <span class="stat-label">Năm học</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-num">1000+</span>
+            <span class="stat-label">Ngày cùng nhau</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-num">∞</span>
+            <span class="stat-label">Kỷ niệm</span>
+          </div>
+        </div>
       </div>
     </section>
 
+    <!-- ========== INTRO / INFO CARDS ========== -->
     <section class="intro">
       <div class="container">
         <div class="section-title">
+          <p class="section-eyebrow">📋 Thông tin</p>
           <h2>Những điều ai cũng biết</h2>
           <p>(Một vài thông tin cơ bản nè)</p>
         </div>
 
         <div class="intro-grid">
-          <article class="card info-card">
+          <!-- Card 1 -->
+          <article class="card info-card info-card--blue">
+            <div class="info-card-icon">🏫</div>
             <h3>Địa chỉ cư trú</h3>
             <ul>
-              <li><strong>Tên trường:</strong> THPT chuyên Lê Hồng Phong </li>
-              <li><strong>Địa chỉ:</strong> D.208 - 235 Nguyễn Văn Cừ, P4, Q5, TP.HCM (phường Chợ Quán)</li>
-              <li><strong>Niên khóa:</strong> 2023 - 2026</li>
+              <li><strong>Tên trường:</strong> THPT chuyên Lê Hồng Phong</li>
+              <li><strong>Địa chỉ:</strong> D.208 – 235 Nguyễn Văn Cừ, P4, Q5, TP.HCM</li>
+              <li><strong>Niên khóa:</strong> 2023 – 2026</li>
               <li><strong>Lớp:</strong> 10-11-12 SN</li>
             </ul>
           </article>
 
-          <article class="card info-card">
+          <!-- Card 2 -->
+          <article class="card info-card info-card--pink">
+            <div class="info-card-icon">💫</div>
             <h3>Giới thiệu lớp</h3>
             <p>
               Một tập thể xàm xí gắn kết. Mỗi người một tính nhưng hợp nhau (chắc vậy) ^^
             </p>
           </article>
 
-          <article class="card info-card">
+          <!-- Card 3 -->
+          <article class="card info-card info-card--green">
+            <div class="info-card-icon">🎉</div>
             <h3>Thành viên</h3>
             <ul>
               <li><strong>Học sinh:</strong> 33</li>
-              <li><strong>Giáo viên chủ nhiệm:</strong> 3</li>
-              <li><strong>Vibe:</strong> Vui tươi - năng động - báo cute</li>
+              <li><strong>GVCN:</strong> 3</li>
+              <li><strong>Vibe:</strong> Vui tươi · năng động · báo cute</li>
             </ul>
           </article>
         </div>
       </div>
     </section>
 
+    <!-- ========== QUICK LINKS ========== -->
     <section class="quick-links">
       <div class="container">
         <div class="section-title">
+          <p class="section-eyebrow">🗺️ Khám phá</p>
           <h2>Khám phá thêm về lớp mình ở đây ↷</h2>
           <p>☆*: .｡. o(≧▽≦)o .｡.:*☆</p>
         </div>
 
+        <!-- [UPGRADED] Link cards lớn hơn với màu nền gradient riêng -->
         <div class="link-grid">
-          <a href="thanh-vien.html" class="card link-card">
+          <a href="thanh-vien.html" class="card link-card link-card--blue">
             <div class="link-icon">🧑‍🎓</div>
             <h3>Thành viên</h3>
             <p>Thành phần cấu tạo của lớp SN</p>
+            <span class="link-arrow">→</span>
           </a>
 
-          <a href="ky-niem.html" class="card link-card">
+          <a href="ky-niem.html" class="card link-card link-card--purple">
             <div class="link-icon">📸</div>
             <h3>Góc kỷ niệm</h3>
             <p>Hành trình 3 năm học và những khoảnh khắc với nhau</p>
+            <span class="link-arrow">→</span>
           </a>
 
-          <a href="loi-nhan.html" class="card link-card">
+          <a href="loi-nhan.html" class="card link-card link-card--yellow">
             <div class="link-icon">✨</div>
-            <h3>Lời nhắn </h3>
+            <h3>Lời nhắn</h3>
             <p>Nơi đây có lời chúc, postcard và kỷ yếu điện tử của lớp</p>
+            <span class="link-arrow">→</span>
           </a>
 
-          <a href="lien-he.html" class="card link-card">
+          <a href="lien-he.html" class="card link-card link-card--coral">
             <div class="link-icon">☎️</div>
             <h3>Liên hệ</h3>
             <p>Thông tin liên lạc, mạng xã hội của lớp nè.</p>
+            <span class="link-arrow">→</span>
           </a>
         </div>
       </div>
     </section>
 
+    <!-- ========== HIGHLIGHT QUOTE ========== -->
     <section class="highlight">
       <div class="container">
+        <!-- [UPGRADED] Quote box hoành tráng hơn với dấu ngoặc trang trí lớn -->
         <div class="highlight-box">
-          <h2>“Song Ngu sống dai thành huyền thoại”</h2>
+          <span class="quote-mark">"</span>
+          <h2>Song Ngu sống dai thành huyền thoại</h2>
+          <span class="quote-mark quote-mark--close">"</span>
+          <!-- [NEW] Các emoji trang trí tản mát -->
+          <div class="quote-deco">
+            <span>🎓</span><span>💙</span><span>🌟</span><span>📚</span><span>🎉</span>
+          </div>
         </div>
       </div>
     </section>
 
-
-<div class="music-player" id="musicPlayer">
-  <button class="music-toggle" id="musicToggle" title="Mở nhạc">🎵</button>
-
-  <div class="music-panel" id="musicPanel">
-    <audio id="bgMusic" loop>
-      <source src="music/nhacnen.mp3" type="audio/mpeg">
-      <source src="music/mot_ngay_nao_do.mp3" type="audio/mpeg">
-      Đổi app đi không hỗ trợ được r
-    </audio>
-
-    <div class="music-controls">
-      <button id="playPauseBtn" type="button">▶</button>
-      <input type="range" id="musicSeek" value="0" min="0" max="100">
-      <button id="closeMusicPanel" type="button">✕</button>
-    </div>
-  </div>
-</div>
-
-<script src="script.js"></script>
-
   </main>
 
+  <!-- ========== MUSIC PLAYER ========== -->
+  <!-- Không đổi chức năng, chỉ giữ nguyên cấu trúc -->
+  <div class="music-player" id="musicPlayer">
+    <button class="music-toggle" id="musicToggle" title="Mở nhạc">🎵</button>
+    <div class="music-panel" id="musicPanel">
+      <audio id="bgMusic" loop>
+        <source src="music/nhacnen.mp3" type="audio/mpeg">
+        <source src="music/mot_ngay_nao_do.mp3" type="audio/mpeg">
+        Đổi app đi không hỗ trợ được r
+      </audio>
+      <div class="music-controls">
+        <button id="playPauseBtn" type="button">▶</button>
+        <input type="range" id="musicSeek" value="0" min="0" max="100">
+        <button id="closeMusicPanel" type="button">✕</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+  <!-- [NEW] Script nhỏ cho mobile nav toggle -->
+  <script>
+    const toggle = document.getElementById('navToggle');
+    const nav = document.querySelector('.main-nav');
+    toggle.addEventListener('click', () => {
+      nav.classList.toggle('open');
+      toggle.textContent = nav.classList.contains('open') ? '✕' : '☰';
+    });
+  </script>
+
+  <!-- ========== FOOTER ========== -->
   <footer class="site-footer">
     <div class="container footer-content">
-      <p>Mọi thắc mắc và vấn đề vui lòng liên hệ "33"</p>
+      <!-- [NEW] Thêm emoji và line phân cách -->
+      <p class="footer-brand">✦ 12SN – Salle de Nostalgie ✦</p>
+      <p>Mọi thắc mắc và vấn đề vui lòng liên hệ "33" 💌</p>
     </div>
   </footer>
+
 </body>
 </html>
