@@ -569,7 +569,7 @@ section {
   gap: 22px;
 }
 
-/* [UPGRADED] Mỗi link card có màu riêng, hover kéo mũi tên ra -->
+/* [UPGRADED] Mỗi link card có màu riêng, hover kéo mũi tên ra --> */
 .link-card {
   text-decoration: none;
   color: inherit;
