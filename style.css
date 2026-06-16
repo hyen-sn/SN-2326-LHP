@@ -707,27 +707,40 @@ section {
 }
 
 /* [NEW] Dấu ngoặc to trang trí */
+.quote-inline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  position: relative;
+  z-index: 1;
+  flex-wrap: wrap;
+}
+
 .quote-mark {
-  display: block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font-family: 'Georgia', serif;
-  font-size: 5rem;
-  line-height: 0.6;
+  font-size: clamp(3rem, 6vw, 5rem);
+  line-height: 1;
   color: var(--purple);
   opacity: 0.25;
   user-select: none;
+  transform: translateY(-4px);
 }
 
 .quote-mark--close {
-  line-height: 0.4;
+  transform: translateY(-4px);
 }
 
 .highlight-box h2 {
   font-family: var(--font-display);
-  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  font-size: clamp(2rem, 4vw, 3.2rem);
   font-weight: 800;
   color: var(--text);
-  line-height: 1.4;
-  margin: 12px 0;
+  line-height: 1.25;
+  margin: 0;
 }
 
 /* [NEW] Emoji dòng trang trí phía dưới quote */
