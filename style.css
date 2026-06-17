@@ -909,14 +909,14 @@ section {
 }
 
 .page-banner-box {
-  /* [UPGRADED] Gradient background thay vì solid -->
+  /* [UPGRADED] Gradient background thay vì solid -->  */
   background: linear-gradient(135deg, #fff2f8, #f3edff, #eef7ff);
   border: 1.5px solid var(--border);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-md);
   padding: 44px 28px;
   text-align: center;
-  /* Đường kẻ gradient phía trên -->
+  /* Đường kẻ gradient phía trên --> */
   border-top: 4px solid;
   border-image: linear-gradient(90deg, var(--blue), var(--purple), var(--pink)) 1;
 }
@@ -1561,7 +1561,7 @@ body.theme-red    .music-toggle { background: linear-gradient(135deg, #a02020, #
     padding: 55px 0;
   }
 
-  /* Header – hiện hamburger, ẩn nav mặc định -->
+  /* Header – hiện hamburger, ẩn nav mặc định --> */
   .site-header .container {
     flex-wrap: nowrap;
     justify-content: space-between;
@@ -1574,7 +1574,7 @@ body.theme-red    .music-toggle { background: linear-gradient(135deg, #a02020, #
     justify-content: center;
   }
 
-  /* Nav ẩn, mở ra khi có class .open -->
+  /* Nav ẩn, mở ra khi có class .open --> */
   .main-nav {
     display: none;
     width: 100%;
@@ -1584,7 +1584,7 @@ body.theme-red    .music-toggle { background: linear-gradient(135deg, #a02020, #
     border-radius: 0 0 var(--radius-md) var(--radius-md);
     padding: 12px;
     gap: 6px;
-    /* Nằm phía dưới header full-width -->
+    /* Nằm phía dưới header full-width --> */
     position: absolute;
     top: 100%;
     left: 0; right: 0;
