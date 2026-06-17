@@ -945,25 +945,25 @@ section {
 .member-section {
   padding-top: 30px;
 }
-
+ 
 .member-grid {
   display: grid;
   gap: 22px;
 }
-
+ 
 .teacher-grid {
   grid-template-columns: repeat(3, 1fr);
   margin-bottom: 20px;
 }
-
+ 
 .student-grid {
   grid-template-columns: repeat(3, 1fr);
 }
-
+ 
 .member-card {
   overflow: hidden;
 }
-
+ 
 .member-photo {
   min-height: 220px;
   background:
@@ -978,26 +978,25 @@ section {
   text-align: center;
   padding: 20px;
 }
-
+ 
 .member-content {
   padding: 22px;
 }
-
+ 
 .member-content h3 {
   font-family: var(--font-display);
   margin-bottom: 12px;
   font-size: 1.15rem;
 }
-
+ 
 .member-content p {
   margin-bottom: 8px;
   color: var(--text);
 }
-
+ 
 .member-note {
   margin-top: 24px;
 }
-
 
 /* =========================
    16. TRANG KỶ NIỆM – SLIDER
