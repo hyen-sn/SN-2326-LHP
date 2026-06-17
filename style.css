@@ -83,7 +83,7 @@ body {
   font-size: 1rem;
   line-height: 1.7;
   color: var(--text);
-  /* [UPGRADED] Nền gradient cầu vồng pastel – không đơn điệu -->
+  /* [UPGRADED] Nền gradient cầu vồng pastel – không đơn điệu */
   background:
     radial-gradient(ellipse 900px 600px at 0% 0%,   #e8f3ff 0%, transparent 60%),
     radial-gradient(ellipse 700px 700px at 100% 20%, #f5e8ff 0%, transparent 55%),
@@ -569,31 +569,14 @@ section {
   gap: 22px;
 }
 
-/* Mỗi link card có màu riêng, hover kéo mũi tên ra */
+/* [UPGRADED] Mỗi link card có màu riêng, hover kéo mũi tên ra */
 .link-card {
   text-decoration: none;
   color: inherit;
-  padding: 34px 26px;
-  min-height: 210px;
+  padding: 30px 24px;
   transition: transform 0.28s ease, box-shadow 0.28s ease;
   position: relative;
   overflow: hidden;
-  display: block;
-}
-
-/* Bỏ gạch dưới toàn bộ chữ bên trong thẻ khám phá */
-.link-card,
-.link-card:link,
-.link-card:visited,
-.link-card:hover,
-.link-card:active {
-  text-decoration: none;
-}
-
-.link-card h3,
-.link-card p,
-.link-card span {
-  text-decoration: none;
 }
 
 /* Overlay gradient khi hover */
@@ -604,7 +587,6 @@ section {
   opacity: 0;
   border-radius: inherit;
   transition: opacity 0.28s ease;
-  pointer-events: none;
 }
 
 .link-card--blue::before   { background: linear-gradient(135deg, rgba(74,144,226,0.08), rgba(74,144,226,0.02)); }
@@ -623,14 +605,14 @@ section {
 
 /* Icon box mỗi card màu khác nhau */
 .link-icon {
-  width: 68px;
-  height: 68px;
-  border-radius: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.9rem;
-  margin-bottom: 22px;
+  font-size: 1.6rem;
+  margin-bottom: 18px;
 }
 
 .link-card--blue   .link-icon { background: var(--blue-soft); }
@@ -640,25 +622,23 @@ section {
 
 .link-card h3 {
   font-family: var(--font-display);
-  font-size: 1.45rem;
-  font-weight: 800;
-  margin-bottom: 12px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
   color: var(--text);
-  line-height: 1.25;
 }
 
 .link-card p {
   color: var(--muted);
-  font-size: 1.08rem;
-  line-height: 1.65;
+  font-size: 0.93rem;
+  line-height: 1.6;
   margin-bottom: 14px;
-  font-weight: 600;
 }
 
-/* Mũi tên hiện ra khi hover */
+/* [NEW] Mũi tên hiện ra khi hover */
 .link-arrow {
-  font-size: 1.3rem;
-  font-weight: 800;
+  font-size: 1.1rem;
+  font-weight: 700;
   opacity: 0;
   transform: translateX(-8px);
   display: inline-block;
@@ -707,40 +687,27 @@ section {
 }
 
 /* [NEW] Dấu ngoặc to trang trí */
-.quote-inline {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 18px;
-  position: relative;
-  z-index: 1;
-  flex-wrap: wrap;
-}
-
 .quote-mark {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
   font-family: 'Georgia', serif;
-  font-size: clamp(3rem, 6vw, 5rem);
-  line-height: 1;
+  font-size: 5rem;
+  line-height: 0.6;
   color: var(--purple);
   opacity: 0.25;
   user-select: none;
-  transform: translateY(-4px);
 }
 
 .quote-mark--close {
-  transform: translateY(-4px);
+  line-height: 0.4;
 }
 
 .highlight-box h2 {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
   font-weight: 800;
   color: var(--text);
-  line-height: 1.25;
-  margin: 0;
+  line-height: 1.4;
+  margin: 12px 0;
 }
 
 /* [NEW] Emoji dòng trang trí phía dưới quote */
@@ -909,14 +876,14 @@ section {
 }
 
 .page-banner-box {
-  /* [UPGRADED] Gradient background thay vì solid -->  */
+  /* [UPGRADED] Gradient background thay vì solid */
   background: linear-gradient(135deg, #fff2f8, #f3edff, #eef7ff);
   border: 1.5px solid var(--border);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-md);
   padding: 44px 28px;
   text-align: center;
-  /* Đường kẻ gradient phía trên --> */
+  /* Đường kẻ gradient phía trên */
   border-top: 4px solid;
   border-image: linear-gradient(90deg, var(--blue), var(--purple), var(--pink)) 1;
 }
@@ -945,25 +912,25 @@ section {
 .member-section {
   padding-top: 30px;
 }
- 
+
 .member-grid {
   display: grid;
   gap: 22px;
 }
- 
+
 .teacher-grid {
   grid-template-columns: repeat(3, 1fr);
   margin-bottom: 20px;
 }
- 
+
 .student-grid {
   grid-template-columns: repeat(3, 1fr);
 }
- 
+
 .member-card {
   overflow: hidden;
 }
- 
+
 .member-photo {
   min-height: 220px;
   background:
@@ -978,25 +945,26 @@ section {
   text-align: center;
   padding: 20px;
 }
- 
+
 .member-content {
   padding: 22px;
 }
- 
+
 .member-content h3 {
   font-family: var(--font-display);
   margin-bottom: 12px;
   font-size: 1.15rem;
 }
- 
+
 .member-content p {
   margin-bottom: 8px;
   color: var(--text);
 }
- 
+
 .member-note {
   margin-top: 24px;
 }
+
 
 /* =========================
    16. TRANG KỶ NIỆM – SLIDER
@@ -1560,7 +1528,7 @@ body.theme-red    .music-toggle { background: linear-gradient(135deg, #a02020, #
     padding: 55px 0;
   }
 
-  /* Header – hiện hamburger, ẩn nav mặc định --> */
+  /* Header – hiện hamburger, ẩn nav mặc định */
   .site-header .container {
     flex-wrap: nowrap;
     justify-content: space-between;
@@ -1573,7 +1541,7 @@ body.theme-red    .music-toggle { background: linear-gradient(135deg, #a02020, #
     justify-content: center;
   }
 
-  /* Nav ẩn, mở ra khi có class .open --> */
+  /* Nav ẩn, mở ra khi có class .open */
   .main-nav {
     display: none;
     width: 100%;
@@ -1583,7 +1551,7 @@ body.theme-red    .music-toggle { background: linear-gradient(135deg, #a02020, #
     border-radius: 0 0 var(--radius-md) var(--radius-md);
     padding: 12px;
     gap: 6px;
-    /* Nằm phía dưới header full-width --> */
+    /* Nằm phía dưới header full-width */
     position: absolute;
     top: 100%;
     left: 0; right: 0;
@@ -1719,5 +1687,265 @@ body.theme-red    .music-toggle { background: linear-gradient(135deg, #a02020, #
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+
+/* ============================================================
+   THÀNH VIÊN PAGE – ADDITIONS & UPGRADES
+   Phần này bổ sung/ghi đè các rule thành viên từ style chung
+   ============================================================ */
+
+
+/* =========================
+   MEMBER SECTION LAYOUT
+========================= */
+
+/* [UPGRADED] Giảm padding-top section đầu để không quá trống */
+.member-section {
+  padding-top: 20px;
+  padding-bottom: 60px;
+}
+
+/* Lưới chung cho cả teacher và student grid */
+.member-grid {
+  display: grid;
+  gap: 24px;
+}
+
+/* [UPGRADED] Giáo viên: luôn 3 cột, có thêm margin dưới + đường phân cách */
+.teacher-grid {
+  grid-template-columns: repeat(3, 1fr);
+  margin-bottom: 16px;
+  /* Đường ngăn cách giữa GV và HS */
+  padding-bottom: 48px;
+  border-bottom: 2px dashed var(--border);
+}
+
+/* [UPGRADED] Học sinh: 3 cột */
+.student-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+
+/* =========================
+   MEMBER CARD – CHUNG
+========================= */
+
+.member-card {
+  overflow: hidden;
+  /* [UPGRADED] Không có border-radius rời – dùng từ .card (var(--radius-lg)) */
+  position: relative;
+  /* Transition hover từ .card đã có sẵn */
+}
+
+/* Ảnh thành viên – placeholder gradient khi chưa có ảnh thật */
+.member-photo {
+  /* [UPGRADED] Chiều cao lớn hơn, ảnh thật sẽ fill đầy */
+  min-height: 240px;
+  background:
+    radial-gradient(circle at top left,   #ffe6f2, transparent 35%),
+    radial-gradient(circle at bottom right, #dff7ff, transparent 35%),
+    linear-gradient(135deg, #fff9dc, #fef3ff, #eefcff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 20px;
+  /* Khi có ảnh thật: dùng <img> bên trong thay thế span này */
+  overflow: hidden;
+}
+
+/* [NEW] Hỗ trợ ảnh thật bên trong .member-photo */
+.member-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  position: absolute;
+  inset: 0;
+}
+
+/* Nội dung text phía dưới ảnh */
+.member-content {
+  padding: 18px 20px 20px;
+  /* [NEW] Đường kẻ trên subtle để tách khỏi ảnh */
+  border-top: 1px solid var(--border);
+}
+
+.member-content h3 {
+  font-family: var(--font-display);
+  font-size: 1.08rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--text);
+}
+
+.member-content p {
+  margin-bottom: 7px;
+  color: var(--text);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* [NEW] Label icon nhỏ trước mỗi dòng thông tin */
+.info-label {
+  font-weight: 700;
+  margin-right: 4px;
+}
+
+
+/* =========================
+   MEMBER CARD – GIÁO VIÊN
+   Phân biệt bằng viền màu khác
+========================= */
+
+/* [NEW] Card giáo viên: border trên gradient vàng-xanh, nền hơi ấm hơn */
+.member-card--teacher {
+  border-top: 4px solid;
+  /* Mỗi card GV dùng màu khác nhau qua nth-child */
+}
+
+.teacher-grid .member-card:nth-child(1) { border-top-color: var(--blue); }
+.teacher-grid .member-card:nth-child(2) { border-top-color: var(--purple); }
+.teacher-grid .member-card:nth-child(3) { border-top-color: var(--pink); }
+
+/* Ảnh GV: nền gradient ấm hơn để phân biệt */
+.member-card--teacher .member-photo {
+  min-height: 260px;
+  background:
+    radial-gradient(circle at 30% 30%, #e8f3ff, transparent 50%),
+    radial-gradient(circle at 70% 70%, #f0e8ff, transparent 50%),
+    linear-gradient(135deg, #eef6ff, #f8f0ff, #fff0f8);
+}
+
+/* [NEW] Badge "GVCN" góc trên phải của card */
+.member-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+  letter-spacing: 0.05em;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(74,144,226,0.30);
+}
+
+
+/* =========================
+   MEMBER CARD – HỌC SINH
+   Viền trên accent màu mint nhạt
+========================= */
+
+/* [UPGRADED] Học sinh: hover nổi lên + viền top màu mint */
+.student-grid .member-card {
+  border-top: 3px solid var(--mint);
+}
+
+/* Xen kẽ màu viền cho vui mắt (cứ 3 card đổi màu) */
+.student-grid .member-card:nth-child(3n+1) { border-top-color: var(--mint); }
+.student-grid .member-card:nth-child(3n+2) { border-top-color: var(--yellow); }
+.student-grid .member-card:nth-child(3n)   { border-top-color: var(--pink); }
+
+
+/* =========================
+   NOTE BOX – Dòng nhắc nhở dưới cùng
+========================= */
+
+/* [UPGRADED] Thay .placeholder-box thành .member-note-box đẹp hơn */
+.member-note-box {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: linear-gradient(135deg, var(--yellow-soft), var(--pink-soft));
+  border: 1.5px solid #ffd080;
+  border-radius: var(--radius-md);
+  padding: 18px 24px;
+  color: var(--text);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.member-note-icon {
+  font-size: 1.6rem;
+  flex-shrink: 0;
+}
+
+.member-note-box strong {
+  color: var(--purple-dark);
+}
+
+
+/* =========================
+   RESPONSIVE THÀNH VIÊN
+========================= */
+
+/* Tablet (≤1024px): 2 cột */
+@media (max-width: 1024px) {
+  .teacher-grid,
+  .student-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* GV chỉ có 3 người, 2 cột thì card thứ 3 chiếm full */
+  .teacher-grid .member-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+}
+
+/* Mobile (≤640px): 1 cột, ảnh taller */
+@media (max-width: 640px) {
+  .teacher-grid,
+  .student-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Xóa rule "GV cuối full-width" vì đã 1 cột rồi */
+  .teacher-grid .member-card:last-child:nth-child(odd) {
+    grid-column: auto;
+    max-width: none;
+    margin: 0;
+  }
+
+  .member-photo {
+    min-height: 200px;
+  }
+
+  .member-card--teacher .member-photo {
+    min-height: 220px;
+  }
+
+  .member-note-box {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 16px 18px;
+  }
+}
+
+/* Small mobile (≤400px) */
+@media (max-width: 400px) {
+  .member-content {
+    padding: 14px 16px 16px;
+  }
+
+  .member-content h3 {
+    font-size: 1rem;
+  }
+
+  .member-badge {
+    font-size: 0.68rem;
+    padding: 3px 8px;
   }
 }
