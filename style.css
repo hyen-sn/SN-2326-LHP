@@ -1771,305 +1771,161 @@ body.theme-red    .music-toggle { background: #c0392b; }
   opacity: 0.85;
 }
 
-body.theme-blue .contact-card h2 {
-  color: #1f5fb8;
-  border-bottom-color: rgba(74, 144, 226, 0.25);
-}
+/* ============================================================
+   CHỈNH MÀU NĂM HỌC – MỀM HƠN, GIỐNG THANH TRÊN
+   Không quá sáng, không chuyển trắng hẳn
+   ============================================================ */
 
-body.theme-yellow .contact-card h2 {
-  color: #9a6700;
-  border-bottom-color: rgba(245, 185, 48, 0.28);
-}
-
-body.theme-yellow .contact-card h2::after {
-  background: linear-gradient(90deg, #f5b930, #ffdf7a);
-}
-
-body.theme-red .contact-card h2 {
-  color: #b83232;
-  border-bottom-color: rgba(232, 93, 117, 0.25);
-}
-
-body.theme-red .contact-card h2::after {
-  background: linear-gradient(90deg, #e85d75, #ff9a9a);
-}
-
-/* 2) Theme năm học: sáng hơn, sang hơn */
+/* 1. Theme màu chính từng năm – giữ sáng vừa phải */
 .theme-blue {
-  --year-main: #3f8cff;
-  --year-main-dark: #1f63c7;
-  --year-main-light: #74b3ff;
-  --year-soft: #edf6ff;
-  --year-tag: #d8eaff;
-  --year-text: #15509d;
+  --year-main: #4b83e6;
+  --year-main-dark: #2f63c4;
+  --year-main-light: #6fa4f2;
+  --year-soft: #edf4ff;
+  --year-tag: #d9e8ff;
+  --year-text: #1e4f9a;
 }
 
 .theme-yellow {
-  --year-main: #f2b72a;
-  --year-main-dark: #a96d00;
-  --year-main-light: #ffe08a;
-  --year-soft: #fff8e4;
-  --year-tag: #ffefbc;
-  --year-text: #805400;
+  --year-main: #e8b638;
+  --year-main-dark: #9b6900;
+  --year-main-light: #f4cc61;
+  --year-soft: #fff6df;
+  --year-tag: #ffedb8;
+  --year-text: #735000;
 }
 
 .theme-red {
-  --year-main: #ee6677;
-  --year-main-dark: #b72d3a;
-  --year-main-light: #ff9aa7;
-  --year-soft: #fff0f2;
-  --year-tag: #ffd5db;
-  --year-text: #9a2330;
+  --year-main: #e86b7d;
+  --year-main-dark: #b83648;
+  --year-main-light: #f28a99;
+  --year-soft: #fff0f3;
+  --year-tag: #ffd4dc;
+  --year-text: #8e2432;
 }
 
-/* Thanh điều hướng/header riêng của từng trang năm học */
+/* 2. Thanh điều hướng trang lớp 10, 11, 12
+   Màu sáng hơn bản cũ nhưng vẫn sang, không bị trắng */
 body.theme-blue .site-header {
-  background: linear-gradient(100deg, #2f73d8 0%, #4b95ff 55%, #7eb8ff 100%);
-  box-shadow: 0 4px 22px rgba(63, 140, 255, 0.28);
+  background: linear-gradient(100deg, #376fd3 0%, #4b83e6 55%, #6677d8 100%);
+  box-shadow: 0 4px 22px rgba(55, 111, 211, 0.26);
 }
 
 body.theme-yellow .site-header {
-  background: linear-gradient(100deg, #c98a08 0%, #f2b72a 55%, #ffe08a 100%);
-  box-shadow: 0 4px 22px rgba(242, 183, 42, 0.28);
+  background: linear-gradient(100deg, #b98210 0%, #e0ad2d 55%, #f0c75a 100%);
+  box-shadow: 0 4px 22px rgba(224, 173, 45, 0.24);
 }
 
 body.theme-red .site-header {
-  background: linear-gradient(100deg, #bd3341 0%, #ee6677 55%, #ff9aa7 100%);
-  box-shadow: 0 4px 22px rgba(238, 102, 119, 0.28);
+  background: linear-gradient(100deg, #b83a49 0%, #df6173 55%, #ed8491 100%);
+  box-shadow: 0 4px 22px rgba(223, 97, 115, 0.24);
 }
 
-body.theme-blue .main-nav a.active {
-  background: #ffffff;
-  color: #15509d;
+/* Link trên thanh điều hướng: chữ vẫn trắng nhẹ, active chỉ vàng nhạt */
+body.theme-blue .main-nav a,
+body.theme-yellow .main-nav a,
+body.theme-red .main-nav a {
+  color: rgba(255, 255, 255, 0.88);
 }
 
-body.theme-yellow .main-nav a.active {
-  background: #ffffff;
-  color: #805400;
+body.theme-blue .main-nav a:hover,
+body.theme-yellow .main-nav a:hover,
+body.theme-red .main-nav a:hover {
+  background: rgba(255, 255, 255, 0.16);
+  color: #ffffff;
 }
 
+body.theme-blue .main-nav a.active,
+body.theme-yellow .main-nav a.active,
 body.theme-red .main-nav a.active {
-  background: #ffffff;
-  color: #9a2330;
+  background: #fff0bf;
+  color: #5c3c00;
 }
 
-/* Nút điều hướng năm sáng và sang hơn */
-.btn-blue {
-  background: linear-gradient(135deg, #3f8cff 0%, #74b3ff 100%);
-  color: #ffffff;
-  box-shadow: 0 10px 24px rgba(63, 140, 255, 0.30);
-}
-
-.btn-yellow {
-  background: linear-gradient(135deg, #f2b72a 0%, #ffe08a 100%);
-  color: #4d3400;
-  box-shadow: 0 10px 24px rgba(242, 183, 42, 0.30);
-}
-
-.btn-red {
-  background: linear-gradient(135deg, #ee6677 0%, #ff9aa7 100%);
-  color: #ffffff;
-  box-shadow: 0 10px 24px rgba(238, 102, 119, 0.30);
-}
-
-.btn-blue:hover {
-  box-shadow: 0 14px 32px rgba(63, 140, 255, 0.42);
-}
-
-.btn-yellow:hover {
-  box-shadow: 0 14px 32px rgba(242, 183, 42, 0.42);
-}
-
-.btn-red:hover {
-  box-shadow: 0 14px 32px rgba(238, 102, 119, 0.42);
-}
-
-/* 3) page-banner-box.year-banner theo đúng theme từng năm */
-.page-banner-box.year-banner {
-  background:
-    radial-gradient(circle at top left, rgba(255,255,255,0.92), transparent 34%),
-    linear-gradient(135deg, var(--year-soft), #ffffff 70%);
-  border: 1.5px solid color-mix(in srgb, var(--year-main) 34%, #ffffff);
-  border-top: 6px solid var(--year-main);
-  box-shadow: var(--shadow-md), 0 10px 34px color-mix(in srgb, var(--year-main) 14%, transparent);
-}
-
-.page-banner-box.year-banner h1 {
-  color: var(--year-main-dark, var(--year-main));
-  -webkit-text-fill-color: initial;
-  background: none;
-}
-
-.page-banner-box.year-banner p {
-  color: var(--year-text);
-}
-
-body.theme-blue .page-banner-box.year-banner {
-  background:
-    radial-gradient(circle at top left, rgba(255,255,255,0.95), transparent 34%),
-    linear-gradient(135deg, #edf6ff 0%, #ffffff 72%);
-  border-color: #c7ddff;
-  border-top-color: #3f8cff;
-}
-
-body.theme-yellow .page-banner-box.year-banner {
-  background:
-    radial-gradient(circle at top left, rgba(255,255,255,0.95), transparent 34%),
-    linear-gradient(135deg, #fff8e4 0%, #ffffff 72%);
-  border-color: #f6dd96;
-  border-top-color: #f2b72a;
-}
-
-body.theme-red .page-banner-box.year-banner {
-  background:
-    radial-gradient(circle at top left, rgba(255,255,255,0.95), transparent 34%),
-    linear-gradient(135deg, #fff0f2 0%, #ffffff 72%);
-  border-color: #ffc5cd;
-  border-top-color: #ee6677;
-}
-
-/* 4) year-card 10/11/12: màu sáng hơn, chữ nổi hơn */
-.year-card {
-  position: relative;
-  overflow: hidden;
-  color: #ffffff;
-  border: 1.5px solid rgba(255,255,255,0.45);
-}
-
-.year-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at top right, rgba(255,255,255,0.42), transparent 36%);
-  pointer-events: none;
-}
-
-.year-card h2,
-.year-card p {
-  position: relative;
-  z-index: 1;
-}
-
-.year-card h2 {
-  color: inherit;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.18);
-}
-
-.year-card p {
-  color: rgba(255,255,255,0.94);
-  font-weight: 600;
-}
-
+/* 3. Year-card lớp 10, 11, 12
+   Màu giống tone phía trên, sáng vừa phải, không trắng */
 .year-10 {
-  background: linear-gradient(135deg, #3f8cff 0%, #74b3ff 100%);
-  box-shadow: 0 12px 30px rgba(63, 140, 255, 0.30);
+  background: linear-gradient(135deg, #4b83e6 0%, #6fa4f2 100%);
+  color: #ffffff;
+  box-shadow: 0 12px 28px rgba(75, 131, 230, 0.28);
 }
 
 .year-11 {
-  background: linear-gradient(135deg, #f2b72a 0%, #ffe08a 100%);
+  background: linear-gradient(135deg, #e0ad2d 0%, #f0c75a 100%);
   color: #4d3400;
-  box-shadow: 0 12px 30px rgba(242, 183, 42, 0.32);
+  box-shadow: 0 12px 28px rgba(224, 173, 45, 0.30);
+}
+
+.year-12 {
+  background: linear-gradient(135deg, #df6173 0%, #ed8491 100%);
+  color: #ffffff;
+  box-shadow: 0 12px 28px rgba(223, 97, 115, 0.28);
+}
+
+/* Chữ trong card rõ hơn */
+.year-card h2 {
+  color: inherit;
+  font-weight: 800;
+}
+
+.year-card p {
+  font-weight: 600;
+  line-height: 1.65;
+}
+
+.year-10 p,
+.year-12 p {
+  color: rgba(255, 255, 255, 0.94);
 }
 
 .year-11 h2 {
   color: #4d3400;
-  text-shadow: 0 1px 0 rgba(255,255,255,0.45);
 }
 
 .year-11 p {
-  color: #6a4800;
+  color: #674800;
 }
 
-.year-12 {
-  background: linear-gradient(135deg, #ee6677 0%, #ff9aa7 100%);
-  box-shadow: 0 12px 30px rgba(238, 102, 119, 0.30);
-}
-
-.year-card:hover {
-  transform: translateY(-8px) scale(1.015);
-}
-
+/* Hiệu ứng hover nhẹ, không làm màu bị quá sáng */
 .year-10:hover {
-  box-shadow: 0 18px 40px rgba(63, 140, 255, 0.42);
+  box-shadow: 0 18px 38px rgba(75, 131, 230, 0.38);
 }
 
 .year-11:hover {
-  box-shadow: 0 18px 40px rgba(242, 183, 42, 0.44);
+  box-shadow: 0 18px 38px rgba(224, 173, 45, 0.38);
 }
 
 .year-12:hover {
-  box-shadow: 0 18px 40px rgba(238, 102, 119, 0.42);
+  box-shadow: 0 18px 38px rgba(223, 97, 115, 0.38);
 }
 
-/* 5) Event blocks theo theme năm: nhẹ hơn, đồng bộ banner */
-.event-block {
-  border-left: 5px solid var(--year-main);
+/* 4. Nút chuyển năm cũng đồng bộ lại màu vừa phải */
+.btn-blue {
+  background: linear-gradient(135deg, #4b83e6 0%, #6fa4f2 100%);
+  color: #ffffff;
 }
 
-.event-tag {
-  background: var(--year-tag);
-  color: var(--year-text);
+.btn-yellow {
+  background: linear-gradient(135deg, #e0ad2d 0%, #f0c75a 100%);
+  color: #4d3400;
 }
 
-/* 6) Responsive tinh chỉnh cho điện thoại */
-@media (max-width: 1024px) {
-  .year-card {
-    min-height: 190px;
-  }
+.btn-red {
+  background: linear-gradient(135deg, #df6173 0%, #ed8491 100%);
+  color: #ffffff;
 }
 
+/* 5. Mobile menu theo theme, nhưng vẫn giữ tone vừa phải */
 @media (max-width: 768px) {
   body.theme-blue .main-nav {
-    background: linear-gradient(180deg, #2f73d8, #4b95ff);
+    background: linear-gradient(180deg, #376fd3 0%, #4b83e6 100%);
   }
 
   body.theme-yellow .main-nav {
-    background: linear-gradient(180deg, #c98a08, #f2b72a);
+    background: linear-gradient(180deg, #b98210 0%, #e0ad2d 100%);
   }
 
   body.theme-red .main-nav {
-    background: linear-gradient(180deg, #bd3341, #ee6677);
-  }
-
-  .contact-card h2 {
-    font-size: clamp(1.25rem, 5vw, 1.55rem);
-  }
-
-  .contact-card h2::after {
-    width: 24px;
-  }
-
-  .page-banner-box.year-banner {
-    padding: 34px 20px;
-  }
-
-  .year-card {
-    padding: 30px 22px;
-    min-height: 170px;
-  }
-
-  .year-card h2 {
-    font-size: clamp(1.65rem, 8vw, 2rem);
-  }
-
-  .year-nav {
-    width: min(100%, 560px);
-  }
-}
-
-@media (max-width: 480px) {
-  .contact-card h2 {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-  }
-
-  .year-card {
-    border-radius: 20px;
-  }
-
-  .year-btn {
-    white-space: normal;
-    line-height: 1.35;
+    background: linear-gradient(180deg, #b83a49 0%, #df6173 100%);
   }
 }
