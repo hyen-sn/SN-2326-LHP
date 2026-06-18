@@ -1,5 +1,5 @@
 /* ============================================================
-   STYLE.CSS – Kỷ yếu 12SN  |  v3 – Elegant + Dark Mode
+   STYLE.CSS – Kỷ yếu 12SN  |  v4 – Bright & Elegant, No Dark Mode
    Mục lục:
      1.  Reset
      2.  Biến màu (light + dark)
@@ -47,8 +47,7 @@ html {
 
 /* =========================
    2. BIẾN MÀU
-   – Bảng màu tinh tế hơn, bớt cầu vồng
-   – Dùng @media prefers-color-scheme cho dark mode
+   – Bảng màu sáng, thanh lịch, không dark mode
 ========================= */
 :root {
   /* Màu chủ đạo – xanh navy thanh lịch */
@@ -63,7 +62,7 @@ html {
 
   /* Màu nhấn – vàng ấm (dùng tiết kiệm) */
   --gold:           #c8960c;
-  --gold-light:     #f5e6b0;       /* nền badge vàng */
+  --gold-light:     #fdf3d0;       /* nền badge vàng – sáng hơn */
 
   /* Màu học sinh – mint & coral nhẹ */
   --mint:           #2eb88a;
@@ -71,19 +70,19 @@ html {
   --coral:          #d9534f;
   --coral-soft:     #fde8e8;
 
-  /* Neutral – light mode */
-  --bg:             #f4f6fb;       /* nền trang chủ: trắng xanh rất nhạt */
-  --bg-card:        #ffffff;       /* nền card */
-  --bg-section:     #eef1f8;       /* nền section xen kẽ */
+  /* Neutral – luôn sáng, không thay đổi theo hệ thống */
+  --bg:             #f0f4ff;       /* [BRIGHT] nền tổng: xanh lavender rất nhạt, sáng và thanh */
+  --bg-card:        #ffffff;       /* nền card: trắng tinh */
+  --bg-section:     #eaf0fb;       /* [BRIGHT] nền section xen kẽ: xanh nhạt hơn trước */
   --text:           #1a2236;       /* chữ chính – navy đậm */
   --text-muted:     #5a6578;       /* chữ phụ */
-  --border:         #d4d9e8;       /* viền */
+  --border:         #cdd5e8;       /* viền: nhạt hơn một chút */
   --white:          #ffffff;
 
-  /* Shadow */
-  --shadow-sm:  0 2px 8px  rgba(30, 50, 100, 0.08);
-  --shadow-md:  0 6px 20px rgba(30, 50, 100, 0.12);
-  --shadow-lg:  0 14px 40px rgba(30, 50, 100, 0.16);
+  /* Shadow – nhẹ hơn cho nền sáng */
+  --shadow-sm:  0 2px 8px  rgba(30, 50, 100, 0.07);
+  --shadow-md:  0 6px 20px rgba(30, 50, 100, 0.10);
+  --shadow-lg:  0 14px 40px rgba(30, 50, 100, 0.14);
 
   /* Border radius */
   --radius-sm:  10px;
@@ -91,14 +90,11 @@ html {
   --radius-lg:  24px;
   --radius-xl:  32px;
 
-  /* ===== FONT =====
-     [FIXED] Dùng "Be Vietnam Pro" hỗ trợ đầy đủ tiếng Việt có dấu
-     (thay thế Baloo 2 / Nunito thiếu một số dấu tổ hợp)
-  */
+  /* Font – "Be Vietnam Pro" hỗ trợ đầy đủ tiếng Việt có dấu */
   --font-display: 'Be Vietnam Pro', 'Segoe UI', sans-serif;
   --font-body:    'Be Vietnam Pro', 'Segoe UI', Arial, sans-serif;
 
-  /* Font size scale – tăng kích thước chữ toàn bộ */
+  /* Font size scale */
   --fs-xs:    0.875rem;   /* 14px */
   --fs-sm:    1rem;       /* 16px */
   --fs-md:    1.125rem;   /* 18px – body mặc định */
@@ -115,22 +111,21 @@ html {
    3. BASE – BODY & TYPE
 ========================= */
 
-
+/* [UPGRADED] Import font "Be Vietnam Pro" hỗ trợ tiếng Việt đầy đủ */
 @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
 
 body {
   font-family: var(--font-body);
-  /* [UPGRADED] Tăng font-size mặc định lên 18px */
   font-size: var(--fs-md);
   line-height: 1.75;
   color: var(--text);
-  /* [UPGRADED] Nền thanh lịch: xanh nhạt 1 màu thay vì cầu vồng nhiều màu */
-  background-color: var(--bg);
+  /* [BRIGHT] Nền trắng sáng với 2 blob màu rất nhạt ở góc –
+     tạo chiều sâu thanh lịch mà không loè loẹt */
+  background-color: #f8faff;
   background-image:
-    radial-gradient(ellipse 1000px 700px at 0% 0%,   rgba(61,111,212,0.06) 0%, transparent 65%),
-    radial-gradient(ellipse 800px 600px  at 100% 80%, rgba(124,92,191,0.05) 0%, transparent 65%);
+    radial-gradient(ellipse 900px 700px at 0%   0%,   rgba(61,111,212,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 700px 600px at 100% 100%, rgba(124,92,191,0.05) 0%, transparent 60%);
   background-attachment: fixed;
-  transition: background-color 0.3s ease, color 0.3s ease;
   animation: pageFadeIn 0.5s ease;
 }
 
@@ -213,10 +208,6 @@ section {
   border-bottom: 1px solid rgba(255,255,255,0.10);
   backdrop-filter: blur(12px);
   box-shadow: 0 2px 16px rgba(10, 20, 60, 0.30);
-}
-
-@media (prefers-color-scheme: dark) {
-  .site-header { background: #0f1e3a; }
 }
 
 .site-header .container {
@@ -1037,10 +1028,6 @@ section {
   color: var(--text);
   font-size: var(--fs-md);
   line-height: 1.65;
-}
-
-@media (prefers-color-scheme: dark) {
-  .member-note-box { border-color: #6a5000; }
 }
 
 .member-note-icon {
