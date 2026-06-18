@@ -737,6 +737,65 @@ section {
 }
 
 
+/* ============================================================
+   QUOTE INLINE – giữ định dạng nháy đôi nhưng nằm cùng dòng
+   ============================================================ */
+
+.quote-inline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  position: relative;
+  z-index: 1;
+  flex-wrap: nowrap;
+}
+
+.quote-inline .quote-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Georgia', serif;
+  font-size: clamp(3.2rem, 5vw, 5rem);
+  line-height: 1;
+  color: var(--accent);
+  opacity: 0.20;
+  user-select: none;
+  transform: translateY(-2px);
+}
+
+.quote-inline .quote-mark--open,
+.quote-inline .quote-mark--close {
+  line-height: 1;
+}
+
+.quote-inline h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.25;
+  margin: 0;
+  white-space: nowrap;
+}
+
+/* Điện thoại: nếu quá dài thì cho phép xuống dòng đẹp */
+@media (max-width: 768px) {
+  .quote-inline {
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .quote-inline h2 {
+    white-space: normal;
+    text-align: center;
+  }
+
+  .quote-inline .quote-mark {
+    font-size: 3rem;
+  }
+}
+
 /* =========================
    12. FOOTER
 ========================= */
