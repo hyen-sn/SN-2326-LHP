@@ -1899,19 +1899,15 @@ body.theme-red .main-nav a.active {
   box-shadow: 0 18px 38px rgba(223, 97, 115, 0.38);
 }
 
-/* 4. Nút chuyển năm cũng đồng bộ lại màu vừa phải */
 .btn-blue {
-  background: linear-gradient(135deg, #4b83e6 0%, #6fa4f2 100%);
   color: #ffffff;
 }
 
 .btn-yellow {
-  background: linear-gradient(135deg, #e0ad2d 0%, #f0c75a 100%);
   color: #4d3400;
 }
 
 .btn-red {
-  background: linear-gradient(135deg, #df6173 0%, #ed8491 100%);
   color: #ffffff;
 }
 
