@@ -1,5 +1,5 @@
 /* ============================================================
-   STYLE.CSS – Kỷ yếu 12SN  |  v4 – Bright & Elegant, No Dark Mode
+   STYLE.CSS – Kỷ yếu 12SN  |  v5 – Bright, Elegant, Year-themed Banners
    Mục lục:
      1.  Reset
      2.  Biến màu (light + dark)
@@ -50,39 +50,39 @@ html {
    – Bảng màu sáng, thanh lịch, không dark mode
 ========================= */
 :root {
-  /* Màu chủ đạo – xanh navy thanh lịch */
-  --accent:         #3d6fd4;       /* xanh navy nhạt – màu chính */
-  --accent-dark:    #2a54b0;       /* hover / active */
-  --accent-soft:    #e8eeff;       /* nền nhạt xanh */
+  /* [v5] Màu chủ đạo – xanh cornflower sáng hơn, trẻ trung hơn navy */
+  --accent:         #4880e8;       /* cornflower blue – sáng, nổi bật */
+  --accent-dark:    #2f5fc8;       /* hover / active */
+  --accent-soft:    #eaf1ff;       /* nền nhạt xanh – sáng hơn */
 
-  /* Màu phụ – tím nhạt lịch sự */
-  --purple:         #7c5cbf;
-  --purple-dark:    #5e3fa3;
-  --purple-soft:    #ede8ff;
+  /* Màu phụ – tím pastel thanh lịch */
+  --purple:         #8b6fd4;
+  --purple-dark:    #6a4ebc;
+  --purple-soft:    #f0ebff;
 
-  /* Màu nhấn – vàng ấm (dùng tiết kiệm) */
-  --gold:           #c8960c;
-  --gold-light:     #fdf3d0;       /* nền badge vàng – sáng hơn */
+  /* Màu nhấn – vàng mật ong ấm */
+  --gold:           #d4960e;
+  --gold-light:     #fff6d6;       /* nền badge vàng – rất nhạt, sạch */
 
-  /* Màu học sinh – mint & coral nhẹ */
-  --mint:           #2eb88a;
-  --mint-soft:      #d8f5ec;
-  --coral:          #d9534f;
-  --coral-soft:     #fde8e8;
+  /* Màu phụ – xanh ngọc & đỏ nhẹ */
+  --mint:           #18b989;
+  --mint-soft:      #daf7ef;
+  --coral:          #e05252;
+  --coral-soft:     #ffeaea;
 
-  /* Neutral – luôn sáng, không thay đổi theo hệ thống */
-  --bg:             #f0f4ff;       /* [BRIGHT] nền tổng: xanh lavender rất nhạt, sáng và thanh */
-  --bg-card:        #ffffff;       /* nền card: trắng tinh */
-  --bg-section:     #eaf0fb;       /* [BRIGHT] nền section xen kẽ: xanh nhạt hơn trước */
-  --text:           #1a2236;       /* chữ chính – navy đậm */
-  --text-muted:     #5a6578;       /* chữ phụ */
-  --border:         #cdd5e8;       /* viền: nhạt hơn một chút */
+  /* Neutral – trắng ấm, sáng, dễ chịu */
+  --bg:             #f6f9ff;       /* [BRIGHT v5] nền tổng: trắng xanh cực nhạt, dạng "white-blue" */
+  --bg-card:        #ffffff;       /* card: trắng tinh */
+  --bg-section:     #edf2fc;       /* section xen kẽ: xanh bầu trời nhạt */
+  --text:           #16213a;       /* chữ chính – navy sâu, dễ đọc */
+  --text-muted:     #536080;       /* chữ phụ – xanh xám */
+  --border:         #d0d8f0;       /* viền: xanh nhạt thanh lịch */
   --white:          #ffffff;
 
-  /* Shadow – nhẹ hơn cho nền sáng */
-  --shadow-sm:  0 2px 8px  rgba(30, 50, 100, 0.07);
-  --shadow-md:  0 6px 20px rgba(30, 50, 100, 0.10);
-  --shadow-lg:  0 14px 40px rgba(30, 50, 100, 0.14);
+  /* Shadow – nổi hơn 1 chút để card tách khỏi nền sáng */
+  --shadow-sm:  0 2px 10px rgba(30, 50, 120, 0.08);
+  --shadow-md:  0 6px 22px rgba(30, 50, 120, 0.12);
+  --shadow-lg:  0 16px 44px rgba(30, 50, 120, 0.16);
 
   /* Border radius */
   --radius-sm:  10px;
@@ -121,10 +121,11 @@ body {
   color: var(--text);
   /* [BRIGHT] Nền trắng sáng với 2 blob màu rất nhạt ở góc –
      tạo chiều sâu thanh lịch mà không loè loẹt */
-  background-color: #f8faff;
+  /* [v5 BRIGHT] Nền trắng xanh sáng, blob xanh/tím rất nhạt ở 2 góc */
+  background-color: #f5f8ff;
   background-image:
-    radial-gradient(ellipse 900px 700px at 0%   0%,   rgba(61,111,212,0.07) 0%, transparent 60%),
-    radial-gradient(ellipse 700px 600px at 100% 100%, rgba(124,92,191,0.05) 0%, transparent 60%);
+    radial-gradient(ellipse 900px 700px at 0%   0%,   rgba(72,128,232,0.08) 0%, transparent 58%),
+    radial-gradient(ellipse 700px 600px at 100% 100%, rgba(139,111,212,0.06) 0%, transparent 58%);
   background-attachment: fixed;
   animation: pageFadeIn 0.5s ease;
 }
@@ -203,11 +204,11 @@ section {
   position: sticky;
   top: 0;
   z-index: 100;
-  /* [ELEGANT] Xanh navy đậm, không gradient loè loẹt */
-  background: #1e3a6e;
-  border-bottom: 1px solid rgba(255,255,255,0.10);
+  /* [v5 BRIGHT] Gradient xanh cornflower sáng → tím nhạt: sáng và thanh lịch */
+  background: linear-gradient(100deg, #2f5fc8 0%, #4880e8 55%, #6a6ed4 100%);
+  border-bottom: 1px solid rgba(255,255,255,0.18);
   backdrop-filter: blur(12px);
-  box-shadow: 0 2px 16px rgba(10, 20, 60, 0.30);
+  box-shadow: 0 2px 18px rgba(40, 80, 180, 0.22);
 }
 
 .site-header .container {
