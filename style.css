@@ -1,9 +1,9 @@
 /* ============================================================
-   STYLE.CSS – Kỷ yếu 12SN  |  v5 – Bright, Elegant, Year-themed Banners
+   STYLE.CSS – Kỷ yếu 12SN  |  v6
    Mục lục:
      1.  Reset
-     2.  Biến màu (light + dark)
-     3.  Base – body, font, type scale
+     2.  Biến màu
+     3.  Base – body, font
      4.  Container & Section
      5.  Header
      6.  Hero Section
@@ -15,7 +15,7 @@
     12.  Footer
     13.  Music Player
     14.  Trang con – Banner
-    15.  Trang Thành viên – layout & cards
+    15.  Trang Thành viên
     16.  Trang Kỷ niệm – slider
     17.  Trang Lời nhắn
     18.  Trang Liên hệ
@@ -32,7 +32,7 @@
 
 
 /* =========================
-   1. RESET CƠ BẢN
+   1. RESET
 ========================= */
 *, *::before, *::after {
   margin: 0;
@@ -40,78 +40,81 @@
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 
 /* =========================
    2. BIẾN MÀU
-   – Bảng màu sáng, thanh lịch, không dark mode
 ========================= */
 :root {
-  /* [v5] Màu chủ đạo – xanh cornflower sáng hơn, trẻ trung hơn navy */
-  --accent:         #4880e8;       /* cornflower blue – sáng, nổi bật */
-  --accent-dark:    #2f5fc8;       /* hover / active */
-  --accent-soft:    #eaf1ff;       /* nền nhạt xanh – sáng hơn */
+  /* Accent chính – cornflower blue tươi, thanh lịch */
+  --accent:         #4880e8;
+  --accent-dark:    #2f5fc8;
+  --accent-soft:    #eaf1ff;
 
-  /* Màu phụ – tím pastel thanh lịch */
+  /* Phụ – tím pastel */
   --purple:         #8b6fd4;
   --purple-dark:    #6a4ebc;
   --purple-soft:    #f0ebff;
 
-  /* Màu nhấn – vàng mật ong ấm */
+  /* Nhấn – vàng mật ong ấm */
   --gold:           #d4960e;
-  --gold-light:     #fff6d6;       /* nền badge vàng – rất nhạt, sạch */
+  --gold-light:     #fff6d6;
 
-  /* Màu phụ – xanh ngọc & đỏ nhẹ */
+  /* Xanh ngọc & đỏ nhẹ */
   --mint:           #18b989;
   --mint-soft:      #daf7ef;
   --coral:          #e05252;
   --coral-soft:     #ffeaea;
 
-  /* Neutral – trắng ấm, sáng, dễ chịu */
-  --bg:             #f6f9ff;       /* [BRIGHT v5] nền tổng: trắng xanh cực nhạt, dạng "white-blue" */
-  --bg-card:        #ffffff;       /* card: trắng tinh */
-  --bg-section:     #edf2fc;       /* section xen kẽ: xanh bầu trời nhạt */
-  --text:           #16213a;       /* chữ chính – navy sâu, dễ đọc */
-  --text-muted:     #536080;       /* chữ phụ – xanh xám */
-  --border:         #d0d8f0;       /* viền: xanh nhạt thanh lịch */
+  /* Neutral */
+  --bg:             #f6f9ff;
+  --bg-card:        #ffffff;
+  --bg-section:     #edf2fc;
+  --text:           #16213a;
+  --text-muted:     #536080;
+  --border:         #d0d8f0;
   --white:          #ffffff;
 
-  /* Shadow – nổi hơn 1 chút để card tách khỏi nền sáng */
-  --shadow-sm:  0 2px 10px rgba(30, 50, 120, 0.08);
-  --shadow-md:  0 6px 22px rgba(30, 50, 120, 0.12);
-  --shadow-lg:  0 16px 44px rgba(30, 50, 120, 0.16);
+  /* Shadow */
+  --shadow-sm:  0 2px 10px rgba(30,50,120,0.08);
+  --shadow-md:  0 6px 22px  rgba(30,50,120,0.12);
+  --shadow-lg:  0 16px 44px rgba(30,50,120,0.16);
 
-  /* Border radius */
-  --radius-sm:  10px;
-  --radius-md:  16px;
-  --radius-lg:  24px;
-  --radius-xl:  32px;
+  /* Radius */
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
 
-  /* Font – "Be Vietnam Pro" hỗ trợ đầy đủ tiếng Việt có dấu */
+  /* Font – Be Vietnam Pro hỗ trợ tiếng Việt đầy đủ */
   --font-display: 'Be Vietnam Pro', 'Segoe UI', sans-serif;
   --font-body:    'Be Vietnam Pro', 'Segoe UI', Arial, sans-serif;
 
-  /* Font size scale */
-  --fs-xs:    0.875rem;   /* 14px */
-  --fs-sm:    1rem;       /* 16px */
-  --fs-md:    1.125rem;   /* 18px – body mặc định */
-  --fs-lg:    1.25rem;    /* 20px */
-  --fs-xl:    1.5rem;     /* 24px */
-  --fs-2xl:   2rem;       /* 32px */
-  --fs-3xl:   2.5rem;     /* 40px */
+  /* Scale chữ */
+  --fs-xs:  0.875rem;  /* 14px */
+  --fs-sm:  1rem;      /* 16px */
+  --fs-md:  1.125rem;  /* 18px */
+  --fs-lg:  1.25rem;   /* 20px */
+  --fs-xl:  1.5rem;    /* 24px */
+  --fs-2xl: 2rem;      /* 32px */
+  --fs-3xl: 2.5rem;    /* 40px */
 
   --max-width: 1150px;
+
+  /* Biến năm học – mặc định theo trang chủ (dùng accent) */
+  --year-main:       var(--accent);
+  --year-main-dark:  var(--accent-dark);
+  --year-main-light: #7aaaf6;
+  --year-soft:       var(--accent-soft);
+  --year-tag:        #d0e4ff;
+  --year-text:       var(--accent-dark);
 }
 
 
 /* =========================
-   3. BASE – BODY & TYPE
+   3. BASE
 ========================= */
-
-/* [UPGRADED] Import font "Be Vietnam Pro" hỗ trợ tiếng Việt đầy đủ */
 @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
 
 body {
@@ -119,9 +122,6 @@ body {
   font-size: var(--fs-md);
   line-height: 1.75;
   color: var(--text);
-  /* [BRIGHT] Nền trắng sáng với 2 blob màu rất nhạt ở góc –
-     tạo chiều sâu thanh lịch mà không loè loẹt */
-  /* [v5 BRIGHT] Nền trắng xanh sáng, blob xanh/tím rất nhạt ở 2 góc */
   background-color: #f5f8ff;
   background-image:
     radial-gradient(ellipse 900px 700px at 0%   0%,   rgba(72,128,232,0.08) 0%, transparent 58%),
@@ -135,7 +135,6 @@ body {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Type scale chung */
 h1, h2, h3, h4 {
   font-family: var(--font-display);
   font-weight: 700;
@@ -143,29 +142,20 @@ h1, h2, h3, h4 {
   color: var(--text);
 }
 
-p {
-  font-size: var(--fs-md);   /* 18px */
-}
-
-strong {
-  font-weight: 700;
-}
+p   { font-size: var(--fs-md); }
+strong { font-weight: 700; }
 
 
 /* =========================
    4. CONTAINER & SECTION
 ========================= */
 .container {
-  /* [KHÔNG ĐỔI cấu trúc] – chỉ giữ nguyên */
   width: min(92%, var(--max-width));
   margin: 0 auto;
 }
 
-section {
-  padding: 80px 0;
-}
+section { padding: 80px 0; }
 
-/* Eyebrow label nhỏ trên tiêu đề section */
 .section-eyebrow {
   display: inline-block;
   font-family: var(--font-display);
@@ -199,16 +189,17 @@ section {
 
 /* =========================
    5. HEADER
+   Trang chủ: gradient cornflower → tím nhạt, sáng & thanh lịch
+   Các trang năm học: ghi đè ở section 21
 ========================= */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 100;
-  /* [v5 BRIGHT] Gradient xanh cornflower sáng → tím nhạt: sáng và thanh lịch */
   background: linear-gradient(100deg, #2f5fc8 0%, #4880e8 55%, #6a6ed4 100%);
   border-bottom: 1px solid rgba(255,255,255,0.18);
   backdrop-filter: blur(12px);
-  box-shadow: 0 2px 18px rgba(40, 80, 180, 0.22);
+  box-shadow: 0 2px 18px rgba(40,80,180,0.22);
 }
 
 .site-header .container {
@@ -251,7 +242,7 @@ section {
 
 .main-nav a {
   text-decoration: none;
-  color: rgba(255,255,255,0.82);
+  color: rgba(255,255,255,0.88);
   padding: 8px 16px;
   border-radius: 999px;
   font-weight: 600;
@@ -261,24 +252,25 @@ section {
 }
 
 .main-nav a:hover {
-  background: rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.18);
   color: #fff;
-  border-color: rgba(255,255,255,0.25);
+  border-color: rgba(255,255,255,0.28);
   transform: translateY(-1px);
 }
 
-/* [ELEGANT] Active: vàng ấm thay vì vàng sặc sỡ */
+/* Active: vàng mật ong ấm, không loé */
 .main-nav a.active {
-  background: var(--gold-light);
-  color: #5a3a00;
+  background: #fff3cc;
+  color: #5a3600;
   border-color: transparent;
+  font-weight: 700;
 }
 
-/* Hamburger – mobile only */
+/* Hamburger – chỉ hiện trên mobile */
 .nav-toggle {
   display: none;
-  background: rgba(255,255,255,0.12);
-  border: 1.5px solid rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.14);
+  border: 1.5px solid rgba(255,255,255,0.28);
   color: #fff;
   font-size: var(--fs-lg);
   width: 42px;
@@ -286,13 +278,15 @@ section {
   border-radius: 10px;
   cursor: pointer;
   transition: background 0.2s;
+  align-items: center;
+  justify-content: center;
 }
 
-.nav-toggle:hover { background: rgba(255,255,255,0.22); }
+.nav-toggle:hover { background: rgba(255,255,255,0.24); }
 
 
 /* =========================
-   6. HERO SECTION
+   6. HERO
 ========================= */
 .hero {
   padding-top: 90px;
@@ -301,12 +295,12 @@ section {
   overflow: hidden;
 }
 
-/* Blob nền – màu xanh/tím đơn sắc, tinh tế hơn */
+/* Blob trang trí nền – xanh/tím rất nhạt */
 .hero-blob {
   position: absolute;
   border-radius: 50%;
   filter: blur(80px);
-  opacity: 0.40;
+  opacity: 0.38;
   pointer-events: none;
   z-index: 0;
 }
@@ -333,8 +327,8 @@ section {
 }
 
 @keyframes blobFloat {
-  from { transform: translate(0, 0) scale(1); }
-  to   { transform: translate(25px, -18px) scale(1.05); }
+  from { transform: translate(0,0) scale(1); }
+  to   { transform: translate(25px,-18px) scale(1.05); }
 }
 
 .hero-grid {
@@ -346,7 +340,6 @@ section {
   z-index: 1;
 }
 
-/* Tag badge – thanh lịch hơn */
 .tag {
   display: inline-block;
   font-family: var(--font-display);
@@ -367,7 +360,6 @@ section {
   margin-bottom: 18px;
 }
 
-/* Highlight: gradient xanh-tím, tinh tế */
 .h1-highlight {
   background: linear-gradient(90deg, var(--accent-dark), var(--purple));
   -webkit-background-clip: text;
@@ -382,7 +374,6 @@ section {
   margin-bottom: 30px;
 }
 
-/* Khung ảnh hero – nền trắng/card, viền xanh nhạt */
 .hero-photo-box {
   width: 100%;
   padding: 10px;
@@ -403,7 +394,7 @@ section {
   border-radius: calc(var(--radius-xl) - 8px);
 }
 
-/* Stats strip */
+/* Stats strip dưới hero */
 .hero-stats {
   display: flex;
   align-items: center;
@@ -486,30 +477,28 @@ section {
 
 .btn:hover::after { transform: translateX(100%); }
 
-/* Primary: xanh navy solid */
 .btn-primary {
-  background: var(--accent);
+  background: linear-gradient(90deg, var(--accent-dark), var(--accent));
   color: #fff;
-  box-shadow: 0 4px 18px rgba(61,111,212,0.35);
+  box-shadow: 0 4px 18px rgba(72,128,232,0.38);
 }
 
 .btn-primary:hover {
   transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 10px 28px rgba(61,111,212,0.45);
-  filter: brightness(1.08);
+  box-shadow: 0 10px 28px rgba(72,128,232,0.48);
+  filter: brightness(1.07);
 }
 
-/* Secondary: tím thanh lịch */
 .btn-secondary {
-  background: var(--purple);
+  background: linear-gradient(90deg, var(--purple-dark), var(--purple));
   color: #fff;
-  box-shadow: 0 4px 18px rgba(124,92,191,0.30);
+  box-shadow: 0 4px 18px rgba(139,111,212,0.34);
 }
 
 .btn-secondary:hover {
   transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 10px 28px rgba(124,92,191,0.40);
-  filter: brightness(1.08);
+  box-shadow: 0 10px 28px rgba(139,111,212,0.44);
+  filter: brightness(1.07);
 }
 
 
@@ -531,7 +520,7 @@ section {
 
 
 /* =========================
-   9. INFO CARDS – Intro section
+   9. INFO CARDS
 ========================= */
 .intro-grid {
   display: grid;
@@ -544,7 +533,6 @@ section {
   border-top: 4px solid transparent;
 }
 
-/* [ELEGANT] Màu viền đơn sắc, không xen kẽ cầu vồng */
 .info-card--blue  { border-top-color: var(--accent); }
 .info-card--pink  { border-top-color: var(--purple); }
 .info-card--green { border-top-color: var(--mint); }
@@ -560,9 +548,7 @@ section {
   margin-bottom: 14px;
 }
 
-.info-card ul {
-  list-style: none;
-}
+.info-card ul { list-style: none; }
 
 .info-card li {
   margin-bottom: 9px;
@@ -578,9 +564,7 @@ section {
   color: var(--accent);
 }
 
-.info-card p {
-  font-size: var(--fs-md);
-}
+.info-card p { font-size: var(--fs-md); }
 
 
 /* =========================
@@ -601,12 +585,11 @@ section {
   overflow: hidden;
 }
 
-/* [ELEGANT] Overlay nhạt thay vì nhiều màu */
 .link-card::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(61,111,212,0.04);
+  background: rgba(72,128,232,0.04);
   opacity: 0;
   border-radius: inherit;
   transition: opacity 0.26s ease;
@@ -619,12 +602,10 @@ section {
   box-shadow: var(--shadow-lg);
 }
 
-/* Icon box – tất cả dùng accent-soft, không mỗi cái một màu */
 .link-icon {
   width: 58px;
   height: 58px;
   border-radius: 16px;
-  background: var(--accent-soft);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -632,7 +613,6 @@ section {
   margin-bottom: 16px;
 }
 
-/* Nếu muốn từng card vẫn có màu riêng nhẹ nhàng hơn: */
 .link-card--blue   .link-icon { background: var(--accent-soft); }
 .link-card--purple .link-icon { background: var(--purple-soft); }
 .link-card--yellow .link-icon { background: var(--gold-light); }
@@ -651,7 +631,6 @@ section {
   margin-bottom: 14px;
 }
 
-/* Mũi tên hiện ra khi hover */
 .link-arrow {
   font-size: var(--fs-md);
   font-weight: 700;
@@ -673,7 +652,6 @@ section {
 ========================= */
 .highlight { padding: 60px 0; }
 
-/* [ELEGANT] Nền xanh nhạt đơn sắc thay vì gradient cầu vồng */
 .highlight-box {
   background: var(--accent-soft);
   border: 1.5px solid var(--border);
@@ -689,7 +667,7 @@ section {
   content: '';
   position: absolute;
   width: 300px; height: 300px;
-  background: radial-gradient(circle, rgba(61,111,212,0.08), transparent);
+  background: radial-gradient(circle, rgba(72,128,232,0.08), transparent);
   top: -80px; right: -80px;
   border-radius: 50%;
   pointer-events: none;
@@ -722,10 +700,7 @@ section {
   font-size: 1.4rem;
 }
 
-.quote-deco span {
-  animation: bounceDeco 2.5s ease-in-out infinite;
-}
-
+.quote-deco span { animation: bounceDeco 2.5s ease-in-out infinite; }
 .quote-deco span:nth-child(2) { animation-delay: 0.3s; }
 .quote-deco span:nth-child(3) { animation-delay: 0.6s; }
 .quote-deco span:nth-child(4) { animation-delay: 0.9s; }
@@ -736,11 +711,7 @@ section {
   50%       { transform: translateY(-6px); }
 }
 
-
-/* ============================================================
-   QUOTE INLINE – giữ định dạng nháy đôi nhưng nằm cùng dòng
-   ============================================================ */
-
+/* Quote inline variant */
 .quote-inline {
   display: flex;
   align-items: center;
@@ -754,7 +725,6 @@ section {
 .quote-inline .quote-mark {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
   font-family: 'Georgia', serif;
   font-size: clamp(3.2rem, 5vw, 5rem);
   line-height: 1;
@@ -764,37 +734,19 @@ section {
   transform: translateY(-2px);
 }
 
-.quote-inline .quote-mark--open,
-.quote-inline .quote-mark--close {
-  line-height: 1;
-}
-
 .quote-inline h2 {
-  font-family: var(--font-display);
   font-size: clamp(2rem, 4vw, 3.2rem);
   font-weight: 800;
-  color: var(--text);
-  line-height: 1.25;
   margin: 0;
   white-space: nowrap;
 }
 
-/* Điện thoại: nếu quá dài thì cho phép xuống dòng đẹp */
 @media (max-width: 768px) {
-  .quote-inline {
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-
-  .quote-inline h2 {
-    white-space: normal;
-    text-align: center;
-  }
-
-  .quote-inline .quote-mark {
-    font-size: 3rem;
-  }
+  .quote-inline { gap: 8px; flex-wrap: wrap; }
+  .quote-inline h2 { white-space: normal; text-align: center; }
+  .quote-inline .quote-mark { font-size: 3rem; }
 }
+
 
 /* =========================
    12. FOOTER
@@ -804,14 +756,13 @@ section {
   position: relative;
 }
 
-/* Đường kẻ trên đơn sắc accent thay vì gradient cầu vồng */
 .site-footer::before {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 2px;
-  background: var(--accent);
-  opacity: 0.35;
+  background: linear-gradient(90deg, var(--accent), var(--purple));
+  opacity: 0.40;
 }
 
 .footer-content {
@@ -847,17 +798,17 @@ section {
   height: 54px;
   border: none;
   border-radius: 50%;
-  background: var(--accent);
+  background: linear-gradient(135deg, var(--accent-dark), var(--accent));
   color: #fff;
   font-size: 1.3rem;
   cursor: pointer;
-  box-shadow: 0 4px 18px rgba(61,111,212,0.40);
+  box-shadow: 0 4px 18px rgba(72,128,232,0.42);
   transition: transform 0.22s ease, box-shadow 0.22s ease;
 }
 
 .music-toggle:hover {
   transform: scale(1.08);
-  box-shadow: 0 8px 24px rgba(61,111,212,0.55);
+  box-shadow: 0 8px 26px rgba(72,128,232,0.56);
 }
 
 .music-panel {
@@ -896,7 +847,7 @@ section {
   height: 38px;
   border: none;
   border-radius: 50%;
-  background: var(--accent);
+  background: linear-gradient(135deg, var(--accent-dark), var(--accent));
   color: #fff;
   font-size: 15px;
   cursor: pointer;
@@ -906,7 +857,9 @@ section {
 
 .music-controls button:hover { transform: scale(1.08); }
 
-#closeMusicPanel { background: var(--coral); }
+#closeMusicPanel {
+  background: linear-gradient(135deg, #c03030, var(--coral));
+}
 
 #musicSeek {
   flex: 1;
@@ -918,12 +871,11 @@ section {
 
 /* =========================
    14. PAGE BANNER – trang con
+   Mặc định: xanh accent (trang chủ, thành viên, lời nhắn, v.v.)
+   Trang năm học: ghi đè bằng .theme-blue/.theme-yellow/.theme-red ở section 21
 ========================= */
-.page-banner {
-  padding: 70px 0 30px;
-}
+.page-banner { padding: 70px 0 30px; }
 
-/* [ELEGANT] Nền banner: xanh navy + trắng nhẹ – không gradient cầu vồng */
 .page-banner-box {
   background: var(--bg-card);
   border: 1.5px solid var(--border);
@@ -931,15 +883,16 @@ section {
   box-shadow: var(--shadow-md);
   padding: 44px 32px;
   text-align: center;
-  /* Đường kẻ trên màu accent */
-  border-top: 5px solid var(--accent);
+  /* Đường kẻ trên theo màu năm – mặc định là accent */
+  border-top: 5px solid var(--year-main);
 }
 
 .page-banner-box h1 {
   font-size: clamp(var(--fs-2xl), 4vw, var(--fs-3xl));
   font-weight: 800;
   margin-bottom: 12px;
-  color: var(--accent);
+  /* Màu h1 theo màu năm học */
+  color: var(--year-main);
 }
 
 .page-banner-box p {
@@ -953,18 +906,13 @@ section {
 /* =========================
    15. TRANG THÀNH VIÊN
 ========================= */
-
 .member-section {
   padding-top: 20px;
   padding-bottom: 60px;
 }
 
-.member-grid {
-  display: grid;
-  gap: 24px;
-}
+.member-grid { display: grid; gap: 24px; }
 
-/* Giáo viên: 3 cột, đường phân cách dưới */
 .teacher-grid {
   grid-template-columns: repeat(3, 1fr);
   margin-bottom: 16px;
@@ -972,22 +920,19 @@ section {
   border-bottom: 2px dashed var(--border);
 }
 
-/* Học sinh: 3 cột */
-.student-grid {
-  grid-template-columns: repeat(3, 1fr);
-}
+.student-grid { grid-template-columns: repeat(3, 1fr); }
 
-/* ---- Member card chung ---- */
+/* Card chung */
 .member-card {
   overflow: hidden;
   position: relative;
 }
 
-/* [FIX] Ảnh trong .member-photo crop đúng vào ô – dùng position: relative + img absolute */
+/* Khung ảnh – crop cố định */
 .member-photo {
-  position: relative;          /* làm neo cho img absolute */
-  height: 260px;               /* chiều cao cố định để crop nhất quán */
-  overflow: hidden;            /* đảm bảo ảnh không tràn ra ngoài */
+  position: relative;
+  height: 260px;
+  overflow: hidden;
   background: var(--bg-section);
   display: flex;
   align-items: center;
@@ -999,18 +944,17 @@ section {
   padding: 20px;
 }
 
-/* [FIX] Ảnh thật fill đầy ô và crop giữa */
+/* Ảnh thật fill và crop giữa */
 .member-photo img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;        /* crop giữ tỉ lệ, fill khung */
-  object-position: center top; /* ưu tiên phần mặt ở trên */
+  object-fit: cover;
+  object-position: center top;
   display: block;
 }
 
-/* Nội dung text dưới ảnh */
 .member-content {
   padding: 18px 20px 20px;
   border-top: 1px solid var(--border);
@@ -1029,35 +973,30 @@ section {
   line-height: 1.65;
 }
 
-/* Label icon trước mỗi dòng info */
 .info-label {
   font-weight: 700;
   color: var(--text);
   margin-right: 4px;
 }
 
-/* ---- Card giáo viên ---- */
-.member-card--teacher {
-  border-top: 4px solid var(--accent);
-}
+/* Card giáo viên */
+.member-card--teacher { border-top: 4px solid var(--accent); }
 
-/* Mỗi GV màu viền top khác nhau nhưng cùng họ accent */
 .teacher-grid .member-card:nth-child(1) { border-top-color: var(--accent); }
 .teacher-grid .member-card:nth-child(2) { border-top-color: var(--purple); }
 .teacher-grid .member-card:nth-child(3) { border-top-color: var(--mint); }
 
-/* Ảnh GV: chiều cao lớn hơn HS */
 .member-card--teacher .member-photo {
   height: 280px;
   background: var(--accent-soft);
 }
 
-/* Badge "GVCN" */
+/* Badge GVCN */
 .member-badge {
   position: absolute;
   top: 12px;
   right: 12px;
-  background: var(--accent);
+  background: linear-gradient(90deg, var(--accent-dark), var(--accent));
   color: #fff;
   font-family: var(--font-display);
   font-size: 0.7rem;
@@ -1066,16 +1005,15 @@ section {
   border-radius: 999px;
   letter-spacing: 0.06em;
   z-index: 2;
-  box-shadow: 0 2px 8px rgba(61,111,212,0.30);
+  box-shadow: 0 2px 8px rgba(72,128,232,0.32);
 }
 
-/* ---- Card học sinh ---- */
-/* [ELEGANT] Viền top đơn sắc, xen kẽ 3 màu nhưng cùng tông */
+/* Card học sinh – viền top xen kẽ 3 màu */
 .student-grid .member-card:nth-child(3n+1) { border-top: 3px solid var(--accent); }
 .student-grid .member-card:nth-child(3n+2) { border-top: 3px solid var(--purple); }
 .student-grid .member-card:nth-child(3n)   { border-top: 3px solid var(--mint); }
 
-/* ---- Note box ---- */
+/* Note box dưới danh sách */
 .member-note-box {
   margin-top: 40px;
   display: flex;
@@ -1090,22 +1028,14 @@ section {
   line-height: 1.65;
 }
 
-.member-note-icon {
-  font-size: 1.6rem;
-  flex-shrink: 0;
-}
-
+.member-note-icon { font-size: 1.6rem; flex-shrink: 0; }
 .member-note-box strong { color: var(--accent-dark); }
 
 
 /* =========================
    16. KỶ NIỆM – SLIDER
 ========================= */
-.timeline {
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-}
+.timeline { display: flex; flex-direction: column; gap: 28px; }
 
 .timeline-item { padding: 26px; }
 
@@ -1196,19 +1126,19 @@ section {
 
 .slider-btn {
   border: none;
-  background: var(--accent);
+  background: linear-gradient(135deg, var(--accent-dark), var(--accent));
   color: white;
   width: 42px;
   height: 42px;
   border-radius: 50%;
   cursor: pointer;
   font-size: 1rem;
-  transition: background 0.2s, transform 0.2s;
+  transition: filter 0.2s, transform 0.2s;
   flex-shrink: 0;
 }
 
 .slider-btn:hover {
-  background: var(--accent-dark);
+  filter: brightness(1.12);
   transform: scale(1.08);
 }
 
@@ -1222,15 +1152,9 @@ section {
   gap: 22px;
 }
 
-.message-card {
-  padding: 24px;
-  background: var(--bg-card);
-}
+.message-card { padding: 24px; background: var(--bg-card); }
 
-.message-card h3 {
-  font-size: var(--fs-lg);
-  margin-bottom: 12px;
-}
+.message-card h3 { font-size: var(--fs-lg); margin-bottom: 12px; }
 
 .postcard-grid {
   display: grid;
@@ -1269,10 +1193,7 @@ section {
   padding: 24px;
 }
 
-.yearbook-placeholder h3 {
-  font-size: var(--fs-lg);
-  margin-bottom: 10px;
-}
+.yearbook-placeholder h3 { font-size: var(--fs-lg); margin-bottom: 10px; }
 
 
 /* =========================
@@ -1286,9 +1207,18 @@ section {
 
 .contact-card { padding: 24px; }
 
+/* [REQ 1] h2 liên hệ: đậm, màu accent đậm, gạch dưới gradient */
 .contact-card h2 {
   font-size: var(--fs-xl);
-  margin-bottom: 14px;
+  font-weight: 800;
+  color: var(--accent-dark);           /* navy đậm – nổi bật trên card trắng */
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 3px solid transparent;
+  background:
+    linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
+    linear-gradient(90deg, var(--accent), var(--purple)) border-box;
+  letter-spacing: -0.01em;
 }
 
 .contact-list { list-style: none; }
@@ -1313,10 +1243,7 @@ section {
   box-shadow: var(--shadow-md);
 }
 
-.map-box iframe {
-  display: block;
-  width: 100%;
-}
+.map-box iframe { display: block; width: 100%; }
 
 .map-placeholder {
   min-height: 320px;
@@ -1345,31 +1272,68 @@ section {
 
 .year-card {
   text-decoration: none;
-  color: white;
-  padding: 38px 24px;
+  padding: 40px 26px;
   border-radius: var(--radius-lg);
   transition: transform 0.26s ease, box-shadow 0.26s ease;
-  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
 }
 
+/* Shimmer trên year-card khi hover */
+.year-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.14) 50%, transparent 70%);
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+}
+
+.year-card:hover::after { transform: translateX(100%); }
+
 .year-card:hover {
-  transform: translateY(-7px);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-8px);
 }
 
 .year-card h2 {
   font-size: var(--fs-2xl);
+  font-weight: 800;
   margin-bottom: 12px;
+  /* Màu chữ trắng trên tất cả year-card */
+  color: #ffffff;
 }
 
 .year-card p {
   font-size: var(--fs-md);
-  line-height: 1.6;
+  font-weight: 600;
+  line-height: 1.65;
+  /* Chữ trắng nhạt cho đoạn mô tả */
+  color: rgba(255,255,255,0.92);
 }
 
-.year-10 { background: linear-gradient(135deg, #2e6fc4, #4a90e2); }
-.year-11 { background: linear-gradient(135deg, #a07800, #c8960c); }
-.year-12 { background: linear-gradient(135deg, #a02020, #c0392b); }
+/* [REQ 4] Lớp 10 – xanh dương sáng, gradient tươi hơn */
+.year-10 {
+  background: linear-gradient(135deg, #3a7bd5 0%, #5a9ff5 100%);
+  box-shadow: 0 12px 30px rgba(58,123,213,0.32);
+}
+
+.year-10:hover { box-shadow: 0 20px 42px rgba(58,123,213,0.44); }
+
+/* [REQ 4] Lớp 11 – vàng cam ấm, đủ tương phản để chữ trắng đọc được */
+.year-11 {
+  background: linear-gradient(135deg, #e09b1a 0%, #f5c23e 100%);
+  box-shadow: 0 12px 30px rgba(224,155,26,0.32);
+}
+
+.year-11:hover { box-shadow: 0 20px 42px rgba(224,155,26,0.44); }
+
+/* [REQ 4] Lớp 12 – hồng đỏ thanh lịch */
+.year-12 {
+  background: linear-gradient(135deg, #d44060 0%, #f06882 100%);
+  box-shadow: 0 12px 30px rgba(212,64,96,0.32);
+}
+
+.year-12:hover { box-shadow: 0 20px 42px rgba(212,64,96,0.44); }
 
 
 /* =========================
@@ -1397,13 +1361,16 @@ section {
   font-size: var(--fs-md);
   font-weight: 700;
   color: #fff;
-  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, filter 0.22s ease;
   box-shadow: var(--shadow-md);
   overflow: hidden;
   white-space: nowrap;
 }
 
-.year-btn:hover { transform: translateY(-3px) scale(1.03); }
+.year-btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  filter: brightness(1.08);
+}
 
 .year-btn.nav-left::before {
   content: '←';
@@ -1429,56 +1396,113 @@ section {
 .year-btn.nav-right:hover { padding-right: 48px; }
 .year-btn.nav-right:hover::after { opacity: 1; }
 
-.btn-blue   { background: #1591DC; }
-.btn-yellow { background: #FFC300; }
-.btn-red    { background: #FF5A5A; }
+/* Màu nút điều hướng khớp với year-card */
+.btn-blue   { background: linear-gradient(90deg, #3a7bd5, #5a9ff5); }
+.btn-yellow { background: linear-gradient(90deg, #c88a10, #e8b430); }
+.btn-red    { background: linear-gradient(90deg, #c03050, #e05878); }
 
 
 /* =========================
-   21. THEME THEO NĂM (10/11/12)
+   21. THEME THEO NĂM (10 / 11 / 12)
+   – Ghi đè header, banner, music toggle theo màu năm
+   – page-banner-box dùng --year-main qua biến CSS
 ========================= */
-:root {
-  --year-main: var(--accent);
-  --year-soft: var(--accent-soft);
-  --year-tag:  #c8dff8;
-  --year-text: var(--accent-dark);
-}
 
+/* ---- Lớp 10 – Xanh dương ---- */
 .theme-blue {
-  --year-main: #2e6fc4;
-  --year-soft: #e8f0ff;
-  --year-tag:  #c8dff8;
-  --year-text: #1a4a8a;
+  --year-main:       #3a7bd5;
+  --year-main-dark:  #2558a8;
+  --year-main-light: #5a9ff5;
+  --year-soft:       #e8f2ff;
+  --year-tag:        #c8e0ff;
+  --year-text:       #1a4a8a;
 }
 
+/* [REQ 5] Header lớp 10: gradient xanh tươi, không về trắng */
+body.theme-blue .site-header {
+  background: linear-gradient(100deg, #2558a8 0%, #3a7bd5 50%, #5a9ff5 100%);
+  box-shadow: 0 4px 22px rgba(37,88,168,0.28);
+}
+
+body.theme-blue .music-toggle {
+  background: linear-gradient(135deg, #2558a8, #3a7bd5);
+}
+
+/* ---- Lớp 11 – Vàng cam ---- */
 .theme-yellow {
-  --year-main: #c8960c;
-  --year-soft: #fdf3d8;
-  --year-tag:  #f5e6b0;
-  --year-text: #7a5800;
+  --year-main:       #e09b1a;
+  --year-main-dark:  #a06e00;
+  --year-main-light: #f5c23e;
+  --year-soft:       #fff7e0;
+  --year-tag:        #ffe9a8;
+  --year-text:       #7a5000;
 }
 
+/* [REQ 5] Header lớp 11: gradient vàng cam, không về trắng */
+body.theme-yellow .site-header {
+  background: linear-gradient(100deg, #a06e00 0%, #c88a10 45%, #e8b430 100%);
+  box-shadow: 0 4px 22px rgba(160,110,0,0.28);
+}
+
+body.theme-yellow .music-toggle {
+  background: linear-gradient(135deg, #a06e00, #e09b1a);
+}
+
+/* ---- Lớp 12 – Hồng đỏ ---- */
 .theme-red {
-  --year-main: #c0392b;
-  --year-soft: #fdecea;
-  --year-tag:  #f8c8c4;
-  --year-text: #8a1e14;
+  --year-main:       #d44060;
+  --year-main-dark:  #a02040;
+  --year-main-light: #f06882;
+  --year-soft:       #fff0f4;
+  --year-tag:        #ffd0da;
+  --year-text:       #8a1030;
 }
 
-body.theme-blue   .site-header { background: #1a3d6e; }
-body.theme-yellow .site-header { background: #5a3a00; }
-body.theme-red    .site-header { background: #6e1010; }
+/* [REQ 5] Header lớp 12: gradient hồng đỏ thanh lịch, không về trắng */
+body.theme-red .site-header {
+  background: linear-gradient(100deg, #a02040 0%, #c83050 45%, #e05878 100%);
+  box-shadow: 0 4px 22px rgba(160,32,64,0.28);
+}
 
-body.theme-blue   .music-toggle { background: var(--accent); }
-body.theme-yellow .music-toggle { background: #c8960c; }
-body.theme-red    .music-toggle { background: #c0392b; }
+body.theme-red .music-toggle {
+  background: linear-gradient(135deg, #a02040, #d44060);
+}
+
+/* [REQ 5] Nav links trên tất cả theme năm – chữ trắng, active vàng nhạt */
+body.theme-blue .main-nav a,
+body.theme-yellow .main-nav a,
+body.theme-red .main-nav a {
+  color: rgba(255,255,255,0.88);
+}
+
+body.theme-blue .main-nav a:hover,
+body.theme-yellow .main-nav a:hover,
+body.theme-red .main-nav a:hover {
+  background: rgba(255,255,255,0.18);
+  color: #ffffff;
+  border-color: rgba(255,255,255,0.28);
+}
+
+body.theme-blue .main-nav a.active,
+body.theme-yellow .main-nav a.active,
+body.theme-red .main-nav a.active {
+  background: rgba(255,255,255,0.90);
+  color: var(--year-main-dark);
+  font-weight: 700;
+}
+
+/* [REQ 3] year-banner: đường kẻ trên banner khớp màu theme năm */
+.year-banner {
+  border-top: 5px solid var(--year-main);
+}
+
+/* [REQ 3] page-banner-box tự cập nhật màu qua --year-main (đã set ở :root và từng theme)
+   Không cần thêm rule riêng – border-top và h1 color đã dùng var(--year-main) */
 
 
 /* =========================
    22. SỰ KIỆN TỪNG NĂM
 ========================= */
-.year-banner { border-top: 5px solid var(--year-main); }
-
 .event-section { padding-top: 20px; }
 
 .event-block {
@@ -1504,15 +1528,9 @@ body.theme-red    .music-toggle { background: #c0392b; }
   font-size: var(--fs-sm);
 }
 
-.event-header h2 {
-  font-size: var(--fs-xl);
-  margin-bottom: 10px;
-}
+.event-header h2 { font-size: var(--fs-xl); margin-bottom: 10px; }
 
-.event-header p {
-  color: var(--text-muted);
-  font-size: var(--fs-md);
-}
+.event-header p { color: var(--text-muted); font-size: var(--fs-md); }
 
 .event-gallery {
   display: grid;
@@ -1600,15 +1618,8 @@ body.theme-red    .music-toggle { background: #c0392b; }
   padding: 16px;
 }
 
-.memory-card h3 {
-  font-size: var(--fs-md);
-  margin-bottom: 8px;
-}
-
-.memory-card p {
-  color: var(--text-muted);
-  font-size: var(--fs-sm);
-}
+.memory-card h3 { font-size: var(--fs-md); margin-bottom: 8px; }
+.memory-card p  { color: var(--text-muted); font-size: var(--fs-sm); }
 
 
 /* =========================
@@ -1634,7 +1645,7 @@ body.theme-red    .music-toggle { background: #c0392b; }
     grid-template-columns: repeat(2, 1fr);
   }
 
-  /* GV: 3 người nhưng 2 cột → card 3 chiếm full hàng */
+  /* GV 3 người – 2 cột: card 3 chiếm full */
   .teacher-grid .member-card:last-child:nth-child(odd) {
     grid-column: 1 / -1;
     max-width: 420px;
@@ -1649,7 +1660,7 @@ body.theme-red    .music-toggle { background: #c0392b; }
 @media (max-width: 768px) {
   section { padding: 55px 0; }
 
-  /* Header: hiện hamburger */
+  /* Header: layout ngang, hiện hamburger */
   .site-header .container {
     flex-wrap: nowrap;
     justify-content: space-between;
@@ -1667,7 +1678,8 @@ body.theme-red    .music-toggle { background: #c0392b; }
     display: none;
     width: 100%;
     flex-direction: column;
-    background: #1e3a6e;
+    /* Màu mobile nav mặc định – các theme ghi đè bên dưới */
+    background: linear-gradient(180deg, #2f5fc8, #4880e8);
     border-radius: 0 0 var(--radius-md) var(--radius-md);
     padding: 12px;
     gap: 6px;
@@ -1679,7 +1691,6 @@ body.theme-red    .music-toggle { background: #c0392b; }
   }
 
   .site-header { position: relative; }
-
   .main-nav.open { display: flex; }
 
   .main-nav a {
@@ -1688,7 +1699,20 @@ body.theme-red    .music-toggle { background: #c0392b; }
     text-align: center;
   }
 
-  /* Grids → 1 cột */
+  /* Các theme năm: màu mobile nav khớp header */
+  body.theme-blue .main-nav {
+    background: linear-gradient(180deg, #2558a8, #3a7bd5);
+  }
+
+  body.theme-yellow .main-nav {
+    background: linear-gradient(180deg, #a06e00, #c88a10);
+  }
+
+  body.theme-red .main-nav {
+    background: linear-gradient(180deg, #a02040, #c83050);
+  }
+
+  /* Tất cả grids → 1 cột */
   .hero-grid,
   .intro-grid,
   .link-grid,
@@ -1705,29 +1729,21 @@ body.theme-red    .music-toggle { background: #c0392b; }
 
   .hero-image { grid-column: auto; }
 
-  /* Reset rule "GV card 3 full-width" không cần ở mobile */
+  /* Reset GV full-width (không cần ở 1 cột) */
   .teacher-grid .member-card:last-child:nth-child(odd) {
     grid-column: auto;
     max-width: none;
     margin: 0;
   }
 
-  .hero-buttons {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+  .hero-buttons { flex-direction: column; align-items: flex-start; }
 
-  .hero-stats {
-    padding: 14px 8px;
-    flex-wrap: wrap;
-    gap: 8px 0;
-  }
-
-  .stat-item { padding: 6px 14px; }
+  .hero-stats { padding: 14px 8px; flex-wrap: wrap; gap: 8px 0; }
+  .stat-item  { padding: 6px 14px; }
   .stat-divider { display: none; }
 
   .highlight-box { padding: 36px 22px; }
-  .quote-mark { font-size: 3.5rem; }
+  .quote-mark    { font-size: 3.5rem; }
 
   .year-nav {
     flex-direction: column;
@@ -1763,224 +1779,32 @@ body.theme-red    .music-toggle { background: #c0392b; }
     padding: 20px 16px;
   }
 
-  .hero-real-image { max-height: 280px; }
-  .hero-photo-box { padding: 8px; }
-
-  .stat-num { font-size: var(--fs-xl); }
+  .hero-real-image  { max-height: 280px; }
+  .hero-photo-box   { padding: 8px; }
+  .stat-num         { font-size: var(--fs-xl); }
 
   .btn {
     padding: 12px 22px;
     font-size: var(--fs-sm);
   }
 
-  .member-content { padding: 14px 16px 16px; }
+  .member-content   { padding: 14px 16px 16px; }
   .member-content h3 { font-size: var(--fs-md); }
-  .member-badge { font-size: 0.68rem; padding: 3px 8px; }
+  .member-badge      { font-size: 0.68rem; padding: 3px 8px; }
 
   .image-placeholder { min-height: 250px; }
+
+  .year-card { padding: 28px 20px; }
 }
 
 
 /* =========================
-   27. REDUCED MOTION – Accessibility
+   27. REDUCED MOTION
 ========================= */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-  }
-}
-
-
-
-
-
-
-
-
-/* ============================================================
-   28. V6 OVERRIDES – Contact, Year Themes, Bright Elegant UI
-   Các chỉnh sửa theo yêu cầu:
-   - Contact card h2 nổi bật hơn
-   - Thanh điều hướng trang lớp 10/11/12 sáng và sang hơn
-   - page-banner-box.year-banner đổi màu theo theme năm
-   - year-card 10/11/12 sáng hơn, chữ nổi hơn
-   - Responsive giữ đẹp trên máy tính và điện thoại
-   ============================================================ */
-
-/* 1) Contact card: tiêu đề h2 nổi bật hơn */
-.contact-card h2 {
-  color: var(--accent-dark);
-  font-weight: 800;
-  letter-spacing: -0.01em;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding-bottom: 6px;
-  border-bottom: 3px solid rgba(72, 128, 232, 0.22);
-}
-
-.contact-card h2::after {
-  content: '';
-  width: 34px;
-  height: 8px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--accent), var(--purple));
-  opacity: 0.85;
-}
-
-/* ============================================================
-   CHỈNH MÀU NĂM HỌC – MỀM HƠN, GIỐNG THANH TRÊN
-   Không quá sáng, không chuyển trắng hẳn
-   ============================================================ */
-
-/* 1. Theme màu chính từng năm – giữ sáng vừa phải */
-.theme-blue {
-  --year-main: #4b83e6;
-  --year-main-dark: #2f63c4;
-  --year-main-light: #6fa4f2;
-  --year-soft: #edf4ff;
-  --year-tag: #d9e8ff;
-  --year-text: #1e4f9a;
-}
-
-.theme-yellow {
-  --year-main: #e8b638;
-  --year-main-dark: #9b6900;
-  --year-main-light: #f4cc61;
-  --year-soft: #fff6df;
-  --year-tag: #ffedb8;
-  --year-text: #735000;
-}
-
-.theme-red {
-  --year-main: #e86b7d;
-  --year-main-dark: #b83648;
-  --year-main-light: #f28a99;
-  --year-soft: #fff0f3;
-  --year-tag: #ffd4dc;
-  --year-text: #8e2432;
-}
-
-/* 2. Thanh điều hướng trang lớp 10, 11, 12
-   Màu sáng hơn bản cũ nhưng vẫn sang, không bị trắng */
-body.theme-blue .site-header {
-  background: linear-gradient(100deg, #376fd3 0%, #4b83e6 55%, #6677d8 100%);
-  box-shadow: 0 4px 22px rgba(55, 111, 211, 0.26);
-}
-
-body.theme-yellow .site-header {
-  background: linear-gradient(100deg, #b98210 0%, #e0ad2d 55%, #f0c75a 100%);
-  box-shadow: 0 4px 22px rgba(224, 173, 45, 0.24);
-}
-
-body.theme-red .site-header {
-  background: linear-gradient(100deg, #b83a49 0%, #df6173 55%, #ed8491 100%);
-  box-shadow: 0 4px 22px rgba(223, 97, 115, 0.24);
-}
-
-/* Link trên thanh điều hướng: chữ vẫn trắng nhẹ, active chỉ vàng nhạt */
-body.theme-blue .main-nav a,
-body.theme-yellow .main-nav a,
-body.theme-red .main-nav a {
-  color: rgba(255, 255, 255, 0.88);
-}
-
-body.theme-blue .main-nav a:hover,
-body.theme-yellow .main-nav a:hover,
-body.theme-red .main-nav a:hover {
-  background: rgba(255, 255, 255, 0.16);
-  color: #ffffff;
-}
-
-body.theme-blue .main-nav a.active,
-body.theme-yellow .main-nav a.active,
-body.theme-red .main-nav a.active {
-  background: #fff0bf;
-  color: #5c3c00;
-}
-
-/* 3. Year-card lớp 10, 11, 12
-   Màu giống tone phía trên, sáng vừa phải, không trắng */
-.year-10 {
-  background: linear-gradient(135deg, #4b83e6 0%, #6fa4f2 100%);
-  color: #ffffff;
-  box-shadow: 0 12px 28px rgba(75, 131, 230, 0.28);
-}
-
-.year-11 {
-  background: linear-gradient(135deg, #e0ad2d 0%, #f0c75a 100%);
-  color: #ffffff;
-  box-shadow: 0 12px 28px rgba(224, 173, 45, 0.30);
-}
-
-.year-12 {
-  background: linear-gradient(135deg, #df6173 0%, #ed8491 100%);
-  color: #ffffff;
-  box-shadow: 0 12px 28px rgba(223, 97, 115, 0.28);
-}
-
-/* Chữ trong card rõ hơn */
-.year-card h2 {
-  color: inherit;
-  font-weight: 800;
-}
-
-.year-card p {
-  font-weight: 600;
-  line-height: 1.65;
-}
-
-.year-10 p,
-.year-12 p {
-  color: rgba(255, 255, 255, 0.94);
-}
-
-.year-11 h2 {
-  color: #4d3400;
-}
-
-.year-11 p {
-  color: #674800;
-}
-
-/* Hiệu ứng hover nhẹ, không làm màu bị quá sáng */
-.year-10:hover {
-  box-shadow: 0 18px 38px rgba(75, 131, 230, 0.38);
-}
-
-.year-11:hover {
-  box-shadow: 0 18px 38px rgba(224, 173, 45, 0.38);
-}
-
-.year-12:hover {
-  box-shadow: 0 18px 38px rgba(223, 97, 115, 0.38);
-}
-
-.btn-blue {
-  color: #ffffff;
-}
-
-.btn-yellow {
-  color: #ffffff;
-}
-
-.btn-red {
-  color: #ffffff;
-}
-
-/* 5. Mobile menu theo theme, nhưng vẫn giữ tone vừa phải */
-@media (max-width: 768px) {
-  body.theme-blue .main-nav {
-    background: linear-gradient(180deg, #376fd3 0%, #4b83e6 100%);
-  }
-
-  body.theme-yellow .main-nav {
-    background: linear-gradient(180deg, #b98210 0%, #e0ad2d 100%);
-  }
-
-  body.theme-red .main-nav {
-    background: linear-gradient(180deg, #b83a49 0%, #df6173 100%);
   }
 }
