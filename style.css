@@ -1429,9 +1429,9 @@ section {
 .year-btn.nav-right:hover { padding-right: 48px; }
 .year-btn.nav-right:hover::after { opacity: 1; }
 
-.btn-blue   { background: var(--accent); }
-.btn-yellow { background: #c8960c; }
-.btn-red    { background: #c0392b; }
+.btn-blue   { background: #1591DC; }
+.btn-yellow { background: #FFC300; }
+.btn-red    { background: #FF5A5A; }
 
 
 /* =========================
@@ -1911,7 +1911,7 @@ body.theme-red .main-nav a.active {
 
 .year-11 {
   background: linear-gradient(135deg, #e0ad2d 0%, #f0c75a 100%);
-  color: #4d3400;
+  color: #ffffff;
   box-shadow: 0 12px 28px rgba(224, 173, 45, 0.30);
 }
 
@@ -1963,7 +1963,7 @@ body.theme-red .main-nav a.active {
 }
 
 .btn-yellow {
-  color: #4d3400;
+  color: #ffffff;
 }
 
 .btn-red {
