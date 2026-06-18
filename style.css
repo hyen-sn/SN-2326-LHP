@@ -110,37 +110,12 @@ html {
   --max-width: 1150px;
 }
 
-/* =========================
-   DARK MODE – tự động theo hệ thống
-========================= */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg:          #111827;   /* nền tổng: xanh đen */
-    --bg-card:     #1e2a3f;   /* card: xanh đậm hơn nền */
-    --bg-section:  #162033;   /* section xen kẽ */
-    --text:        #e8edf5;   /* chữ chính: trắng xanh */
-    --text-muted:  #8fa0bc;   /* chữ phụ */
-    --border:      #2e3d56;   /* viền */
-    --white:       #1e2a3f;
-
-    --accent-soft:  #1e2d50;
-    --purple-soft:  #251d40;
-    --mint-soft:    #0d2d24;
-    --coral-soft:   #2d1414;
-    --gold-light:   #2d2408;
-
-    --shadow-sm:  0 2px 8px  rgba(0, 0, 0, 0.30);
-    --shadow-md:  0 6px 20px rgba(0, 0, 0, 0.40);
-    --shadow-lg:  0 14px 40px rgba(0, 0, 0, 0.50);
-  }
-}
-
 
 /* =========================
    3. BASE – BODY & TYPE
 ========================= */
 
-/* [UPGRADED] Import font "Be Vietnam Pro" hỗ trợ tiếng Việt đầy đủ */
+
 @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
 
 body {
