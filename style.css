@@ -1160,12 +1160,55 @@ section { padding: 80px 0; }
 
 .postcard-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 22px;
+  align-items: stretch;
 }
 
-.postcard-card { padding: 18px; }
+/* Mỗi ô postcard */
+.postcard-card {
+  padding: 18px;
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  border: 1.5px solid var(--border);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
 
+/* Khung PDF giống ô nhỏ trong hình */
+.message-pdf-frame {
+  width: 100%;
+  height: 260px;
+  border-radius: var(--radius-md);
+  background: var(--bg-section);
+  overflow: auto;
+  border: none;
+  position: relative;
+}
+
+/* PDF nằm gọn trong khung */
+.message-pdf-frame iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 260px;
+  border: none;
+  display: block;
+  background: var(--bg-section);
+}
+
+/* Tên dưới postcard */
+.postcard-card p {
+  margin: 0;
+  color: var(--text);
+  font-size: var(--fs-md);
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+/* Nếu vẫn còn dùng postcard-photo cũ thì giữ cho không lỗi */
 .postcard-photo {
   min-height: 220px;
   border-radius: var(--radius-md);
