@@ -1147,24 +1147,17 @@ section { padding: 80px 0; }
 /* =========================
    17. LỜI NHẮN
 ========================= */
-
-/* ----- Lưới lời nhắn thường ----- */
 .message-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 22px;
 }
 
-.message-card {
-  padding: 24px;
-  background: var(--bg-card);
-}
+.message-card { padding: 24px; background: var(--bg-card); }
 
-.message-card h3 {
-  font-size: var(--fs-lg);
-  margin-bottom: 12px;
-}
+.message-card h3 { font-size: var(--fs-lg); margin-bottom: 12px; }
 
+/* [REQ 2] message-card trở lại dạng văn bản/quote thuần – không chứa PDF */
 .message-card p {
   color: var(--text-muted);
   font-size: var(--fs-md);
@@ -1172,31 +1165,22 @@ section { padding: 80px 0; }
   font-style: italic;
 }
 
-/* ----- Lưới postcard ----- */
 .postcard-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 22px;
-  align-items: stretch;
 }
 
-/* Card postcard */
-.postcard-card {
-  padding: 18px;
-  background: var(--bg-card);
-  border-radius: var(--radius-lg);
-  border: 1.5px solid var(--border);
-  box-shadow: var(--shadow-md);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
+.postcard-card { padding: 18px; }
 
-/* Khung postcard mặc định: dùng cho ô chữ Postcard 2, 3... */
+/* [REQ 1+2] postcard-photo – khung chứa ẢNH (đã chuyển từ PDF sang ảnh).
+   - Kích thước khung cố định, giữ nguyên bo góc var(--radius-md)
+   - Ảnh bên trong dùng object-fit: cover để lấp đầy khung hoàn toàn
+     (không có khoảng trống trên/dưới/trái/phải)
+   - Phần ảnh dư ra ngoài tỉ lệ khung sẽ được cắt bớt (chấp nhận được) */
 .postcard-photo {
   width: 100%;
-  height: 280px;
-  min-height: 280px;
+  height: 220px;
   border-radius: var(--radius-md);
   background: var(--bg-section);
   display: flex;
@@ -1205,43 +1189,22 @@ section { padding: 80px 0; }
   color: var(--text-muted);
   font-weight: 600;
   text-align: center;
-  margin-bottom: 16px;
-  padding: 20px;
-  overflow: hidden;
+  margin-bottom: 12px;
+  padding: 0;            /* [REQ 2] không padding để ảnh lấp đầy khung sát mép */
+  overflow: hidden;      /* [REQ 2] cắt phần ảnh dư ra ngoài khung */
 }
 
-/* Khung postcard khi chứa PDF:
-   Bỏ padding để PDF chiếm đủ 100% kích thước ô */
-.postcard-photo.postcard-pdf {
-  padding: 0;
-  overflow: hidden;
-  align-items: stretch;
-  justify-content: stretch;
-}
-
-/* Iframe PDF chiếm trọn khung */
-.postcard-photo.postcard-pdf iframe {
+/* [REQ 2] Ảnh postcard – lấp đầy khung, không méo, bo góc theo khung */
+.postcard-photo img {
   width: 100%;
   height: 100%;
-  min-height: 100%;
-  border: none;
+  object-fit: cover;      /* Lấp đầy khung, cắt bớt phần dư nếu tỉ lệ khác */
+  object-position: center;
   display: block;
-  background: var(--bg-section);
+  border-radius: var(--radius-md);  /* Bo góc khớp với khung cha */
 }
 
-/* Tên dưới postcard */
-.postcard-card p {
-  margin: 0;
-  color: var(--text);
-  font-size: var(--fs-md);
-  font-weight: 600;
-  line-height: 1.5;
-}
-
-/* ----- Kỷ yếu điện tử ----- */
-.yearbook-box {
-  padding: 24px;
-}
+.yearbook-box { padding: 24px; }
 
 .yearbook-placeholder {
   min-height: 320px;
@@ -1254,150 +1217,10 @@ section { padding: 80px 0; }
   color: var(--text-muted);
   text-align: center;
   padding: 24px;
-  background: var(--bg-section);
 }
 
-.yearbook-placeholder h3 {
-  font-size: var(--fs-lg);
-  margin-bottom: 10px;
-}
+.yearbook-placeholder h3 { font-size: var(--fs-lg); margin-bottom: 10px; }
 
-/* ============================================================
-   POSTCARD IMAGE – FIT ĐỦ ẢNH, NỀN TRẮNG, ÍT DƯ TRÊN/DƯỚI
-   ============================================================ */
-
-.postcard-card {
-  padding: 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-
-/* Khung ảnh postcard */
-.postcard-photo {
-  width: 100%;
-  aspect-ratio: 1.6 / 1;;   /* chỉnh tỉ lệ khung gần với postcard ngang */
-  height: auto;
-  min-height: unset;
-  border-radius: var(--radius-md);
-  background: #ffffff;
-  overflow: hidden;
-  margin-bottom: 0;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Ảnh postcard: hiện đủ ảnh, không cắt */
-.postcard-photo.postcard-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center;
-  display: block;
-  background: #ffffff;
-}
-
-/* Tên bên dưới */
-.postcard-card p {
-  margin: 0;
-  color: var(--text);
-  font-size: var(--fs-xl);
-  font-weight: 700;
-  line-height: 1.35;
-  text-align: center;
-}
-
-/* Tablet */
-@media (max-width: 1024px) {
-  .postcard-photo {
-    aspect-ratio: 1.42 / 1;
-  }
-}
-
-/* Điện thoại */
-@media (max-width: 768px) {
-  .postcard-card {
-    padding: 16px;
-  }
-
-  .postcard-photo {
-    aspect-ratio: 1.6 / 1;
-  }
-}
-
-/* Điện thoại nhỏ */
-@media (max-width: 480px) {
-  .postcard-card {
-    padding: 14px;
-    gap: 14px;
-  }
-
-  .postcard-photo {
-    border-radius: 14px;
-  }
-
-  .postcard-card p {
-    font-size: 1.25rem;
-  }
-}
-
-
-
-
-
-/* =========================
-   RESPONSIVE – LỜI NHẮN
-========================= */
-
-/* Tablet: 2 cột */
-@media (max-width: 1024px) {
-  .message-grid,
-  .postcard-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .postcard-photo {
-    height: 260px;
-    min-height: 260px;
-  }
-}
-
-/* Điện thoại: 1 cột */
-@media (max-width: 768px) {
-  .message-grid,
-  .postcard-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .postcard-card {
-    padding: 16px;
-  }
-
-  .postcard-photo {
-    height: 360px;
-    min-height: 360px;
-  }
-}
-
-/* Điện thoại nhỏ */
-@media (max-width: 480px) {
-  .postcard-card {
-    padding: 14px;
-    border-radius: 18px;
-  }
-
-  .postcard-photo {
-    height: 320px;
-    min-height: 320px;
-    border-radius: 14px;
-  }
-
-  .postcard-card p {
-    font-size: 1rem;
-  }
-}
 
 /* =========================
    18. LIÊN HỆ
@@ -1960,7 +1783,7 @@ body.theme-red .main-nav a.active {
   .member-photo { height: 220px; }
   .member-card--teacher .member-photo { height: 240px; }
 
-  /* [REQ 1+6] postcard-photo: thấp hơn trên mobile để vừa màn hình, vẫn cuộn dọc được */
+  /* [REQ 4] postcard-photo: thấp hơn trên mobile để vừa màn hình, ảnh vẫn lấp đầy khung */
   .postcard-photo { height: 200px; min-height: 200px; }
 
   .member-note-box {
@@ -2015,87 +1838,3 @@ body.theme-red .main-nav a.active {
     transition-duration: 0.01ms !important;
   }
 }
-
-
-/* ============================================================
-   POSTCARD PDF – PDF LẤP ĐẦY KHUNG postcard-photo
-   ============================================================ */
-
-/* Card ngoài vẫn giữ padding để còn khoảng trắng quanh tên */
-.postcard-card {
-  padding: 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-/* Khung postcard mặc định */
-.postcard-photo {
-  width: 100%;
-  height: 300px;
-  min-height: 300px;
-  border-radius: var(--radius-md);
-  background: var(--bg-section);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-muted);
-  font-weight: 600;
-  text-align: center;
-  margin-bottom: 0;
-  overflow: hidden;
-}
-
-/* Riêng khung chứa PDF: bỏ toàn bộ padding */
-.postcard-photo.postcard-pdf {
-  padding: 0;
-  overflow: hidden;
-}
-
-/* PDF chiếm đúng 100% khung postcard-photo */
-.postcard-photo.postcard-pdf iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-  display: block;
-  background: var(--bg-section);
-}
-
-/* Tên bên dưới */
-.postcard-card p {
-  margin: 0;
-  color: var(--text);
-  font-size: var(--fs-md);
-  font-weight: 600;
-  line-height: 1.5;
-}
-
-/* Tablet */
-@media (max-width: 1024px) {
-  .postcard-photo {
-    height: 280px;
-    min-height: 280px;
-  }
-}
-
-/* Điện thoại */
-@media (max-width: 768px) {
-  .postcard-photo {
-    height: 360px;
-    min-height: 360px;
-  }
-}
-
-/* Điện thoại nhỏ */
-@media (max-width: 480px) {
-  .postcard-card {
-    padding: 14px;
-  }
-
-  .postcard-photo {
-    height: 320px;
-    min-height: 320px;
-    border-radius: 14px;
-  }
-}
-
