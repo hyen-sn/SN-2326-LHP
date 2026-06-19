@@ -1276,7 +1276,7 @@ section { padding: 80px 0; }
 /* Khung ảnh postcard */
 .postcard-photo {
   width: 100%;
-  aspect-ratio: 1.42 / 1;   /* chỉnh tỉ lệ khung gần với postcard ngang */
+  aspect-ratio: 1.6 / 1;;   /* chỉnh tỉ lệ khung gần với postcard ngang */
   height: auto;
   min-height: unset;
   border-radius: var(--radius-md);
@@ -1323,7 +1323,7 @@ section { padding: 80px 0; }
   }
 
   .postcard-photo {
-    aspect-ratio: 1.42 / 1;
+    aspect-ratio: 1.6 / 1;
   }
 }
 
