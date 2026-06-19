@@ -246,7 +246,8 @@ section { padding: 80px 0; }
   padding: 8px 16px;
   border-radius: 999px;
   font-weight: 600;
-  font-size: var(--fs-sm);
+  /* [REQ 1] Tăng kích thước chữ thanh điều hướng cho dễ đọc hơn */
+  font-size: var(--fs-md);
   transition: background 0.2s, color 0.2s, transform 0.2s;
   border: 1.5px solid transparent;
 }
@@ -1156,6 +1157,27 @@ section { padding: 80px 0; }
 
 .message-card h3 { font-size: var(--fs-lg); margin-bottom: 12px; }
 
+/* [REQ 2] Khung chứa PDF bên trong message-card
+   – Chiều cao cố định ~400px trên desktop, PDF dài sẽ tự có scroll bar bên trong iframe
+   – overflow:auto đảm bảo nếu trình duyệt không tự cuộn được PDF thì khung vẫn cuộn được */
+.message-pdf-frame {
+  width: 100%;
+  height: 400px;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--border);
+  overflow: auto;
+  background: var(--bg-section);
+  margin-bottom: 12px;
+}
+
+/* [REQ 2] iframe PDF lấp đầy khung, không có viền riêng */
+.message-pdf-frame iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
 .postcard-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1757,6 +1779,9 @@ body.theme-red .main-nav a.active {
   .member-photo { height: 220px; }
   .member-card--teacher .member-photo { height: 240px; }
 
+  /* [REQ 6] PDF frame: thấp hơn trên mobile để vừa màn hình, vẫn cuộn được bên trong */
+  .message-pdf-frame { height: 320px; }
+
   .member-note-box {
     flex-direction: column;
     align-items: flex-start;
@@ -1770,6 +1795,7 @@ body.theme-red .main-nav a.active {
    26. RESPONSIVE – SMALL ≤480px
 ========================= */
 @media (max-width: 480px) {
+  /* [REQ 1] Mobile: chữ nav vẫn lớn hơn trước, chỉ giảm nhẹ so với desktop */
   .main-nav a { font-size: var(--fs-sm); }
 
   .info-card,
