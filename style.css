@@ -1263,8 +1263,7 @@ section { padding: 80px 0; }
 }
 
 /* ============================================================
-   POSTCARD IMAGE – ẢNH LẤP ĐẦY KHUNG postcard-photo
-   Dùng khi đã chuyển PDF sang JPG/PNG
+   POSTCARD IMAGE – FIT TOÀN BỘ ẢNH, KHÔNG CẮT MẤT NỘI DUNG
    ============================================================ */
 
 .postcard-card {
@@ -1280,24 +1279,26 @@ section { padding: 80px 0; }
   height: 300px;
   min-height: 300px;
   border-radius: var(--radius-md);
-  background: var(--bg-section);
+  background: #fffaf0;
   overflow: hidden;
   margin-bottom: 0;
   padding: 0;
-  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Ảnh postcard lấp đầy khung */
+/* Ảnh postcard: hiện đủ toàn bộ ảnh, không bị cắt */
 .postcard-photo.postcard-img img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  background: #ffffff;        /* lấp đầy khung, có thể cắt nhẹ rìa */
-  object-position: center;  /* căn giữa ảnh */
+  object-position: center;
   display: block;
+  background: #fffaf0;
 }
 
-/* Tên dưới postcard */
+/* Tên bên dưới */
 .postcard-card p {
   margin: 0;
   color: var(--text);
@@ -1334,7 +1335,6 @@ section { padding: 80px 0; }
     border-radius: 14px;
   }
 }
-
 
 
 
