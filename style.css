@@ -1262,6 +1262,83 @@ section { padding: 80px 0; }
   margin-bottom: 10px;
 }
 
+/* ============================================================
+   POSTCARD IMAGE – ẢNH LẤP ĐẦY KHUNG postcard-photo
+   Dùng khi đã chuyển PDF sang JPG/PNG
+   ============================================================ */
+
+.postcard-card {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Khung postcard */
+.postcard-photo {
+  width: 100%;
+  height: 300px;
+  min-height: 300px;
+  border-radius: var(--radius-md);
+  background: var(--bg-section);
+  overflow: hidden;
+  margin-bottom: 0;
+  padding: 0;
+  position: relative;
+}
+
+/* Ảnh postcard lấp đầy khung */
+.postcard-photo.postcard-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;        /* lấp đầy khung, có thể cắt nhẹ rìa */
+  object-position: center;  /* căn giữa ảnh */
+  display: block;
+}
+
+/* Tên dưới postcard */
+.postcard-card p {
+  margin: 0;
+  color: var(--text);
+  font-size: var(--fs-md);
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .postcard-photo {
+    height: 280px;
+    min-height: 280px;
+  }
+}
+
+/* Điện thoại */
+@media (max-width: 768px) {
+  .postcard-photo {
+    height: 360px;
+    min-height: 360px;
+  }
+}
+
+/* Điện thoại nhỏ */
+@media (max-width: 480px) {
+  .postcard-card {
+    padding: 14px;
+  }
+
+  .postcard-photo {
+    height: 320px;
+    min-height: 320px;
+    border-radius: 14px;
+  }
+}
+
+
+
+
+
+
 /* =========================
    RESPONSIVE – LỜI NHẮN
 ========================= */
@@ -2013,3 +2090,4 @@ body.theme-red .main-nav a.active {
     border-radius: 14px;
   }
 }
+
