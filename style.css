@@ -1294,7 +1294,7 @@ section { padding: 80px 0; }
   object-fit: contain;
   object-position: center;
   display: block;
-  background: #fffaf0;
+  background: white;
 }
 
 /* Tên bên dưới */
