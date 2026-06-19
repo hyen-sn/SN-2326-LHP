@@ -1147,17 +1147,24 @@ section { padding: 80px 0; }
 /* =========================
    17. LỜI NHẮN
 ========================= */
+
+/* ----- Lưới lời nhắn thường ----- */
 .message-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 22px;
 }
 
-.message-card { padding: 24px; background: var(--bg-card); }
+.message-card {
+  padding: 24px;
+  background: var(--bg-card);
+}
 
-.message-card h3 { font-size: var(--fs-lg); margin-bottom: 12px; }
+.message-card h3 {
+  font-size: var(--fs-lg);
+  margin-bottom: 12px;
+}
 
-/* [REQ 2] message-card trở lại dạng văn bản/quote thuần – không chứa PDF */
 .message-card p {
   color: var(--text-muted);
   font-size: var(--fs-md);
@@ -1165,22 +1172,31 @@ section { padding: 80px 0; }
   font-style: italic;
 }
 
+/* ----- Lưới postcard ----- */
 .postcard-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 22px;
+  align-items: stretch;
 }
 
-.postcard-card { padding: 18px; }
+/* Card postcard */
+.postcard-card {
+  padding: 18px;
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  border: 1.5px solid var(--border);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
 
-/* [REQ 1] postcard-photo – khung chứa PDF duy nhất trong trang Lời nhắn.
-   - Chiều rộng PDF luôn ép khớp 100% chiều rộng khung (không scroll ngang)
-   - overflow-y: auto để cuộn dọc khi PDF cao hơn khung
-   - Giữ nguyên kích thước khung giống ảnh minh hoạ bạn gửi */
+/* Khung postcard mặc định: dùng cho ô chữ Postcard 2, 3... */
 .postcard-photo {
   width: 100%;
-  min-height: 220px;
-  height: 220px;
+  height: 280px;
+  min-height: 280px;
   border-radius: var(--radius-md);
   background: var(--bg-section);
   display: flex;
@@ -1189,25 +1205,43 @@ section { padding: 80px 0; }
   color: var(--text-muted);
   font-weight: 600;
   text-align: center;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
   padding: 20px;
-  overflow-y: auto;     /* [REQ 1] cuộn dọc nếu PDF dài hơn khung */
-  overflow-x: hidden;    /* [REQ 1] không cuộn ngang – PDF luôn vừa chiều rộng */
+  overflow: hidden;
 }
 
-/* [REQ 1] PDF/ảnh nhúng trong postcard-photo – ép vừa chiều rộng khung */
-.postcard-photo iframe,
-.postcard-photo embed,
-.postcard-photo object {
+/* Khung postcard khi chứa PDF:
+   Bỏ padding để PDF chiếm đủ 100% kích thước ô */
+.postcard-photo.postcard-pdf {
+  padding: 0;
+  overflow: hidden;
+  align-items: stretch;
+  justify-content: stretch;
+}
+
+/* Iframe PDF chiếm trọn khung */
+.postcard-photo.postcard-pdf iframe {
   width: 100%;
   height: 100%;
+  min-height: 100%;
   border: none;
   display: block;
   background: var(--bg-section);
-  padding: 0;
 }
 
-.yearbook-box { padding: 24px; }
+/* Tên dưới postcard */
+.postcard-card p {
+  margin: 0;
+  color: var(--text);
+  font-size: var(--fs-md);
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+/* ----- Kỷ yếu điện tử ----- */
+.yearbook-box {
+  padding: 24px;
+}
 
 .yearbook-placeholder {
   min-height: 320px;
@@ -1220,10 +1254,65 @@ section { padding: 80px 0; }
   color: var(--text-muted);
   text-align: center;
   padding: 24px;
+  background: var(--bg-section);
 }
 
-.yearbook-placeholder h3 { font-size: var(--fs-lg); margin-bottom: 10px; }
+.yearbook-placeholder h3 {
+  font-size: var(--fs-lg);
+  margin-bottom: 10px;
+}
 
+/* =========================
+   RESPONSIVE – LỜI NHẮN
+========================= */
+
+/* Tablet: 2 cột */
+@media (max-width: 1024px) {
+  .message-grid,
+  .postcard-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .postcard-photo {
+    height: 260px;
+    min-height: 260px;
+  }
+}
+
+/* Điện thoại: 1 cột */
+@media (max-width: 768px) {
+  .message-grid,
+  .postcard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .postcard-card {
+    padding: 16px;
+  }
+
+  .postcard-photo {
+    height: 360px;
+    min-height: 360px;
+  }
+}
+
+/* Điện thoại nhỏ */
+@media (max-width: 480px) {
+  .postcard-card {
+    padding: 14px;
+    border-radius: 18px;
+  }
+
+  .postcard-photo {
+    height: 320px;
+    min-height: 320px;
+    border-radius: 14px;
+  }
+
+  .postcard-card p {
+    font-size: 1rem;
+  }
+}
 
 /* =========================
    18. LIÊN HỆ
