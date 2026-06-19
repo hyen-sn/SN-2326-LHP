@@ -1157,60 +1157,30 @@ section { padding: 80px 0; }
 
 .message-card h3 { font-size: var(--fs-lg); margin-bottom: 12px; }
 
+/* [REQ 2] message-card trở lại dạng văn bản/quote thuần – không chứa PDF */
+.message-card p {
+  color: var(--text-muted);
+  font-size: var(--fs-md);
+  line-height: 1.7;
+  font-style: italic;
+}
 
 .postcard-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 22px;
-  align-items: stretch;
 }
 
-/* Mỗi ô postcard */
-.postcard-card {
-  padding: 18px;
-  background: var(--bg-card);
-  border-radius: var(--radius-lg);
-  border: 1.5px solid var(--border);
-  box-shadow: var(--shadow-md);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
+.postcard-card { padding: 18px; }
 
-/* Khung PDF giống ô nhỏ trong hình */
-.message-pdf-frame {
-  width: 100%;
-  height: 260px;
-  border-radius: var(--radius-md);
-  background: var(--bg-section);
-  overflow: auto;
-  border: none;
-  position: relative;
-}
-
-/* PDF nằm gọn trong khung */
-.message-pdf-frame iframe {
-  width: 100%;
-  height: 100%;
-  min-height: 260px;
-  border: none;
-  display: block;
-  background: var(--bg-section);
-}
-
-/* Tên dưới postcard */
-.postcard-card p {
-  margin: 0;
-  color: var(--text);
-  font-size: var(--fs-md);
-  font-weight: 600;
-  line-height: 1.5;
-}
-
-/* Nếu vẫn còn dùng postcard-photo cũ thì giữ cho không lỗi */
+/* [REQ 1] postcard-photo – khung chứa PDF duy nhất trong trang Lời nhắn.
+   - Chiều rộng PDF luôn ép khớp 100% chiều rộng khung (không scroll ngang)
+   - overflow-y: auto để cuộn dọc khi PDF cao hơn khung
+   - Giữ nguyên kích thước khung giống ảnh minh hoạ bạn gửi */
 .postcard-photo {
+  width: 100%;
   min-height: 220px;
+  height: 220px;
   border-radius: var(--radius-md);
   background: var(--bg-section);
   display: flex;
@@ -1221,6 +1191,20 @@ section { padding: 80px 0; }
   text-align: center;
   margin-bottom: 12px;
   padding: 20px;
+  overflow-y: auto;     /* [REQ 1] cuộn dọc nếu PDF dài hơn khung */
+  overflow-x: hidden;    /* [REQ 1] không cuộn ngang – PDF luôn vừa chiều rộng */
+}
+
+/* [REQ 1] PDF/ảnh nhúng trong postcard-photo – ép vừa chiều rộng khung */
+.postcard-photo iframe,
+.postcard-photo embed,
+.postcard-photo object {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+  background: var(--bg-section);
+  padding: 0;
 }
 
 .yearbook-box { padding: 24px; }
@@ -1802,8 +1786,8 @@ body.theme-red .main-nav a.active {
   .member-photo { height: 220px; }
   .member-card--teacher .member-photo { height: 240px; }
 
-  /* [REQ 6] PDF frame: thấp hơn trên mobile để vừa màn hình, vẫn cuộn được bên trong */
-  .message-pdf-frame { height: 320px; }
+  /* [REQ 1+6] postcard-photo: thấp hơn trên mobile để vừa màn hình, vẫn cuộn dọc được */
+  .postcard-photo { height: 200px; min-height: 200px; }
 
   .member-note-box {
     flex-direction: column;
